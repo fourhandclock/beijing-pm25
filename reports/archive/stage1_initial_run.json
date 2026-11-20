@@ -1,0 +1,154 @@
+{
+  "completed_at_utc": "2026-11-19T16:45:27+00:00",
+  "config_path": "config/stage1.json",
+  "configuration": {
+    "calendar_end_exclusive": "2017-03-01",
+    "calendar_start": "2013-03-01",
+    "max_acf_lag": 30,
+    "min_valid_hours": 18,
+    "station": "auto",
+    "train_end_exclusive": "2015-03-01",
+    "validation_end_exclusive": "2016-03-01"
+  },
+  "elapsed_seconds": 4.064,
+  "environment": {
+    "matplotlib": "3.11.2",
+    "numpy": "2.5.5",
+    "pandas": "2.3.3",
+    "platform": "Linux-7.3.4-1-default-x86_64-with-glibc2.44",
+    "pytest": "9.2.0",
+    "python": "3.13.16"
+  },
+  "input_sha256": {
+    "AGENTS.md": "3051aa9b400be56166dec3bf91026e190c0fde396a71d9d21dacfceb1093e4fe",
+    "PROJECT_BRIEF.md": "5ad30bb1eb0513d52714041114a8c4e66e9cea8d2b7e4f8eb1d15f5d61d57db3",
+    "config/stage1.json": "8ddc5296def6014f562d3de8f2f4282f04ed0fbaa37bc69d75b3dd892efba0d4",
+    "pyproject.toml": "c5890abef7746998e634ab2a63c995df8d0fd704a0572236242db21f789c19fb",
+    "requirements.lock": "09a40b8e5359f1e1935d4e73bc8ca4bffb7fb8dfe77498ea6434259716e39953"
+  },
+  "invocation": [
+    ".venv/bin/python",
+    "-W",
+    "error",
+    "-m",
+    "beijing_pm25",
+    "stage1"
+  ],
+  "joint_hours_minimum": 18,
+  "models_fitted": false,
+  "output_sha256": {
+    "data/processed/Wanliu_analysis_ready.csv": "d205734a8143368d19ccac66dd282f42531ea75ac2aa9f8e50eb5cd05a2a005f",
+    "data/processed/Wanliu_daily.csv": "0c303c0e8d0d9e10dcf92298b37afe871528341e89a4b0e2e8e45f2dcf13d606",
+    "reports/stage1_summary.md": "56cf422b1f2ca93b2986388223d4f470d86430d9e72df8de834e893f3097b24d",
+    "results/figures/hourly_training_missingness.png": "dcf23f8af19dff09bbbfabddd7182ceec51e7cd300970db7de2ef8cdade3b874",
+    "results/figures/hourly_training_missingness.svg": "da791dd5e07c5fe9c74b18ca5f4b221a0eb4dfb2064258e32b9a8b8fce683932",
+    "results/figures/station_training_completeness.png": "42b0b342356c6711c963550e5ee856ddb5bfd638be3048babaa5a850478dc66b",
+    "results/figures/station_training_completeness.svg": "0beb1ecd30f982da6f9d09b441a0c76538258d138d78b1869005ff5af9964b23",
+    "results/figures/training_calendar_acf.png": "79f5a7c30d64669f3b2e48f591afec4d5fcfa0bbe11f0f846933ee7b811289b4",
+    "results/figures/training_calendar_acf.svg": "80a517a7d9f025d83feabeac04b231cf88af748c6dec84270f1f96521b26a791",
+    "results/figures/training_daily_series.png": "6ad18ba5b4f66b61f4f94d848f3511a9dbe4421e434dff756be4cdfd7e8ff63c",
+    "results/figures/training_daily_series.svg": "74f7fbe1ce261df4823ff0b89375275a937adf74c7ea394792133eebab73922a",
+    "results/figures/training_response_distribution.png": "915a526725bc6da4b3eec2dd9d4a69dea43b70ab20236c2fa914109de162add7",
+    "results/figures/training_response_distribution.svg": "4b87194dd97792774358269feeb68221d9cdb3d6936f36fb28d8da1c43c09c56",
+    "results/figures/training_seasonal_distribution.png": "a91bb81bb763de9cff9d87ae4da927c1ce25f69b4b9c082b6b29588643ae62ff",
+    "results/figures/training_seasonal_distribution.svg": "99b00f70c115068b482783e9d8b4bdb96a6bf20e16d784ab96c5cec630a8c57c",
+    "results/tables/daily_completeness.csv": "42c0fde94d31f4b98ad39f497d09b1ee7ed8fa391fe17e92f5a2fca8fb33af07",
+    "results/tables/hourly_missingness.csv": "309c1677a5dbcb1b69a4d20c6d6a965cd12c5f09d5b94d2bb8e522ef693374da",
+    "results/tables/station_audit.csv": "cd7180e8a9fe19edaad129c471db0f9d297b34127972f146af31ba488881ba1e",
+    "results/tables/timestamp_gaps.csv": "57cf6b3ef3f28db5bfbed4fd238aa704535f4da3c12df014315c875b511310ff",
+    "results/tables/training_calendar_acf.csv": "ed7ea14cfc7dc0f7856d1531f5fd30d3703eebb28d856e26e6a881a908a751a2",
+    "results/tables/training_response_summary.csv": "05ba81558452ff3d32ebc0e43c64584861183223c013c388cabac22ed491ea68"
+  },
+  "package_version": "0.1.0",
+  "rainfall_rule": "Sum 24 valid hourly interval amounts; partial daily sums are missing",
+  "raw_provenance": {
+    "archive_name": "uci_beijing_multi_site.zip",
+    "citation": "Chen, S. (2017). Beijing Multi-Site Air Quality [Dataset]. UCI Machine Learning Repository.",
+    "dataset": "UCI Beijing Multi-Site Air Quality",
+    "doi": "https://doi.org/10.24432/C5RK5G",
+    "license": "CC BY 4.0",
+    "official_download_url": "https://archive.ics.uci.edu/static/public/501/beijing+multi+site+air+quality+data.zip",
+    "origin_note": "Retrieved directly from UCI.",
+    "retrieved_at_utc": "2026-11-19T16:32:10+00:00",
+    "sha256": "b04da438b2f331ac0ffd45aebdfec0d20d2367feb5f6948c4b1f7ce1191e33c4",
+    "size_bytes": 8192212,
+    "source": {
+      "content_type": null,
+      "etag": null,
+      "http_status": 200,
+      "kind": "official_uci_download",
+      "last_modified": null,
+      "requested_url": "https://archive.ics.uci.edu/static/public/501/beijing+multi+site+air+quality+data.zip",
+      "resolved_url": "https://archive.ics.uci.edu/static/public/501/beijing+multi+site+air+quality+data.zip"
+    },
+    "source_page": "https://archive.ics.uci.edu/dataset/501/beijing+multi+site+air+quality+data",
+    "stations": [
+      "Aotizhongxin",
+      "Changping",
+      "Dingling",
+      "Dongsi",
+      "Guanyuan",
+      "Gucheng",
+      "Huairou",
+      "Nongzhanguan",
+      "Shunyi",
+      "Tiantan",
+      "Wanliu",
+      "Wanshouxigong"
+    ],
+    "uci_id": 501,
+    "version_note": "No release version asserted; identify these exact bytes by SHA-256."
+  },
+  "retention": {
+    "all": {
+      "analysis_eligible_days": 1441,
+      "calendar_days": 1461,
+      "excluded_days": 20,
+      "pm25_qualified_days": 1449
+    },
+    "test": {
+      "analysis_eligible_days": 357,
+      "calendar_days": 365,
+      "excluded_days": 8,
+      "pm25_qualified_days": 363
+    },
+    "train": {
+      "analysis_eligible_days": 725,
+      "calendar_days": 730,
+      "excluded_days": 5,
+      "pm25_qualified_days": 727
+    },
+    "validation": {
+      "analysis_eligible_days": 359,
+      "calendar_days": 366,
+      "excluded_days": 7,
+      "pm25_qualified_days": 359
+    }
+  },
+  "selected_station": "Wanliu",
+  "selection_mode": "automatic",
+  "selection_rule": "training eligible days DESC, training valid PM2.5 hours DESC, station ASC",
+  "source_code_sha256": {
+    "__init__.py": "8e9e80595b6a9931c67a825f0e53c63162205b8e6c11e794f9ae6e41ee28d328",
+    "__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+    "acquire.py": "ef9d178ee9b2b7beebb279fc3b7992137b0ca91b1e55f2eef2fc835d5bbe6ba0",
+    "cli.py": "1ad138bf0ae0a6d505f3517d009de5d9925c56bebec91122a5b67ba1e74fcd5c",
+    "config.py": "987768a108e420f3955a42f980c07a74c81b36df9f734cde6d612bd3744e9c91",
+    "data.py": "84ab18d63dbbcf0ebf3912b5f879b7f1c7b48e4aff9f18f0bbc644e07ee40bcb",
+    "describe.py": "c7088b1e714585a7e2fb1028616c6057605420bd9fb10eeb5c9fa1e417d6feeb",
+    "figures.py": "86a68fe01f37c7aff688265fd0d3747734a2b8942d440e5b1b8b5a286edfc916",
+    "pipeline.py": "f286f92ab16861d0ff015637d89b9aedf21240a3be44242681bd75a786079c89"
+  },
+  "stage": 1,
+  "started_at_utc": "2026-11-19T16:45:22+00:00",
+  "stations_audited": 12,
+  "status": "complete",
+  "time_assumption": "Asia/Shanghai local civil time; no conversion; source metadata do not specify timezone",
+  "units": {
+    "pm25": "ug/m^3",
+    "pressure": "hPa",
+    "rainfall": "mm/day",
+    "temperature": "degrees C",
+    "wind_speed": "m/s"
+  }
+}

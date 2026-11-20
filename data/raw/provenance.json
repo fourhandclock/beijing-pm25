@@ -1,0 +1,38 @@
+{
+  "archive_name": "uci_beijing_multi_site.zip",
+  "citation": "Chen, S. (2017). Beijing Multi-Site Air Quality [Dataset]. UCI Machine Learning Repository.",
+  "dataset": "UCI Beijing Multi-Site Air Quality",
+  "doi": "https://doi.org/10.24432/C5RK5G",
+  "license": "CC BY 4.0",
+  "official_download_url": "https://archive.ics.uci.edu/static/public/501/beijing+multi+site+air+quality+data.zip",
+  "origin_note": "Retrieved directly from UCI.",
+  "retrieved_at_utc": "2026-11-19T16:32:10+00:00",
+  "sha256": "b04da438b2f331ac0ffd45aebdfec0d20d2367feb5f6948c4b1f7ce1191e33c4",
+  "size_bytes": 8192212,
+  "source": {
+    "content_type": null,
+    "etag": null,
+    "http_status": 200,
+    "kind": "official_uci_download",
+    "last_modified": null,
+    "requested_url": "https://archive.ics.uci.edu/static/public/501/beijing+multi+site+air+quality+data.zip",
+    "resolved_url": "https://archive.ics.uci.edu/static/public/501/beijing+multi+site+air+quality+data.zip"
+  },
+  "source_page": "https://archive.ics.uci.edu/dataset/501/beijing+multi+site+air+quality+data",
+  "stations": [
+    "Aotizhongxin",
+    "Changping",
+    "Dingling",
+    "Dongsi",
+    "Guanyuan",
+    "Gucheng",
+    "Huairou",
+    "Nongzhanguan",
+    "Shunyi",
+    "Tiantan",
+    "Wanliu",
+    "Wanshouxigong"
+  ],
+  "uci_id": 501,
+  "version_note": "No release version asserted; identify these exact bytes by SHA-256."
+}

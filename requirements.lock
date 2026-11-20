@@ -1,0 +1,27 @@
+# Runtime and test versions validated on Python 3.13.16 (Stages 1 and 2).
+# Install these first, then use pip install --no-deps -e .
+contourpy==1.4.0
+cycler==0.12.1
+fonttools==4.68.0
+formulaic==1.2.2
+iniconfig==2.3.1
+interface_meta==2.0.1
+kiwisolver==1.5.1
+matplotlib==3.11.2
+narwhals==2.29.0
+numpy==2.5.5
+packaging==26.3
+pandas==2.3.3
+patsy==1.0.3
+pillow==13.0.0
+pluggy==1.7.0
+Pygments==2.21.0
+pyparsing==3.3.3
+pytest==9.2.0
+python-dateutil==4.0.0
+pytz==2026.6
+scipy==1.18.1
+statsmodels==0.15.0
+typing_extensions==4.16.0
+tzdata==2026.6
+wrapt==2.6.0.dev1

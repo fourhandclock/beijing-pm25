@@ -1,0 +1,82 @@
+{
+  "models": {
+    "M1": {
+      "coefficients": {
+        "Intercept": 90.77405621717301,
+        "pressure_c": -2.4267898011163207,
+        "rainfall_c": -0.4321132327768214,
+        "temperature_c": -3.489858719475298,
+        "wind_speed_c": -45.081462389825674
+      },
+      "columns": [
+        "Intercept",
+        "temperature_c",
+        "wind_speed_c",
+        "rainfall_c",
+        "pressure_c"
+      ],
+      "training_n": 725
+    },
+    "M2": {
+      "coefficients": {
+        "Intercept": 104.94210175703095,
+        "pressure_c": -2.2464892807400663,
+        "rainfall_c": -0.20285317194889205,
+        "season_autumn": -19.041203689468226,
+        "season_spring": -3.4506475276117032,
+        "season_summer": -33.747267430500955,
+        "temperature_c": -2.4833546628222227,
+        "wind_speed_c": -49.03007471277451
+      },
+      "columns": [
+        "Intercept",
+        "temperature_c",
+        "wind_speed_c",
+        "rainfall_c",
+        "pressure_c",
+        "season_spring",
+        "season_summer",
+        "season_autumn"
+      ],
+      "training_n": 725
+    },
+    "M3": {
+      "coefficients": {
+        "Intercept": 103.87397771054079,
+        "pressure_c": -2.2207040487146457,
+        "rainfall_c": -0.10154336743996255,
+        "season_autumn": -20.71819420735564,
+        "season_spring": -2.758936340828041,
+        "season_summer": -21.895756836914845,
+        "temperature_c": -2.6090874096714676,
+        "wind_speed_c": -52.11894692034759,
+        "wind_x_autumn": -5.8020129456651865,
+        "wind_x_spring": 5.0211770062115315,
+        "wind_x_summer": 34.98065447799822
+      },
+      "columns": [
+        "Intercept",
+        "temperature_c",
+        "wind_speed_c",
+        "rainfall_c",
+        "pressure_c",
+        "season_spring",
+        "season_summer",
+        "season_autumn",
+        "wind_x_spring",
+        "wind_x_summer",
+        "wind_x_autumn"
+      ],
+      "training_n": 725
+    }
+  },
+  "reference_season": "winter",
+  "response": "original daily PM2.5 in ug/m^3",
+  "training_centers": {
+    "pressure": 1010.6527873563821,
+    "rainfall": 1.4184827586206898,
+    "temperature": 13.512764367816297,
+    "wind_speed": 1.5211839080459337
+  },
+  "training_only": true
+}

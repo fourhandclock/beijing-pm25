@@ -1,0 +1,9 @@
+{
+  "calendar_start": "2013-03-01",
+  "train_end_exclusive": "2015-03-01",
+  "validation_end_exclusive": "2016-03-01",
+  "calendar_end_exclusive": "2017-03-01",
+  "min_valid_hours": 18,
+  "station": "auto",
+  "max_acf_lag": 30
+}

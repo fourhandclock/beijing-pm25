@@ -1,0 +1,72 @@
+{
+  "coefficients": {
+    "Intercept": 103.87397771054079,
+    "pressure_c": -2.2207040487146457,
+    "rainfall_c": -0.10154336743996255,
+    "season_autumn": -20.71819420735564,
+    "season_spring": -2.758936340828041,
+    "season_summer": -21.895756836914845,
+    "temperature_c": -2.6090874096714676,
+    "wind_speed_c": -52.11894692034759,
+    "wind_x_autumn": -5.8020129456651865,
+    "wind_x_spring": 5.0211770062115315,
+    "wind_x_summer": 34.98065447799822
+  },
+  "columns": [
+    "Intercept",
+    "temperature_c",
+    "wind_speed_c",
+    "rainfall_c",
+    "pressure_c",
+    "season_spring",
+    "season_summer",
+    "season_autumn",
+    "wind_x_spring",
+    "wind_x_summer",
+    "wind_x_autumn"
+  ],
+  "config_sha256": "e6983e891791c54b32021b443a039461defbeea6ad370cbb458ad041acb48f29",
+  "configuration": {
+    "alpha": 0.05,
+    "extreme_training_quantile": 0.95,
+    "hac_lag_days": [
+      7,
+      14,
+      30
+    ],
+    "primary_hac_lag_days": 7,
+    "reference_season": "winter",
+    "residual_acf_lag_days": 30,
+    "response_scale": "original",
+    "selection_metric": "mae",
+    "serial_test_lag_days": 7,
+    "simplicity_tolerance_fraction": 0.01
+  },
+  "daily_data_sha256": "0c303c0e8d0d9e10dcf92298b37afe871528341e89a4b0e2e8e45f2dcf13d606",
+  "frozen_at_utc": "2026-11-19T17:25:40+00:00",
+  "high_pollution_quantile": 0.95,
+  "high_pollution_rule": "observed daily PM2.5 >= eligible training quantile",
+  "high_pollution_training_cutoff": 234.65454545459994,
+  "negative_predictions_clipped": false,
+  "protocol_sha256": "6120cbf259f215fb6030c24cd4ad29aafef01ca3d2a2f5a4384ce87d1be6b6aa",
+  "refitted_on_validation": false,
+  "response_scale": "original",
+  "selected_model": "M3",
+  "selection_rule": "Lowest validation MAE, preferring fewer parameters within 1% of the best",
+  "stage1_run_sha256": "adad4557c94a1cb8c77dee8abd978448fb44e16233431d04bfeef9a42665041b",
+  "station": "Wanliu",
+  "test_used_for_selection": false,
+  "training_centers": {
+    "pressure": 1010.6527873563821,
+    "rainfall": 1.4184827586206898,
+    "temperature": 13.512764367816297,
+    "wind_speed": 1.5211839080459337
+  },
+  "training_first_fitted_date": "2013-03-01",
+  "training_last_fitted_date": "2015-02-28",
+  "training_mean_baseline": 90.77405621717303,
+  "training_observations": 725,
+  "validation_first_date": "2015-03-01",
+  "validation_last_date": "2016-02-29",
+  "validation_observations": 359
+}

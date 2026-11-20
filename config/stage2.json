@@ -1,0 +1,12 @@
+{
+  "response_scale": "original",
+  "reference_season": "winter",
+  "primary_hac_lag_days": 7,
+  "hac_lag_days": [7, 14, 30],
+  "serial_test_lag_days": 7,
+  "residual_acf_lag_days": 30,
+  "alpha": 0.05,
+  "selection_metric": "mae",
+  "simplicity_tolerance_fraction": 0.01,
+  "extreme_training_quantile": 0.95
+}
