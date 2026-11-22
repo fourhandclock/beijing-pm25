@@ -1,6 +1,6 @@
 # Stage 2 implementation and numerical checks
 
-Stage 2 was implemented after the user's approval, with the response, regressors, covariance bandwidths, multiplicity adjustment and selection rule recorded in `stage2_protocol.md` before the first empirical fit. The provisional deadline remains 25 November 2026.
+Stage 2 was implemented after the Stage 1 audit was reviewed, with the response, regressors, covariance bandwidths, multiplicity adjustment and selection rule recorded in `stage2_protocol.md` before the first empirical fit. The submission deadline is 25 November 2026.
 
 ## Environment and executed commands
 

@@ -1,0 +1,9 @@
+{
+  "primary_station": "Wanliu",
+  "min_valid_hours": 18,
+  "primary_hac_lag_days": 7,
+  "alpha": 0.05,
+  "extreme_training_quantile": 0.95,
+  "cluster_variables": ["PM2.5", "PM10", "SO2", "NO2", "CO", "O3"],
+  "cluster_k_range": [2, 5]
+}
