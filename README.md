@@ -1,12 +1,20 @@
 # Beyond R²: Beijing PM2.5
 
-**Stages 1 and 2 are implemented and have been run on the original UCI data.** Start with the [regression analysis](reports/stage2_analysis.md), [data audit](reports/stage1_summary.md), and [Stage 2 checks](reports/stage2_checks.md). The user approved moving into the core regression stage after the initial data audit. Optional extensions remain outside this stage.
+**Stages 1–3 are implemented and have been run on the original UCI data.** Start with the [regression analysis](reports/stage2_analysis.md), [data audit](reports/stage1_summary.md), [Stage 2 checks](reports/stage2_checks.md) and the [exploratory extensions](reports/stage3_extensions.md). Stage 2 is the project's confirmatory analysis; Stage 3 was added after the Stage 2 test year had been scored, so it is exploratory.
 
 The audit proposes **Wanliu**, selected by training-period completeness. Of 1,461 calendar days, 1,441 meet the declared analysis requirements: **725 training, 359 validation, and 357 test days**. These counts describe data readiness, not model performance.
 
-**Provisional submission deadline: 25 November 2026**, as instructed by the user on 19 November; the submission time is not yet specified. The core regression comparison, diagnostics and analysis report are complete. Prioritize preparing the concise submission report and presentation next. Optional EWMA/ridge extensions come after those deliverables and only if time permits.
+Submission deadline: **25 November 2026**.
 
 The fixed validation rule selected **M3**, with final-test **MAE 46.785 µg/m³** and **RMSE 60.935 µg/m³** across 357 days; the training-mean baseline has MAE 55.297 and RMSE 73.006. Neither planned primary HAC joint test passes the prespecified Holm adjustment (both adjusted p = 0.0618). Residual dependence remains substantial, high days are underestimated, and three test estimates are negative. These limitations are part of the result, not observations removed to improve scores.
+
+**Stage 3 (exploratory)** adds alternative models, the other 11 stations, a logistic smog-day model and a station cluster analysis:
+
+- On one common sample, adding the previous day's PM2.5, dew point and wind direction on a log scale cuts validation MAE from 50.4 to 32.7 (test 46.7 → 29.0) with no negative estimates. The previous day's PM2.5 is the largest single gain (training R² 0.22 → 0.51).
+- Regression with AR(1) errors (ρ ≈ 0.57) keeps the seasonal effect (H1 p = 0.003) but gives no evidence for the wind × season interaction (H2 p = 0.46).
+- The wind association is negative, with HAC intervals excluding zero, at all 12 stations; the seasonal findings vary between stations.
+- A logistic model ranks smog days well (test AUC 0.93). With a cutoff chosen on validation it catches 15 of 17 test smog days, with 44 false alarms; a 0.5 cutoff catches none.
+- Ward clustering separates four suburban stations (Changping, Dingling, Huairou, Shunyi) from eight urban ones.
 
 ## Setup and commands
 
@@ -19,6 +27,7 @@ python3 -m venv .venv
 .venv/bin/python -m beijing_pm25 download
 .venv/bin/python -m beijing_pm25 stage1
 .venv/bin/python -m beijing_pm25 stage2
+.venv/bin/python -m beijing_pm25 stage3
 .venv/bin/python -m beijing_pm25 verify
 .venv/bin/python -m pytest -q -W error
 python3 scripts/verify_aggregation.py
@@ -33,7 +42,7 @@ To use a manually downloaded original UCI archive:
 .venv/bin/python -m beijing_pm25 download --import-archive /path/to/beijing-multi-site.zip
 ```
 
-Acquisition preserves the archive's bytes. It never overwrites an existing archive; repeated downloads verify and reuse it. A local import is clearly labeled as having an unverified original download origin. The command supports both UCI's outer ZIP and the original inner station-data ZIP. It records the SHA-256, retrieval time, source URL, license and member list. No data are fabricated when acquisition fails.
+Acquisition preserves the archive's bytes. It never overwrites an existing archive; repeated downloads verify and reuse it. On a fresh clone, `data/raw/provenance.json` is committed but the archive is not; `download` then fetches the archive again and accepts it only if its SHA-256 matches the committed manifest, which it leaves unchanged. A local import is clearly labeled as having an unverified original download origin. The command supports both UCI's outer ZIP and the original inner station-data ZIP. It records the SHA-256, retrieval time, source URL, license and member list. No data are fabricated when acquisition fails.
 
 Without the analysis packages, acquisition alone still works with the standard library:
 
@@ -43,7 +52,7 @@ PYTHONPATH=src python3 -m beijing_pm25 download
 
 Both stages finish in seconds in the recorded environment. The audit processes one station's hourly data at a time; regression uses only the selected station's eligible daily observations. Network operations have socket, total-duration and size limits. Ctrl-C cancels work and marks an interrupted analysis run; raw inputs are preserved. A failed/interrupted run is not reported as complete by `verify`.
 
-`verify` checks both existing stages by default. Use `verify --stage 1` for only the data audit, or `verify --stage 2` for the regression stage and its Stage 1 prerequisites. Adding analysis modules/dependencies changes the recorded source/environment inputs, so rerun Stage 1 before Stage 2 after a code update. The initial Stage 1 report and manifest are preserved under `reports/archive/`; the raw archive and cleaning rules are unchanged.
+`verify` checks every stage that has a run record. Use `verify --stage 1` for only the data audit, `verify --stage 2` for the regression stage and its Stage 1 prerequisites, or `verify --stage 3` for the exploratory stage. Stage 3 verification checks the SHA-256 of each station CSV inside the archive, as well as its own inputs, code and outputs. Adding analysis modules/dependencies changes the recorded source/environment inputs, so rerun Stage 1 before Stage 2 after a code update. The initial Stage 1 report and manifest are preserved under `reports/archive/`; the raw archive and cleaning rules are unchanged.
 
 ## Data and decisions
 
@@ -116,6 +125,24 @@ Stage 2 adds these separate artifacts:
 | `reports/stage2_checks.md` | Executed tests, real-data run and independent oracle outcomes |
 | `scripts/verify_models.py` | Independent QR-based OLS/F/HAC/Wald/influence/performance verification, without project or statsmodels imports |
 
+Stage 3 adds these separate artifacts:
+
+| Path | Purpose |
+| --- | --- |
+| `config/stage3.json` | Primary station, completeness rule, HAC bandwidth, smog-day quantile and clustering settings |
+| `results/stage3/tables/model_comparison_*.csv` | Five candidate models and the baseline on one common sample: fits, scores and dated predictions |
+| `results/stage3/tables/added_block_tests.csv` | Partial F and HAC Wald tests for dew point + wind direction and for the previous day's PM2.5 |
+| `results/stage3/tables/extension_coefficients.csv` | HAC coefficient intervals for the extended models |
+| `results/stage3/tables/ar1_error_tests.csv` | H1/H2 under regression with AR(1) errors (GLSAR) |
+| `results/stage3/tables/smog_logistic_*.csv` | Logistic smog-day model: odds ratios, performance at the validation-chosen and 0.5 cutoffs, daily probabilities |
+| `results/stage3/tables/station_replication.csv` | Stage 2's M1–M3 at all 12 stations: wind interval, Holm-adjusted H1/H2, test MAE |
+| `results/stage3/tables/station_clusters.csv`, `station_cluster_gaps.csv` | Station pollutant profiles, cluster membership and the k rule |
+| `results/stage3/figures/` | Model MAE comparison, 12-station wind intervals, dendrogram, smog probabilities |
+| `results/stage3/run.json` | Configuration, station-member hashes, environment and input/code/output hashes |
+| `reports/stage3_extensions.md` | Generated Stage 3 report |
+
+New Stage 3 daily variables use Stage 1's 18-valid-hour rule: dew point (°C), and the mean wind vector from the hourly direction and speed (`southerly` > 0 means air from the south, `westerly` > 0 from the west, m/s). The previous day's PM2.5 is the previous *calendar* day's value, missing after a gap.
+
 `pm25` is in µg/m³, `temperature` in °C, `pressure` in hPa, `wind_speed` in m/s, and `rainfall` in mm/day under the interval-amount assumption. Daily files include `n_*`, `n_joint_core_hours`, `hours_observed`, `analysis_eligible` and `exclusion_reason`. Empty daily numeric cells mean missing values, not zeros. Keep the full-calendar file for future lag/ACF work; do not treat adjacent rows in the filtered file as necessarily consecutive days.
 
 ## Interpretation and next stage
@@ -124,4 +151,21 @@ This is an observational, contemporaneous explanatory investigation. A same-day 
 
 M3's training R² is 0.221 and adjusted R² is 0.211; residual lag-one correlation is 0.512. This is a limited explanatory model with remaining dependence, skewness and unequal-variance evidence, not a claim that all OLS assumptions hold. The two best validation MAEs differ by only 0.556 µg/m³, so selection is sensitive to a small improvement around the declared tolerance. Test signed error is +15.283 µg/m³ overall, but −160.945 on 17 high days defined by the training-only 234.655 µg/m³ cutoff. Statistical associations, inferential evidence and chronological estimation performance answer different questions.
 
-The next deliverable is the concise submission report and presentation using these findings. EWMA bias correction, response-scale sensitivity, ridge and additional stations have not been started. Future adaptations after inspecting this test must be labeled exploratory. Plan against the provisional 25 November 2026 deadline above; no submission time has been confirmed.
+EWMA bias correction and ridge regression have not been started.
+
+## Limitations
+
+These cannot be fixed with this dataset and are stated rather than hidden:
+
+- Observational data: associations, not causal effects.
+- Important drivers are not in the data (emissions, regional transport, mixing-layer height), which caps the explained variance.
+- The test year has been scored, so every later model, including all of Stage 3, is exploratory. A fresh confirmatory test would need data after February 2017.
+- PM2.5 fell over the study period (training mean ≈ 91, test ≈ 78 µg/m³); four years are too few to model that trend.
+- Smog days are rare (17 in the test year), so smog-day results are noisy.
+- The 12 stations share one city's air; agreement across them shows consistency, not independent replication.
+- Estimates use the same day's observed weather; none of the models is a forecast.
+- Missing hours and monitor errors cannot be recovered; 20 of 1,461 days were excluded.
+
+## How this project was built
+
+The code and reports were written with AI coding assistants (OpenAI Codex, then Anthropic's Claude), working from the instructions in [`AGENTS.md`](AGENTS.md) and [`PROJECT_BRIEF.md`](PROJECT_BRIEF.md). Analysis decisions, the data and every reported number come from the committed code and can be reproduced with the commands above.

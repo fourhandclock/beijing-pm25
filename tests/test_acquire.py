@@ -40,6 +40,32 @@ def test_different_import_cannot_overwrite_preserved_raw(tmp_path):
     assert preserved.read_bytes() == original_bytes
 
 
+def test_fresh_clone_with_committed_manifest_restores_matching_archive(tmp_path):
+    archive = write_archive(tmp_path / "input.zip", {"Alpha": hourly_rows()})
+    project = tmp_path / "project"
+    preserved, manifest = acquire(project, archive)
+    manifest_text = (preserved.parent / "provenance.json").read_text(encoding="utf-8")
+    preserved.unlink()  # what a fresh clone looks like: manifest committed, archive gitignored
+    restored, restored_manifest = acquire(project, archive)
+    assert restored.read_bytes() == archive.read_bytes()
+    assert restored_manifest == manifest
+    assert (restored.parent / "provenance.json").read_text(encoding="utf-8") == manifest_text
+    assert verify_raw(project)[1] == manifest
+    assert not list(restored.parent.glob("*.part"))
+
+
+def test_fresh_clone_rejects_archive_not_matching_committed_manifest(tmp_path):
+    first = write_archive(tmp_path / "first.zip", {"Alpha": hourly_rows()})
+    second = write_archive(tmp_path / "second.zip", {"Alpha": hourly_rows(offset=100)})
+    project = tmp_path / "project"
+    preserved, _ = acquire(project, first)
+    preserved.unlink()
+    with pytest.raises(ValueError, match="does not match the SHA-256"):
+        acquire(project, second)
+    assert not preserved.exists()
+    assert not list(preserved.parent.glob("*.part"))
+
+
 def test_tampered_raw_archive_rejected(tmp_path):
     archive = write_archive(tmp_path / "input.zip", {"Alpha": hourly_rows()})
     preserved, _ = acquire(tmp_path / "project", archive)

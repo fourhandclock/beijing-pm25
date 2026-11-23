@@ -23,9 +23,12 @@ def parser():
     model = commands.add_parser("stage2", help="Fit the approved M1–M3 analysis, freeze, evaluate and report.")
     model.add_argument("--project-root", type=Path, default=Path.cwd())
     model.add_argument("--config", type=Path, help="Default: <project-root>/config/stage2.json")
+    extend = commands.add_parser("stage3", help="Exploratory extensions: alternative models, other stations, clustering.")
+    extend.add_argument("--project-root", type=Path, default=Path.cwd())
+    extend.add_argument("--config", type=Path, help="Default: <project-root>/config/stage3.json")
     verify = commands.add_parser("verify", help="Check the source, configuration, code, and output hashes.")
     verify.add_argument("--project-root", type=Path, default=Path.cwd())
-    verify.add_argument("--stage", choices=("1", "2", "all"), default="all")
+    verify.add_argument("--stage", choices=("1", "2", "3", "all"), default="all")
     return root
 
 
@@ -46,6 +49,10 @@ def main(argv=None):
         elif args.command == "stage2":
             from .model_pipeline import run_stage2
             print(json.dumps(run_stage2(root, args.config), indent=2, allow_nan=False))
+        elif args.command == "stage3":
+            from .extension_pipeline import run_stage3
+            print(json.dumps(run_stage3(root, args.config), indent=2, allow_nan=False))
+            print("Stage 3 is exploratory: the test year was already scored in Stage 2.")
         else:
             from .pipeline import verify_run
             results = {}
@@ -54,6 +61,9 @@ def main(argv=None):
             if args.stage == "2" or (args.stage == "all" and (root / "results" / "stage2" / "run.json").exists()):
                 from .model_pipeline import verify_stage2
                 results["stage2"] = verify_stage2(root)
+            if args.stage == "3" or (args.stage == "all" and (root / "results" / "stage3" / "run.json").exists()):
+                from .extension_pipeline import verify_stage3
+                results["stage3"] = verify_stage3(root)
             print(json.dumps(results, indent=2, allow_nan=False))
         return 0
     except KeyboardInterrupt:

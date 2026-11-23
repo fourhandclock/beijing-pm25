@@ -1,0 +1,3 @@
+comparison,added_block,terms,df,classical_f,classical_p,hac_lag_days,hac_wald_chi2,hac_p,delta_r2
+M3 -> M3_met,dew point + wind direction,dew_point_c;southerly_c;westerly_c,3,79.3780147918177,2.90017899549522e-44,7,127.258781144652,2.1074829661949e-27,0.196525722429065
+M3 -> M3_lag,previous day's PM2.5,pm25_lag1_c,1,409.760154964496,2.95354877288051e-72,7,305.701960725491,1.88601182906687e-68,0.285682774815376

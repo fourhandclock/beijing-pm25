@@ -90,7 +90,7 @@ def render_report(station, stage1, config, development, summaries, coefficients,
     counts = stage1["retention"]
     return f"""# Stage 2 — regression, seasonal tests and model adequacy
 
-**{station}; original-scale daily PM2.5; completed on the original UCI dataset.** Model decisions follow the [protocol](stage2_protocol.md), written before the first empirical fit. The user approved this stage. The provisional submission deadline is 25 November 2026.
+**{station}; original-scale daily PM2.5; completed on the original UCI dataset.** Model decisions follow the [protocol](stage2_protocol.md), written before the first empirical fit. The submission deadline is 25 November 2026.
 
 ## Main findings
 

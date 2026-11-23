@@ -127,11 +127,15 @@ def acquire(project_root: Path, import_archive: Path | None = None, timeout=30):
     raw.mkdir(parents=True, exist_ok=True)
     destination = raw / ARCHIVE_NAME
     manifest_path = raw / "provenance.json"
-    if destination.exists() or manifest_path.exists():
+    if destination.exists():
         path, manifest = verify_raw(project_root)
         if import_archive is not None and sha256_file(import_archive) != manifest["sha256"]:
             raise ValueError("A different archive is already preserved; use a separate project copy.")
         return path, manifest
+    # A fresh clone has the committed manifest but not the (gitignored) archive.
+    # Fetch the bytes again and accept them only if they match the recorded hash,
+    # leaving the committed provenance untouched.
+    expected = json.loads(manifest_path.read_text(encoding="utf-8")) if manifest_path.exists() else None
     if not 1 <= timeout <= 120:
         raise ValueError("Download timeout must be between 1 and 120 seconds.")
 
@@ -170,6 +174,17 @@ def acquire(project_root: Path, import_archive: Path | None = None, timeout=30):
                             raise TimeoutError("Download exceeded its two-minute total time budget.")
                         handle.write(chunk)
         stations = _validate_archive(temporary)
+        if expected is not None:
+            if (sha256_file(temporary) != expected.get("sha256")
+                    or temporary.stat().st_size != expected.get("size_bytes")):
+                raise ValueError(
+                    "The fetched archive does not match the SHA-256 recorded in "
+                    "data/raw/provenance.json, so the committed results may not reproduce. "
+                    "Import the original archive with --import-archive, or delete "
+                    "provenance.json to record new provenance (results will then cite a different archive)."
+                )
+            os.link(temporary, destination)
+            return destination, expected
         manifest = {
             "dataset": "UCI Beijing Multi-Site Air Quality", "uci_id": 501,
             "doi": SOURCE_DOI, "source_page": SOURCE_PAGE,

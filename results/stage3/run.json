@@ -1,0 +1,101 @@
+{
+  "completed_at_utc": "2026-11-22T16:39:28+00:00",
+  "configuration": {
+    "alpha": 0.05,
+    "cluster_k_range": [
+      2,
+      5
+    ],
+    "cluster_variables": [
+      "PM2.5",
+      "PM10",
+      "SO2",
+      "NO2",
+      "CO",
+      "O3"
+    ],
+    "extreme_training_quantile": 0.95,
+    "min_valid_hours": 18,
+    "primary_hac_lag_days": 7,
+    "primary_station": "Wanliu"
+  },
+  "elapsed_seconds": 4.686,
+  "environment": {
+    "matplotlib": "3.11.2",
+    "numpy": "2.5.5",
+    "pandas": "2.3.3",
+    "platform": "Linux-6.18.44-fc-v726-x86_64-with-glibc2.39",
+    "pytest": "9.2.0",
+    "python": "3.13.18",
+    "scipy": "1.18.1",
+    "statsmodels": "0.15.0"
+  },
+  "exploratory": true,
+  "input_sha256": {
+    "config/stage1.json": "8ddc5296def6014f562d3de8f2f4282f04ed0fbaa37bc69d75b3dd892efba0d4",
+    "config/stage3.json": "6648ef6efb7ce2c5033d5ecd27fdf4014a0a662969b1f5412ce7867aa5ff8db1",
+    "pyproject.toml": "e2c7bb5b2e2fbf1524b4c21eb0c76f013164f77d4e338fa8cd7eab4fb4fab220",
+    "requirements.lock": "54f765c694e870dc62f78bbe25ed8bd5996d8fcc274c394983307e9786f8ec29"
+  },
+  "invocation": "python -m beijing_pm25 stage3",
+  "output_sha256": {
+    "reports/stage3_extensions.md": "a6fced37fcf75a72a49b32b7f411ccc1c06af4f35979332eb846cc6a25cdaf62",
+    "results/stage3/figures/extension_model_mae.png": "fb88880b3dcf017ff8ca1d58a36825865a4e6151c6767e77f5d38bc291b99e2b",
+    "results/stage3/figures/smog_logistic_probabilities.png": "661cea36a59e420ce8a21c5beefe990a84efda0c27f033b6a6bdac721b350500",
+    "results/stage3/figures/station_dendrogram.png": "5298a0b0908a64ac57d85cf76c613176fa492236dfb6ef836df76d7411f03d4c",
+    "results/stage3/figures/station_wind_coefficients.png": "a2d803a83c892206e21eafe9fa5cc1ce1c8ab24be6ed0db5b5b48d889b493c5d",
+    "results/stage3/tables/added_block_tests.csv": "99d37eccc817894855ea02a5e3bbae1dcd577eca9b93158377fd767c754f2fb8",
+    "results/stage3/tables/ar1_error_tests.csv": "231820a27a5b1db16e23454f6c722ead4d76d39c5b7e33ede40c050da00ab327",
+    "results/stage3/tables/extension_coefficients.csv": "adefd338ac6c4972145259019c6456e1b5c0d1979255f998691759080a121064",
+    "results/stage3/tables/model_comparison_fits.csv": "ac0844db97cdac4765f7715be36babfe8a71e3ca57baf94b8427b308f6ad6921",
+    "results/stage3/tables/model_comparison_predictions.csv": "14ebc11e811e2be6e9e008fd96b879c863f60f3131478ccdb6c4069310ee202a",
+    "results/stage3/tables/model_comparison_scores.csv": "1019db7d4a8bb95cb90fc969c0afd027a7d82f0ff2eeff26c5e092562eaf7526",
+    "results/stage3/tables/smog_logistic_daily.csv": "f9f71f3ce65261956d07e612c1a3d6fc9b927e1cfbd16e707a02dcbbcefefdf8",
+    "results/stage3/tables/smog_logistic_odds_ratios.csv": "4a526a53715653ca64188429406645f028cbf562251191cca4a32e967955b3fc",
+    "results/stage3/tables/smog_logistic_performance.csv": "920227d39ee26a3d31f2c2d77f6d2055b5ddb4e2fc94d59cd445f65acc9b1810",
+    "results/stage3/tables/station_cluster_gaps.csv": "5401419209f0c045012233e921dacb7b9cbd100de0f7e9ae7f1167ba93b13937",
+    "results/stage3/tables/station_clusters.csv": "4a3469c2781f298a189771eb33a50b2a91fb77e455891d008105ab23feebf72a",
+    "results/stage3/tables/station_replication.csv": "5103b61ea09eff49188415350e2984100f075196eb05b39b20cbe589d1cd7d3f"
+  },
+  "package_version": "0.2.0",
+  "primary_station": "Wanliu",
+  "selected_by_validation_mae": "M3_log_lag_met",
+  "source_code_sha256": {
+    "__init__.py": "1649f7af1360bf041c3e969769279820e38830fc0a29f917e21227151f16cba3",
+    "__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+    "acquire.py": "a11b1d50c0a6f5db90517e693086d1e0d3377376185d25e7214973c53ae22130",
+    "cli.py": "c8b5f04bd214b957964711d0341252cba4f090c6dc0bb2bd1c646793ca9bd30f",
+    "config.py": "987768a108e420f3955a42f980c07a74c81b36df9f734cde6d612bd3744e9c91",
+    "data.py": "84ab18d63dbbcf0ebf3912b5f879b7f1c7b48e4aff9f18f0bbc644e07ee40bcb",
+    "describe.py": "c7088b1e714585a7e2fb1028616c6057605420bd9fb10eeb5c9fa1e417d6feeb",
+    "extension_config.py": "c0bdfa831ecc5cd7e69d0a8066e78db52a860c2da3178164e486b64b2da67c17",
+    "extension_pipeline.py": "3282485d081e312258897fd7768b3b552469c74dfb9f0e1fbb82de08d8bcc0a2",
+    "extensions.py": "7df219c7d0ee435380f80f1810fa5f1b5392c4726fe70d1bb3eae826aa32a321",
+    "figures.py": "86a68fe01f37c7aff688265fd0d3747734a2b8942d440e5b1b8b5a286edfc916",
+    "model_config.py": "e2edacccc0f9ec94de55d828e44de314dd747fb170fe5524921a15b0ded94c64",
+    "model_diagnostics.py": "334fed136cd03e16076805472097fde32e4c6a1d871feac6e04748d6f4a03a3e",
+    "model_figures.py": "34dc3cd2f2dc9ad05101e65fb46b2f18c40177c0fc6d04d4ee1972be010ac14a",
+    "model_pipeline.py": "59ab25fbd56a1751ab51c48c972c2cc923d7d9b5711ba68dfc407dcfa76e7662",
+    "model_report.py": "71b8f035ecb5d24475c8dbc2628d9ca92ea1a7445b2270f0983ba833c8a2707c",
+    "models.py": "b2899155db98ace1b0b71f7680b3ef8e51988147ffc07ffc3624088862f85c9d",
+    "pipeline.py": "f286f92ab16861d0ff015637d89b9aedf21240a3be44242681bd75a786079c89"
+  },
+  "stage": 3,
+  "started_at_utc": "2026-11-22T16:39:23+00:00",
+  "station_member_sha256": {
+    "Aotizhongxin": "a94fbcfc71708b6ffdc033360163d91efb7f675e496f6b5860929aa96b96351b",
+    "Changping": "a2e21402a6d95fb7043f87959e6e3dcbecb957aac356a6f8028a85b047c772e7",
+    "Dingling": "3d8dff81f18a80d9f455876a785642bffe1e9b9924ec1e6b7ce8cca790432eeb",
+    "Dongsi": "9c0020214425e5ee2a64d42f97a1f632e1d8f6b53ad50edd85a686cc7999f27e",
+    "Guanyuan": "59390fee3b032597b387491f5230e7edb90a8558e30217ebd6d9befbe669fbf9",
+    "Gucheng": "10ae48801ea55869fee56a48b885fb1127859c130551888d71673f34216ba951",
+    "Huairou": "812dcbe848b3ba2c2d25731064797bff803c46eb0c602156a1fa044df136dc26",
+    "Nongzhanguan": "572cf87b65ef543cd55d3a711b28474def224a46b0ec3fc8add8aaf13b67a487",
+    "Shunyi": "520b59e4ead3b0cfe7f1ed673e30275de8441e999db6f413d5172d2277b8c15a",
+    "Tiantan": "0743e34799cf1ee36195b73321b91baa5625276532e7263c588f68cdef3b4daa",
+    "Wanliu": "0b1a6d754a07f0def2f55434ddfa3870dcd0063b7f766a6f66b6c11bb05a377a",
+    "Wanshouxigong": "ab1d6a356d6997a45f6d657ad47de1e05a4a08d4a7015b38a329a90665ab74d0"
+  },
+  "status": "complete",
+  "test_year_previously_scored_in_stage2": true
+}
