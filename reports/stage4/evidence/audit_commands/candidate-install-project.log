@@ -1,0 +1,17 @@
+Obtaining file:///tmp/beijing-pm25-stage4-final-20261123
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Checking if build backend supports build_editable: started
+  Checking if build backend supports build_editable: finished with status 'done'
+  Getting requirements to build editable: started
+  Getting requirements to build editable: finished with status 'done'
+  Preparing editable metadata (pyproject.toml): started
+  Preparing editable metadata (pyproject.toml): finished with status 'done'
+Building wheels for collected packages: beijing-pm25
+  Building editable for beijing-pm25 (pyproject.toml): started
+  Building editable for beijing-pm25 (pyproject.toml): finished with status 'done'
+  Created wheel for beijing-pm25: filename=beijing_pm25-0.2.0-0.editable-py3-none-any.whl size=1733 sha256=60b2193582dc3e71f18149074ff414cbcc140727993e57a1434a854bf462a06a
+  Stored in directory: /tmp/pip-ephem-wheel-cache-agvuv3ao/wheels/55/83/b2/758ed2898b367e8cd29ff866bc5eb0ca33d85cee279f85edbd
+Successfully built beijing-pm25
+Installing collected packages: beijing-pm25
+Successfully installed beijing-pm25-0.2.0

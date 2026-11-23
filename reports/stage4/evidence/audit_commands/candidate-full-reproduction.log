@@ -1,0 +1,31 @@
+[download] .venv/bin/python -m beijing_pm25 download
+[download] PASS (0.21s)
+[stage1] .venv/bin/python -W error -m beijing_pm25 stage1
+[stage1] PASS (15.02s)
+[stage2] .venv/bin/python -W error -m beijing_pm25 stage2
+[stage2] PASS (25.42s)
+[stage3] .venv/bin/python -W error -m beijing_pm25 stage3
+[stage3] PASS (18.77s)
+[pytest] .venv/bin/python -W error -m pytest -q
+[pytest] PASS (42.40s)
+[aggregation-oracle] .venv/bin/python scripts/verify_aggregation.py
+[aggregation-oracle] PASS (6.83s)
+[model-oracle] .venv/bin/python -W error scripts/verify_models.py
+[model-oracle] PASS (3.37s)
+[extension-oracle] .venv/bin/python -W error scripts/verify_extensions.py
+[extension-oracle] PASS (18.26s)
+[ar1-calendar] .venv/bin/python -W error scripts/audit_ar1_calendar.py
+[ar1-calendar] PASS (3.63s)
+[frozen-stage2] .venv/bin/python scripts/check_frozen_stage2.py
+[frozen-stage2] PASS (0.11s)
+[preserved-stage3] .venv/bin/python scripts/check_stage3_preservation.py
+[preserved-stage3] PASS (0.27s)
+[build-submission] .venv/bin/python -W error scripts/build_submission.py
+[build-submission] PASS (9.14s)
+[check-submission] .venv/bin/python -W error scripts/check_submission.py
+[check-submission] PASS (2.52s)
+[verify] .venv/bin/python -m beijing_pm25 verify
+[verify] PASS (3.12s)
+[pip-check] .venv/bin/python -m pip check
+[pip-check] PASS (0.62s)
+All 15 reproduction steps passed. Commands and logs: /tmp/beijing-pm25-stage4-final-20261123/reports/stage4/reproduction

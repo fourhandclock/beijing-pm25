@@ -1,0 +1,55 @@
+{
+  "status": "passed",
+  "reviewer": "Codex, by inspection of rendered images",
+  "report_pages_reviewed": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "slide_pages_reviewed": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16
+  ],
+  "render_dpi": {
+    "report": 100,
+    "slides": 90
+  },
+  "method": "All pages reviewed in contact sheets, with representative scientific tables/figures at full size. After final wording, page 7 was re-inspected; all other final renders matched reviewed versions pixel for pixel.",
+  "remaining_visible_layout_issues": [],
+  "native_powerpoint_rendering_checked": false,
+  "current_pdf_sha256": {
+    "report": "e12770da99ce5aede6d4739412966501e704e15df8e674e7e4ef8ce82ef8af55",
+    "slides": "8ec619ee75c16b3dbf8b1cc538c116078d13cdc931eb5e4d220764e8567039b7"
+  },
+  "extracted_text_counts": {
+    "report": {
+      "pages": 10,
+      "words": 2317
+    },
+    "slides": {
+      "pages": 16,
+      "words": 798
+    }
+  }
+}

@@ -1,0 +1,244 @@
+[
+  {
+    "label": "download",
+    "command": [
+      ".venv/bin/python",
+      "-m",
+      "beijing_pm25",
+      "download"
+    ],
+    "shell_display": ".venv/bin/python -m beijing_pm25 download",
+    "cwd": "repository root",
+    "started_at_utc": "2026-11-23T14:19:45+00:00",
+    "timeout_seconds": 600,
+    "log": "download.log",
+    "exit_code": 0,
+    "elapsed_seconds": 0.215
+  },
+  {
+    "label": "stage1",
+    "command": [
+      ".venv/bin/python",
+      "-W",
+      "error",
+      "-m",
+      "beijing_pm25",
+      "stage1"
+    ],
+    "shell_display": ".venv/bin/python -W error -m beijing_pm25 stage1",
+    "cwd": "repository root",
+    "started_at_utc": "2026-11-23T14:19:45+00:00",
+    "timeout_seconds": 600,
+    "log": "stage1.log",
+    "exit_code": 0,
+    "elapsed_seconds": 15.015
+  },
+  {
+    "label": "stage2",
+    "command": [
+      ".venv/bin/python",
+      "-W",
+      "error",
+      "-m",
+      "beijing_pm25",
+      "stage2"
+    ],
+    "shell_display": ".venv/bin/python -W error -m beijing_pm25 stage2",
+    "cwd": "repository root",
+    "started_at_utc": "2026-11-23T14:20:00+00:00",
+    "timeout_seconds": 600,
+    "log": "stage2.log",
+    "exit_code": 0,
+    "elapsed_seconds": 25.421
+  },
+  {
+    "label": "stage3",
+    "command": [
+      ".venv/bin/python",
+      "-W",
+      "error",
+      "-m",
+      "beijing_pm25",
+      "stage3"
+    ],
+    "shell_display": ".venv/bin/python -W error -m beijing_pm25 stage3",
+    "cwd": "repository root",
+    "started_at_utc": "2026-11-23T14:20:25+00:00",
+    "timeout_seconds": 600,
+    "log": "stage3.log",
+    "exit_code": 0,
+    "elapsed_seconds": 18.769
+  },
+  {
+    "label": "pytest",
+    "command": [
+      ".venv/bin/python",
+      "-W",
+      "error",
+      "-m",
+      "pytest",
+      "-q"
+    ],
+    "shell_display": ".venv/bin/python -W error -m pytest -q",
+    "cwd": "repository root",
+    "started_at_utc": "2026-11-23T14:20:44+00:00",
+    "timeout_seconds": 600,
+    "log": "pytest.log",
+    "exit_code": 0,
+    "elapsed_seconds": 42.4
+  },
+  {
+    "label": "aggregation-oracle",
+    "command": [
+      ".venv/bin/python",
+      "scripts/verify_aggregation.py"
+    ],
+    "shell_display": ".venv/bin/python scripts/verify_aggregation.py",
+    "cwd": "repository root",
+    "started_at_utc": "2026-11-23T14:21:27+00:00",
+    "timeout_seconds": 600,
+    "log": "aggregation-oracle.log",
+    "exit_code": 0,
+    "elapsed_seconds": 6.831
+  },
+  {
+    "label": "model-oracle",
+    "command": [
+      ".venv/bin/python",
+      "-W",
+      "error",
+      "scripts/verify_models.py"
+    ],
+    "shell_display": ".venv/bin/python -W error scripts/verify_models.py",
+    "cwd": "repository root",
+    "started_at_utc": "2026-11-23T14:21:33+00:00",
+    "timeout_seconds": 600,
+    "log": "model-oracle.log",
+    "exit_code": 0,
+    "elapsed_seconds": 3.373
+  },
+  {
+    "label": "extension-oracle",
+    "command": [
+      ".venv/bin/python",
+      "-W",
+      "error",
+      "scripts/verify_extensions.py"
+    ],
+    "shell_display": ".venv/bin/python -W error scripts/verify_extensions.py",
+    "cwd": "repository root",
+    "started_at_utc": "2026-11-23T14:21:37+00:00",
+    "timeout_seconds": 600,
+    "log": "extension-oracle.log",
+    "exit_code": 0,
+    "elapsed_seconds": 18.263
+  },
+  {
+    "label": "ar1-calendar",
+    "command": [
+      ".venv/bin/python",
+      "-W",
+      "error",
+      "scripts/audit_ar1_calendar.py"
+    ],
+    "shell_display": ".venv/bin/python -W error scripts/audit_ar1_calendar.py",
+    "cwd": "repository root",
+    "started_at_utc": "2026-11-23T14:21:55+00:00",
+    "timeout_seconds": 600,
+    "log": "ar1-calendar.log",
+    "exit_code": 0,
+    "elapsed_seconds": 3.626
+  },
+  {
+    "label": "frozen-stage2",
+    "command": [
+      ".venv/bin/python",
+      "scripts/check_frozen_stage2.py"
+    ],
+    "shell_display": ".venv/bin/python scripts/check_frozen_stage2.py",
+    "cwd": "repository root",
+    "started_at_utc": "2026-11-23T14:21:59+00:00",
+    "timeout_seconds": 600,
+    "log": "frozen-stage2.log",
+    "exit_code": 0,
+    "elapsed_seconds": 0.114
+  },
+  {
+    "label": "preserved-stage3",
+    "command": [
+      ".venv/bin/python",
+      "scripts/check_stage3_preservation.py"
+    ],
+    "shell_display": ".venv/bin/python scripts/check_stage3_preservation.py",
+    "cwd": "repository root",
+    "started_at_utc": "2026-11-23T14:21:59+00:00",
+    "timeout_seconds": 600,
+    "log": "preserved-stage3.log",
+    "exit_code": 0,
+    "elapsed_seconds": 0.265
+  },
+  {
+    "label": "build-submission",
+    "command": [
+      ".venv/bin/python",
+      "-W",
+      "error",
+      "scripts/build_submission.py"
+    ],
+    "shell_display": ".venv/bin/python -W error scripts/build_submission.py",
+    "cwd": "repository root",
+    "started_at_utc": "2026-11-23T14:21:59+00:00",
+    "timeout_seconds": 600,
+    "log": "build-submission.log",
+    "exit_code": 0,
+    "elapsed_seconds": 9.14
+  },
+  {
+    "label": "check-submission",
+    "command": [
+      ".venv/bin/python",
+      "-W",
+      "error",
+      "scripts/check_submission.py"
+    ],
+    "shell_display": ".venv/bin/python -W error scripts/check_submission.py",
+    "cwd": "repository root",
+    "started_at_utc": "2026-11-23T14:22:08+00:00",
+    "timeout_seconds": 600,
+    "log": "check-submission.log",
+    "exit_code": 0,
+    "elapsed_seconds": 2.522
+  },
+  {
+    "label": "verify",
+    "command": [
+      ".venv/bin/python",
+      "-m",
+      "beijing_pm25",
+      "verify"
+    ],
+    "shell_display": ".venv/bin/python -m beijing_pm25 verify",
+    "cwd": "repository root",
+    "started_at_utc": "2026-11-23T14:22:11+00:00",
+    "timeout_seconds": 600,
+    "log": "verify.log",
+    "exit_code": 0,
+    "elapsed_seconds": 3.124
+  },
+  {
+    "label": "pip-check",
+    "command": [
+      ".venv/bin/python",
+      "-m",
+      "pip",
+      "check"
+    ],
+    "shell_display": ".venv/bin/python -m pip check",
+    "cwd": "repository root",
+    "started_at_utc": "2026-11-23T14:22:14+00:00",
+    "timeout_seconds": 600,
+    "log": "pip-check.log",
+    "exit_code": 0,
+    "elapsed_seconds": 0.617
+  }
+]

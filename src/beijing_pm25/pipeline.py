@@ -67,7 +67,7 @@ def _report(config, selected, ranking, coverage, statistics, acf, provenance, in
     )
     return f"""# Stage 1 — data audit and baseline infrastructure
 
-Run completed at {utc_now()}. **No regression, ANOVA, robust model tests, or adaptive correction has been fitted.**
+Run completed at {utc_now()}. **This stage audits the data and does not fit models.** Regression results are reported separately in [Stage 2](stage2_analysis.md); subsequent extensions are [exploratory](stage3_extensions.md).
 
 ## Source and reproducibility
 
@@ -110,7 +110,7 @@ The download command reuses a preserved archive only after checking its hash. Te
 
 ## Station choice and retention
 
-**Proposed first station: {selected}.** {rationale} Validation/test coverage and concentration levels do not enter the choice. The rule was declared in `config/stage1.json` and the implementation before the first empirical run.
+**Selected primary station: {selected}.** {rationale} Validation/test coverage and concentration levels do not enter the choice. The rule was declared in `config/stage1.json` and the implementation before the first empirical run.
 
 {rank_table}
 
@@ -118,13 +118,13 @@ For {selected}, there are {int(chosen['source_hourly_rows']):,} source hourly ro
 
 {split_table}
 
-`data/processed/{selected}_daily.csv` retains the entire calendar with counts, split labels, eligibility flags and exclusion reasons. `{selected}_analysis_ready.csv` contains only the eligible days and carries the same metadata. It is ready for future common-sample nested comparisons; it is not evidence that OLS assumptions hold.
+`data/processed/{selected}_daily.csv` retains the entire calendar with counts, split labels, eligibility flags and exclusion reasons. `{selected}_analysis_ready.csv` contains only the eligible days and carries the same metadata. It supplies a common sample for the nested comparisons; retention alone is not evidence that OLS assumptions hold.
 
 ## Training response and time structure
 
 Among {int(distribution['n']):,} eligible training days, daily PM2.5 has mean {_number(distribution['mean'])}, median {_number(distribution['q50'])}, standard deviation {_number(distribution['std'])}, minimum {_number(distribution['min'])}, maximum {_number(distribution['max'])}, and skewness {_number(distribution['skewness'])} on the original µg/m³ scale. Log1p skewness is {_number(logged['skewness'])}; this is a descriptive comparison, **not a finalized model response transformation**.
 
-Lag-one response correlation is {_number(lag1['correlation'])}, based on {int(lag1['paired_days'])} paired calendar days. The ACF uses qualified training daily responses, preserving missing calendar dates. It is descriptive: no residuals exist yet, and no independence p-value or white-noise confidence bands are asserted. Daily aggregation does not establish independent errors.
+Lag-one response correlation is {_number(lag1['correlation'])}, based on {int(lag1['paired_days'])} paired calendar days. The ACF uses qualified training daily responses, preserving missing calendar dates. It is descriptive: this stage computes no residuals, independence p-value or white-noise confidence bands. Daily aggregation does not establish independent errors.
 
 All six figures use training observations or training completeness only. Each is saved as PNG and editable/exportable SVG in `results/figures/`:
 
@@ -137,16 +137,16 @@ All six figures use training observations or training completeness only. Each is
 
 The full-archive missingness audit is descriptive. Validation/test target distributions are not plotted or used for station/response decisions. No imputation, scaling, model selection, extreme-day cutoff, or adaptive smoothing parameter has been learned from those intervals.
 
-## Interpretation limits and decisions for Stage 2
+## Interpretation limits and implications for regression
 
 - This is one station in a historical observational dataset. Missingness may be informative; completeness filtering can change seasonal composition. Other stations and years need separate assessment.
 - Meteorology in UCI is matched from nearby weather stations. These associations cannot establish causal pollution effects or identify an emissions source.
 - Same-day observed weather and daily target means support a contemporaneous explanatory study. They do not establish a deployable advance forecast.
-- Finalize and record the response scale using training evidence before fitting nested M1–M3 on an identical set of eligible observations. Consider the response distribution above without assuming log1p is required.
-- Later check residual serial dependence, heteroscedasticity and influence. Classical partial F-tests need caveats; HAC joint Wald sensitivity checks have their own limits. No such test has been run at this stage.
-- Confirm the submission deadline before scheduling the remaining build. Model fitting and optional extensions require the Stage 1 review specified in the handoff.
+- Response-scale decisions must precede fitting on a common sample. Marginal response skewness alone does not require log1p or diagnose conditional regression errors.
+- Residual dependence, heteroscedasticity and influence require checks after fitting. Classical partial F-tests and HAC joint Wald tests have different assumptions and reference distributions.
+- Reproduction instructions and current document checks are documented in [reproducibility](reproducibility.md) and [editorial verification](stage5_refinement.md).
 
-**Stage boundary:** Stage 1 is complete. Proposed next work, after approval, is the core M1/M2/M3 analysis, model comparisons and residual diagnostics. EWMA, ridge and other extensions remain outside this implementation.
+This report supplies the data-quality evidence for the regression study. It makes no claim of model adequacy or estimation performance.
 """
 
 

@@ -1,0 +1,24 @@
+{
+  "status": "passed",
+  "source_and_output_hashes_checked": true,
+  "source_linked_numerical_claims_checked": 88,
+  "pdf_checks": {
+    "report.pdf": {
+      "pages": 10,
+      "nonblank_pages": true,
+      "text_within_page_bounds": true,
+      "replacement_glyphs": 0
+    },
+    "slides.pdf": {
+      "pages": 16,
+      "nonblank_pages": true,
+      "text_within_page_bounds": true,
+      "replacement_glyphs": 0
+    }
+  },
+  "pptx_slides": 16,
+  "pptx_shape_bounds_and_speaker_notes_checked": true,
+  "pdf_and_pptx_text_identical": true,
+  "native_powerpoint_rendering_checked": false,
+  "visual_review": "See reports/stage4_verification.md for the recorded human-readable image review; automatic checks do not establish visual quality."
+}

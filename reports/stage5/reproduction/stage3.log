@@ -1,0 +1,11 @@
+{
+  "status": "complete",
+  "exploratory": true,
+  "primary_station": "Wanliu",
+  "selected_by_validation_mae": "M3_log_lag_met",
+  "stations": 12,
+  "clusters": 2,
+  "generated_artifacts": 17,
+  "report": "/home/hardeek/newage/2nd year/Paper Framework/statistics/beijing-pm25/reports/stage3_extensions.md"
+}
+Stage 3 is exploratory: the test year was already scored in Stage 2.

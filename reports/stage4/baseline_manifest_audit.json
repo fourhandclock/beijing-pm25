@@ -1,0 +1,90 @@
+{
+  "baseline_commit": "87152460db5eb73c58c11df66d0964e0fd9e8467",
+  "records": [
+    {
+      "manifest": "results/stage1_run.json",
+      "stale_tracked_hashes": [
+        {
+          "section": "source_code_sha256",
+          "path": "src/beijing_pm25/acquire.py",
+          "recorded_sha256": "ef9d178ee9b2b7beebb279fc3b7992137b0ca91b1e55f2eef2fc835d5bbe6ba0",
+          "tree_sha256": "a11b1d50c0a6f5db90517e693086d1e0d3377376185d25e7214973c53ae22130"
+        },
+        {
+          "section": "source_code_sha256",
+          "path": "src/beijing_pm25/cli.py",
+          "recorded_sha256": "5b8d4f23849d023988f65c31216e6acd6d7304f4cfe788979bf6230040df6084",
+          "tree_sha256": "c8b5f04bd214b957964711d0341252cba4f090c6dc0bb2bd1c646793ca9bd30f"
+        },
+        {
+          "section": "source_code_sha256",
+          "path": "src/beijing_pm25/model_report.py",
+          "recorded_sha256": "96c01f2354afc0bcf1034348ad1f21ad664dbe63c2d0c70b2b613f3bf1849eeb",
+          "tree_sha256": "71b8f035ecb5d24475c8dbc2628d9ca92ea1a7445b2270f0983ba833c8a2707c"
+        }
+      ],
+      "source_files_added_since_record": [
+        "src/beijing_pm25/extension_config.py",
+        "src/beijing_pm25/extension_pipeline.py",
+        "src/beijing_pm25/extensions.py"
+      ],
+      "ignored_generated_files_absent_from_git": [
+        {
+          "section": "output_sha256",
+          "path": "data/processed/Wanliu_analysis_ready.csv"
+        },
+        {
+          "section": "output_sha256",
+          "path": "data/processed/Wanliu_daily.csv"
+        }
+      ]
+    },
+    {
+      "manifest": "results/stage2/run.json",
+      "stale_tracked_hashes": [
+        {
+          "section": "source_code_sha256",
+          "path": "src/beijing_pm25/acquire.py",
+          "recorded_sha256": "ef9d178ee9b2b7beebb279fc3b7992137b0ca91b1e55f2eef2fc835d5bbe6ba0",
+          "tree_sha256": "a11b1d50c0a6f5db90517e693086d1e0d3377376185d25e7214973c53ae22130"
+        },
+        {
+          "section": "source_code_sha256",
+          "path": "src/beijing_pm25/cli.py",
+          "recorded_sha256": "5b8d4f23849d023988f65c31216e6acd6d7304f4cfe788979bf6230040df6084",
+          "tree_sha256": "c8b5f04bd214b957964711d0341252cba4f090c6dc0bb2bd1c646793ca9bd30f"
+        },
+        {
+          "section": "source_code_sha256",
+          "path": "src/beijing_pm25/model_report.py",
+          "recorded_sha256": "96c01f2354afc0bcf1034348ad1f21ad664dbe63c2d0c70b2b613f3bf1849eeb",
+          "tree_sha256": "71b8f035ecb5d24475c8dbc2628d9ca92ea1a7445b2270f0983ba833c8a2707c"
+        },
+        {
+          "section": "output_sha256",
+          "path": "reports/stage2_analysis.md",
+          "recorded_sha256": "7b6efeb4b4668f2c82b9c8431338ce2b0bb85b79545db164ab9503a7e9a60887",
+          "tree_sha256": "982dfd7b03f2e000fdd4bbd1bae6487a94e65c8f581819a2cd8d2361b4de4a6b"
+        }
+      ],
+      "source_files_added_since_record": [
+        "src/beijing_pm25/extension_config.py",
+        "src/beijing_pm25/extension_pipeline.py",
+        "src/beijing_pm25/extensions.py"
+      ],
+      "ignored_generated_files_absent_from_git": [
+        {
+          "section": "input_sha256",
+          "path": "data/processed/Wanliu_daily.csv"
+        }
+      ]
+    },
+    {
+      "manifest": "results/stage3/run.json",
+      "stale_tracked_hashes": [],
+      "source_files_added_since_record": [],
+      "ignored_generated_files_absent_from_git": []
+    }
+  ],
+  "remedy": "Regenerate Stage 1, then Stage 2, then Stage 3; preserve the original scientific methods and scores."
+}

@@ -1,0 +1,17 @@
+{
+  "status": "passed",
+  "baseline_main_commit": "87152460db5eb73c58c11df66d0964e0fd9e8467",
+  "original_method_sources_unchanged": true,
+  "original_inputs_unchanged": true,
+  "original_protocol_preserved_exactly": true,
+  "frozen_model_selection_coefficients_centering_cutoff_and_scores_preserved": true,
+  "allowed_metadata_refresh": [
+    "timestamps",
+    "administrative protocol text",
+    "run/source hash references"
+  ],
+  "numerical_tolerance": {
+    "rtol": 1e-10,
+    "atol": 1e-10
+  }
+}

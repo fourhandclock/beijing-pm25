@@ -1,4 +1,7 @@
 * text=auto eol=lf
 *.png binary
 *.pdf binary
+*.pptx binary
 *.zip binary
+# Matplotlib SVG path attributes contain harmless line-ending spaces.
+*.svg whitespace=-blank-at-eol

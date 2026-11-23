@@ -1,6 +1,6 @@
 model,label,response_scale,parameters,n_train,r2_fitted_scale,adj_r2_fitted_scale,smearing_factor,training_negative_predictions,selected_by_validation_mae
-M3,Stage 2 M3 (original scale),original,11,721,0.220005894787819,0.209020062320042,,10,False
-M3_log,M3 on log(1 + PM2.5),log1p,11,721,0.314569791412787,0.304915844812967,1.23878174629877,0,False
+M3,M3 refit on common sample,original,11,721,0.220005894787819,0.209020062320042,,10,False
+M3_log,M3 on log(1 + PM2.5),log1p,11,721,0.314569791412787,0.304915844812967,1.23878174629876,0,False
 M3_lag,M3 + previous day's PM2.5,original,12,721,0.505688669603194,0.498019523433427,,14,False
 M3_met,M3 + dew point + wind direction,original,14,721,0.416531617216883,0.405803061380701,,18,False
-M3_log_lag_met,Log scale + previous day + dew point + wind direction,log1p,15,721,0.625506035462452,0.618079809536778,1.11675781139006,0,True
+M3_log_lag_met,Log scale + previous day + dew point + wind direction,log1p,15,721,0.625506035462452,0.618079809536778,1.11675781139005,0,True

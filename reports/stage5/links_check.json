@@ -1,0 +1,344 @@
+{
+  "status": "passed",
+  "local_markdown_links_checked": 83,
+  "documents_checked": 15,
+  "missing_local_targets": [],
+  "external_bibliographic_links": "Canonical references and hyperlink targets match in both PDFs and PPTX, checked by scripts/check_submission.py; this is not a new HTTP availability probe.",
+  "current_submission_hashes_match": true,
+  "active_generator_templates_omit_scheduling_metadata": true,
+  "historical_protocols_and_stage4_json_logs_preserved": true,
+  "links": [
+    {
+      "document": "README.md",
+      "target": "submission/figures/residual_dependence.png"
+    },
+    {
+      "document": "README.md",
+      "target": "submission/report.pdf"
+    },
+    {
+      "document": "README.md",
+      "target": "submission/report.md"
+    },
+    {
+      "document": "README.md",
+      "target": "submission/slides.pdf"
+    },
+    {
+      "document": "README.md",
+      "target": "submission/slides.pptx"
+    },
+    {
+      "document": "README.md",
+      "target": "submission/speaker_notes.md"
+    },
+    {
+      "document": "README.md",
+      "target": "reports/stage1_summary.md"
+    },
+    {
+      "document": "README.md",
+      "target": "reports/stage2_analysis.md"
+    },
+    {
+      "document": "README.md",
+      "target": "reports/stage2_protocol.md"
+    },
+    {
+      "document": "README.md",
+      "target": "reports/stage3_extensions.md"
+    },
+    {
+      "document": "README.md",
+      "target": "reports/stage4/statistical_audit.md"
+    },
+    {
+      "document": "README.md",
+      "target": "reports/reproducibility.md"
+    },
+    {
+      "document": "README.md",
+      "target": "reports/stage5_refinement.md"
+    },
+    {
+      "document": "reports/reproducibility.md",
+      "target": "../data/raw/provenance.json"
+    },
+    {
+      "document": "reports/reproducibility.md",
+      "target": "stage1_summary.md"
+    },
+    {
+      "document": "reports/reproducibility.md",
+      "target": "stage4/statistical_audit.md"
+    },
+    {
+      "document": "reports/stage1_summary.md",
+      "target": "stage2_analysis.md"
+    },
+    {
+      "document": "reports/stage1_summary.md",
+      "target": "stage3_extensions.md"
+    },
+    {
+      "document": "reports/stage1_summary.md",
+      "target": "reproducibility.md"
+    },
+    {
+      "document": "reports/stage1_summary.md",
+      "target": "stage5_refinement.md"
+    },
+    {
+      "document": "reports/stage2_analysis.md",
+      "target": "stage2_protocol.md"
+    },
+    {
+      "document": "reports/stage3_extensions.md",
+      "target": "stage4/statistical_audit.md"
+    },
+    {
+      "document": "reports/stage4_verification.md",
+      "target": "stage5_refinement.md"
+    },
+    {
+      "document": "reports/stage4_verification.md",
+      "target": "archive/stage4_before_editorial_refinement.zip"
+    },
+    {
+      "document": "reports/stage4_verification.md",
+      "target": "../submission/report.pdf"
+    },
+    {
+      "document": "reports/stage4_verification.md",
+      "target": "../submission/report.md"
+    },
+    {
+      "document": "reports/stage4_verification.md",
+      "target": "../submission/slides.pdf"
+    },
+    {
+      "document": "reports/stage4_verification.md",
+      "target": "../submission/slides.pptx"
+    },
+    {
+      "document": "reports/stage4_verification.md",
+      "target": "../submission/speaker_notes.md"
+    },
+    {
+      "document": "reports/stage4_verification.md",
+      "target": "../submission/build_manifest.json"
+    },
+    {
+      "document": "reports/stage4_verification.md",
+      "target": "stage4/statistical_audit.md"
+    },
+    {
+      "document": "reports/stage4_verification.md",
+      "target": "stage4/pr_review_summary.md"
+    },
+    {
+      "document": "reports/stage4_verification.md",
+      "target": "stage4/candidate_source_snapshot.json"
+    },
+    {
+      "document": "reports/stage4_verification.md",
+      "target": "stage4/reproducibility.json"
+    },
+    {
+      "document": "reports/stage4_verification.md",
+      "target": "stage4/evidence/audit_commands/commands.jsonl"
+    },
+    {
+      "document": "reports/stage4_verification.md",
+      "target": "stage4/reproduction/commands.json"
+    },
+    {
+      "document": "reports/stage4_verification.md",
+      "target": "stage4/baseline_manifest_audit.json"
+    },
+    {
+      "document": "reports/stage4_verification.md",
+      "target": "stage4/stage2_preservation.json"
+    },
+    {
+      "document": "reports/stage4_verification.md",
+      "target": "archive/stage2_protocol_original_20261119.md"
+    },
+    {
+      "document": "reports/stage4_verification.md",
+      "target": "archive/stage3_pr1_original.zip"
+    },
+    {
+      "document": "reports/stage4_verification.md",
+      "target": "stage4/baseline_main.json"
+    },
+    {
+      "document": "reports/stage4_verification.md",
+      "target": "stage4/stage3_preservation.json"
+    },
+    {
+      "document": "reports/stage4_verification.md",
+      "target": "stage4/independent_extensions_check.json"
+    },
+    {
+      "document": "reports/stage4_verification.md",
+      "target": "../results/stage4/tables/ar1_calendar_sensitivity.csv"
+    },
+    {
+      "document": "reports/stage4_verification.md",
+      "target": "stage4/ar1_calendar_check.json"
+    },
+    {
+      "document": "reports/stage4_verification.md",
+      "target": "stage4/submission_check.json"
+    },
+    {
+      "document": "reports/stage4_verification.md",
+      "target": "stage4/reference_check.md"
+    },
+    {
+      "document": "reports/stage4_verification.md",
+      "target": "stage4/visual_review.json"
+    },
+    {
+      "document": "reports/stage4_verification.md",
+      "target": "stage4/files_changed.json"
+    },
+    {
+      "document": "reports/stage5_refinement.md",
+      "target": "../README.md"
+    },
+    {
+      "document": "reports/stage5_refinement.md",
+      "target": "reproducibility.md"
+    },
+    {
+      "document": "reports/stage5_refinement.md",
+      "target": "../submission/report.pdf"
+    },
+    {
+      "document": "reports/stage5_refinement.md",
+      "target": "../submission/slides.pdf"
+    },
+    {
+      "document": "reports/stage5_refinement.md",
+      "target": "../submission/slides.pptx"
+    },
+    {
+      "document": "reports/stage5_refinement.md",
+      "target": "../submission/speaker_notes.md"
+    },
+    {
+      "document": "reports/stage5_refinement.md",
+      "target": "archive/stage4_before_editorial_refinement.zip"
+    },
+    {
+      "document": "reports/stage5_refinement.md",
+      "target": "stage5/baseline.json"
+    },
+    {
+      "document": "reports/stage5_refinement.md",
+      "target": "stage5/preservation_check.json"
+    },
+    {
+      "document": "reports/stage5_refinement.md",
+      "target": "stage4/README.md"
+    },
+    {
+      "document": "reports/stage5_refinement.md",
+      "target": "stage4/statistical_audit.md"
+    },
+    {
+      "document": "reports/stage5_refinement.md",
+      "target": "stage5/reproduction/commands.json"
+    },
+    {
+      "document": "reports/stage5_refinement.md",
+      "target": "stage5/build_review/stage5-complete-reproduction.log"
+    },
+    {
+      "document": "reports/stage5_refinement.md",
+      "target": "stage5/final_checks/commands.json"
+    },
+    {
+      "document": "reports/stage5_refinement.md",
+      "target": "stage5/wording_checks/commands.json"
+    },
+    {
+      "document": "reports/stage5_refinement.md",
+      "target": "verification/submission_check.json"
+    },
+    {
+      "document": "reports/stage5_refinement.md",
+      "target": "stage5/visual_review.json"
+    },
+    {
+      "document": "reports/stage5_refinement.md",
+      "target": "stage5/links_check.json"
+    },
+    {
+      "document": "reports/stage5_refinement.md",
+      "target": "stage5/files_changed.json"
+    },
+    {
+      "document": "reports/stage4/README.md",
+      "target": "../archive/stage4_before_editorial_refinement.zip"
+    },
+    {
+      "document": "reports/stage4/README.md",
+      "target": "statistical_audit.md"
+    },
+    {
+      "document": "reports/stage4/README.md",
+      "target": "../stage5_refinement.md"
+    },
+    {
+      "document": "reports/stage4/README.md",
+      "target": "../reproducibility.md"
+    },
+    {
+      "document": "reports/stage4/statistical_audit.md",
+      "target": "../archive/stage2_protocol_original_20261119.md"
+    },
+    {
+      "document": "reports/stage4/statistical_audit.md",
+      "target": "../../results/stage4/tables/ar1_calendar_sensitivity.csv"
+    },
+    {
+      "document": "reports/stage4/statistical_audit.md",
+      "target": "ar1_calendar_check.json"
+    },
+    {
+      "document": "reports/stage4/statistical_audit.md",
+      "target": "../archive/stage3_pr1_original.zip"
+    },
+    {
+      "document": "reports/stage4/pr_review_summary.md",
+      "target": "../stage4_verification.md"
+    },
+    {
+      "document": "submission/report.md",
+      "target": "figures/seasonal_wind.png"
+    },
+    {
+      "document": "submission/report.md",
+      "target": "figures/residual_dependence.png"
+    },
+    {
+      "document": "submission/report.md",
+      "target": "figures/residual_shape.png"
+    },
+    {
+      "document": "submission/report.md",
+      "target": "figures/frozen_test.png"
+    },
+    {
+      "document": "submission/report.md",
+      "target": "figures/station_wind.png"
+    },
+    {
+      "document": "submission/report.md",
+      "target": "figures/station_profiles.png"
+    }
+  ]
+}

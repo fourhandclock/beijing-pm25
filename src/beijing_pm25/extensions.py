@@ -34,7 +34,7 @@ EXTENSION_MODELS = {
     "M3_log_lag_met": {"log": True, "lag": True, "met": True},
 }
 MODEL_LABELS = {
-    "M3": "Stage 2 M3 (original scale)",
+    "M3": "M3 refit on common sample",
     "M3_log": "M3 on log(1 + PM2.5)",
     "M3_lag": "M3 + previous day's PM2.5",
     "M3_met": "M3 + dew point + wind direction",
@@ -402,7 +402,7 @@ def cluster_stations(profiles, variables, k_range):
     gaps = {k: float(heights[n - k] - heights[n - k - 1]) for k in range(low, high + 1)}
     k = max(gaps, key=lambda key: (gaps[key], -key))
     raw = fcluster(tree, k, criterion="maxclust")
-    # Number clusters by mean PM2.5 so that cluster 1 is the cleanest.
+    # Number clusters by their training mean PM2.5, lowest first.
     order = pd.Series(values["pm25"].to_numpy()).groupby(raw).mean().sort_values().index
     relabel = {old: new for new, old in enumerate(order, start=1)}
     assignments = profiles.copy()

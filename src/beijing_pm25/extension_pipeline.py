@@ -8,14 +8,12 @@ verification checks content, not just the archive wrapper.
 import hashlib
 import importlib.metadata
 import json
+import os
 from pathlib import Path
 import platform
 import sys
 import time
 
-import matplotlib
-matplotlib.use("Agg")
-import matplotlib.pyplot as plt
 from scipy.cluster.hierarchy import dendrogram
 import numpy as np
 import pandas as pd
@@ -55,6 +53,11 @@ def _table(frame, columns, headers, digits=None):
 
 
 def _figures(root, comparison, stations, clusters, logistic):
+    os.environ.setdefault("MPLCONFIGDIR", str(root / ".mplconfig"))
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
     folder = root / "results" / "stage3" / "figures"
     folder.mkdir(parents=True, exist_ok=True)
     outputs = []
@@ -137,6 +140,10 @@ def _report(config, comparison, blocks, coefficients, ar1, logistic, stations, c
     tuned = log_perf.loc[log_perf["cutoff_rule"].eq("validation_max_f1")]
     fixed = log_perf.loc[log_perf["cutoff_rule"].eq("fixed_0.5")]
     odds = logistic["odds"].loc[~logistic["odds"]["term"].eq("Intercept")]
+    coefficient_display = coefficients.copy()
+    coefficient_display["response_scale"] = coefficient_display["model"].map(
+        lambda name: "log1p" if comparison["fitted"][name].spec["log"] else "original"
+    )
     assignments = clusters["assignments"].sort_values(["cluster", "station"])
     wind_all_negative = bool((stations["m2_wind_hac_ci_upper"] < 0).all())
     h1_sig = int((stations["h1_holm_p"] < config.alpha).sum())
@@ -145,13 +152,13 @@ def _report(config, comparison, blocks, coefficients, ar1, logistic, stations, c
     return f"""# Stage 3 — exploratory extensions
 
 > **Status: exploratory.** These analyses were added after the Stage 2 test year had been scored.
-> Fitting, centring, thresholds and the logistic cutoff use training (or validation) data only, but
-> test-year numbers here are descriptive and cannot confirm anything. The Stage 2 conclusions stand
-> as the project's confirmatory result.
+> Fitting and preprocessing use training observations; the logistic probability cutoff uses validation.
+> Because the test year had already been examined, these results provide no new confirmatory test.
+> The prespecified Stage 2 analysis and its frozen test evaluation remain separate.
 
 Command: `{invocation}`
 
-## 1. Better models for {config.primary_station} (same days for every model)
+## 1. Exploratory model comparisons at {config.primary_station}
 
 {sample_note}
 
@@ -166,8 +173,12 @@ Negative mean error = underestimate. Lowest validation MAE: **{MODEL_LABELS[chos
         ["Model", "Scale", "Parameters", "Training R² (own scale)", "Smearing factor", "Training predictions < 0"],
         {"r2_fitted_scale": 3, "smearing_factor": 3})}
 
-R² on the log scale is not comparable with R² on the original scale. Log-scale predictions are
-back-transformed with Duan's smearing estimate.
+The M3 row is refitted on this smaller common sample; it is not the original frozen Stage 2 evaluation.
+R² on the log scale is not comparable with R² on the original scale. For a log1p model, estimates are
+back-transformed as exp(fitted log1p response) × mean(exp(training residual)) − 1. This global Duan
+smearing factor uses training residuals only and need not remove conditional bias under heteroscedasticity.
+The transformation permits estimates above −1; nonnegative estimates in these runs are an empirical result,
+not a mathematical guarantee. No estimate is silently clipped.
 
 ### Do the added variables help beyond M3? (training data)
 
@@ -177,11 +188,14 @@ back-transformed with Duan's smearing estimate.
 
 ### Coefficients of the added variables (HAC {config.primary_hac_lag_days}-day standard errors)
 
-{_table(coefficients.loc[coefficients["term"].isin(["dew_point_c", "southerly_c", "westerly_c", "pm25_lag1_c"])],
-        ["model", "term", "estimate", "hac_ci_lower", "hac_ci_upper", "hac_p"],
-        ["Model", "Term", "Estimate", "95% CI low", "95% CI high", "HAC p"], {"estimate": 2, "hac_ci_lower": 2, "hac_ci_upper": 2})}
+{_table(coefficient_display.loc[coefficient_display["term"].isin(["dew_point_c", "southerly_c", "westerly_c", "pm25_lag1_c", "log_pm25_lag1_c"])],
+        ["model", "response_scale", "term", "estimate", "hac_ci_lower", "hac_ci_upper", "hac_p"],
+        ["Model", "Response scale", "Term", "Estimate", "95% CI low", "95% CI high", "HAC p"], {"estimate": 2, "hac_ci_lower": 2, "hac_ci_upper": 2})}
 
 Units: dew point per °C; southerly/westerly per 1 m/s of mean wind vector from the south/west; previous-day PM2.5 per µg/m³.
+Original-response coefficients describe changes in µg/m³. Log1p-response coefficients describe changes
+in log(1 + PM2.5); exp(coefficient) scales 1 + PM2.5 for a unit change in the stated predictor.
+The combined model uses log(1 + previous-day PM2.5), not the untransformed lag.
 
 ## 2. Modelling the autocorrelation directly: regression with AR(1) errors
 
@@ -192,7 +206,9 @@ Feasible GLS (iterated Cochrane–Orcutt, statsmodels GLSAR) on the Stage 2 trai
         {"f_statistic": 2, "df_denom": 0, "wind_coefficient": 1, "wind_ci_lower": 1, "wind_ci_upper": 1})}
 
 GLSAR treats consecutive eligible rows as consecutive days; it bridges {int(ar1['calendar_gaps_bridged'].iloc[0])} calendar gaps in training.
-This is a second, model-based way to account for dependence, alongside Stage 2's HAC tests.
+Its nominal tests are exploratory and conditional on the fitted error model; they do not override the
+primary HAC/Holm conclusions. The original values are retained. A paired likelihood sensitivity to
+actual calendar gaps is reported separately in [the Stage 4 statistical audit](stage4/statistical_audit.md).
 
 ## 3. Logistic regression for smog days
 
@@ -209,28 +225,32 @@ With the default 0.5 cutoff the model flags {int(fixed.loc[fixed['split'].eq('te
 {_table(odds, ["term", "odds_ratio", "odds_ratio_ci_lower", "odds_ratio_ci_upper", "p_value_assuming_independence"],
         ["Term", "Odds ratio", "CI low", "CI high", "p (assumes independence)"], {"odds_ratio": 3, "odds_ratio_ci_lower": 3, "odds_ratio_ci_upper": 3})}
 
-Odds ratios are per 1 unit of the centred predictor (°C, m/s, mm, hPa) or versus winter. The intervals
-and p-values assume independent days, which Stage 2 showed is false, so treat them as rough.
+Odds ratios are per 1 unit of the centred predictor (°C, m/s, mm, hPa) or versus winter. Their usual
+intervals and p-values assume independent days; residual dependence in the core models motivates
+caution about that assumption here. These are exploratory associations. The high-day definition is
+a training-sample quantile, not a health-based regulatory threshold.
 
 ## 4. Do the Stage 2 findings hold at the other 11 stations?
 
 Same Stage 1 rules and Stage 2 models, fitted on each station's own training days.
 
 {_table(stations, ["station", "n_train", "m3_r2", "m2_wind_coefficient", "m2_wind_hac_ci_lower", "m2_wind_hac_ci_upper", "h1_holm_p", "h2_holm_p", "test_m3_mae", "test_baseline_mae"],
-        ["Station", "Train days", "M3 R²", "Wind coef.", "CI low", "CI high", "H1 Holm p", "H2 Holm p", "Test MAE M3", "Test MAE baseline"],
+        ["Station", "Train days", "M3 R²", "M2 wind coef.", "CI low", "CI high", "H1 Holm p", "H2 Holm p", "Test MAE M3", "Test MAE baseline"],
         {"m2_wind_coefficient": 1, "m2_wind_hac_ci_lower": 1, "m2_wind_hac_ci_upper": 1, "test_m3_mae": 1, "test_baseline_mae": 1})}
 
 - Wind interval below zero at every station: **{'yes' if wind_all_negative else 'no'}**.
 - H1 (season) significant after Holm at {h1_sig} of {len(stations)} stations; H2 (wind × season) at {h2_sig} of {len(stations)}.
 - M3 beats the training-mean baseline on test MAE at {beats} of {len(stations)} stations.
 
-The 12 stations share one city's air, so agreement across them is consistency, not 12 independent replications.
+The 12 stations share one city's air, so agreement shows cross-station consistency, not independent
+scientific replication. Holm correction covers two hypotheses within each station, not all 24 tests
+across stations. These comparisons are exploratory and use station-specific eligible samples.
 
 ## 5. Cluster analysis of stations
 
 Ward hierarchical clustering on z-scored training-period means of {', '.join(config.cluster_variables)}.
 k chosen as the largest gap in merge heights for k in {config.cluster_k_range[0]}–{config.cluster_k_range[1]}: **k = {clusters['k']}**.
-Clusters are numbered by mean PM2.5 (1 = cleanest).
+Cluster numbers are ordered by training mean PM2.5 (1 = lower mean PM2.5).
 
 {_table(assignments, ["station", "cluster", "pm25", "pm10", "so2", "no2", "co", "o3"],
         ["Station", "Cluster", "PM2.5", "PM10", "SO2", "NO2", "CO", "O3"],
@@ -238,14 +258,17 @@ Clusters are numbered by mean PM2.5 (1 = cleanest).
 
 {_table(clusters['gaps'], ["k", "merge_height_gap", "chosen"], ["k", "Merge-height gap", "Chosen"], {"merge_height_gap": 3})}
 
-Units: µg/m³. With only 12 stations, cluster structure is descriptive, not a statistical finding.
+Units: µg/m³. Profiles average each pollutant's qualified training daily means; available days can
+differ by pollutant. With 12 stations, the groups are descriptive. No geographical or causal separation
+is established by clustering pollutant profiles alone.
 
 ## What this adds and what it cannot fix
 
 - Adding the previous day's PM2.5 is the largest single improvement: day-to-day persistence is what the
   weather-only model misses most. It turns the model into a same-day explanation that uses yesterday's
   measurement, which is still not a forecast of tomorrow.
-- The log scale removes negative predictions and reduces the smog-day underestimate, at some cost in interpretability.
+- The log models produced no negative estimates in these runs and reduced high-day underestimation;
+  their response scale and information set differ from the core regression.
 - None of this can make the results causal, recover missing drivers (emissions, regional transport,
   mixing height), or provide a fresh confirmatory test year: that would need data after February 2017.
 

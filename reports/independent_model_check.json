@@ -1,6 +1,6 @@
 {
   "status": "passed",
-  "checked_at_utc": "2026-11-19T17:26:47+00:00",
+  "checked_at_utc": "2026-11-23T16:29:59+00:00",
   "method": "Independent pivoted-QR OLS and observed-date-pair HAC (no statsmodels/project imports)",
   "station": "Wanliu",
   "selected_model": "M3",
@@ -11,5 +11,5 @@
   "calendar_serial_bp_jb_and_primary_holm_checks_match": true,
   "source_archive_unchanged": true,
   "oracle_script_sha256": "84985f3ed1147c48e6ee9c9eaa330600c59265185ce8d1d9f5746698f129df86",
-  "stage2_run_sha256": "26334f78a2c8c62bf66433132379815a0ebb05b6a968ff0bfb618db73afda25d"
+  "stage2_run_sha256": "3ab35f2ea74e1210ff24a9f2f539bab4a03f3cee1d10ac7f96cd21b26720d2c3"
 }

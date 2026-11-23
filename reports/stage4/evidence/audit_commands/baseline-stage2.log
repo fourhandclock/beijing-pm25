@@ -1,0 +1,39 @@
+Fitting M1–M3 on 725 identical eligible training dates.
+Validation selected M3; coefficients/cutoff saved before final-test evaluation.
+Evaluated frozen M3 and training-mean baseline on 357 test dates.
+{
+  "status": "complete",
+  "station": "Wanliu",
+  "selected_model": "M3",
+  "n_train": 725,
+  "n_validation": 359,
+  "n_test": 357,
+  "test_overall": [
+    {
+      "split": "test",
+      "model": "M3",
+      "subgroup": "all",
+      "n": 357,
+      "mae": 46.784655878469096,
+      "rmse": 60.93477098294463,
+      "mean_signed_error": 15.28340121060168,
+      "mean_observed": 77.87681217392951,
+      "mean_predicted": 93.16021338453119,
+      "negative_predictions": 3
+    },
+    {
+      "split": "test",
+      "model": "training_mean",
+      "subgroup": "all",
+      "n": 357,
+      "mae": 55.29739320982055,
+      "rmse": 73.00586303790725,
+      "mean_signed_error": 12.897244043243534,
+      "mean_observed": 77.87681217392951,
+      "mean_predicted": 90.774056217173,
+      "negative_predictions": 0
+    }
+  ],
+  "generated_artifacts": 35,
+  "report": "/tmp/beijing-pm25-stage4-baseline-hb7pxmzz/reports/stage2_analysis.md"
+}

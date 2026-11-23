@@ -1,0 +1,13 @@
+mkdir -p failed for path /home/hardeek/.config/matplotlib: [Errno 30] Read-only file system: '/home/hardeek/.config/matplotlib'
+Matplotlib created a temporary cache directory at /tmp/matplotlib-0cpnve9a because there was an issue with the default path (/home/hardeek/.config/matplotlib); it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+{
+  "status": "complete",
+  "exploratory": true,
+  "primary_station": "Wanliu",
+  "selected_by_validation_mae": "M3_log_lag_met",
+  "stations": 12,
+  "clusters": 2,
+  "generated_artifacts": 17,
+  "report": "/tmp/beijing-pm25-stage4-baseline-hb7pxmzz/reports/stage3_extensions.md"
+}
+Stage 3 is exploratory: the test year was already scored in Stage 2.
