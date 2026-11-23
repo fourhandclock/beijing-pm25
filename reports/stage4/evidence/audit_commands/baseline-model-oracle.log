@@ -1,0 +1,15 @@
+{
+  "status": "passed",
+  "checked_at_utc": "2026-11-23T11:05:09+00:00",
+  "method": "Independent pivoted-QR OLS and observed-date-pair HAC (no statsmodels/project imports)",
+  "station": "Wanliu",
+  "selected_model": "M3",
+  "models_checked": 3,
+  "hac_covariances_checked": 9,
+  "prediction_rows_checked": 5050,
+  "nested_f_joint_wald_influence_and_performance_match": true,
+  "calendar_serial_bp_jb_and_primary_holm_checks_match": true,
+  "source_archive_unchanged": true,
+  "oracle_script_sha256": "84985f3ed1147c48e6ee9c9eaa330600c59265185ce8d1d9f5746698f129df86",
+  "stage2_run_sha256": "336cceee33c9e87321b479b3dd25da0e743a33131e8b3b91ad70888c42e865c8"
+}

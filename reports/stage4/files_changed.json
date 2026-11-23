@@ -1,0 +1,597 @@
+{
+  "baseline": "87152460db5eb73c58c11df66d0964e0fd9e8467",
+  "branch": "stage4-verification-submission",
+  "tracked_modified": 47,
+  "new": 100,
+  "generated_and_evidence_files_included": true,
+  "files": [
+    {
+      "status": "M",
+      "path": ".gitattributes"
+    },
+    {
+      "status": "M",
+      "path": "PROJECT_BRIEF.md"
+    },
+    {
+      "status": "M",
+      "path": "README.md"
+    },
+    {
+      "status": "M",
+      "path": "pyproject.toml"
+    },
+    {
+      "status": "new",
+      "path": "reports/archive/stage2_protocol_original_20261119.md"
+    },
+    {
+      "status": "new",
+      "path": "reports/archive/stage3_pr1_original.zip"
+    },
+    {
+      "status": "M",
+      "path": "reports/independent_model_check.json"
+    },
+    {
+      "status": "M",
+      "path": "reports/stage1_summary.md"
+    },
+    {
+      "status": "M",
+      "path": "reports/stage2_analysis.md"
+    },
+    {
+      "status": "M",
+      "path": "reports/stage2_checks.md"
+    },
+    {
+      "status": "M",
+      "path": "reports/stage2_protocol.md"
+    },
+    {
+      "status": "M",
+      "path": "reports/stage3_extensions.md"
+    },
+    {
+      "status": "new",
+      "path": "reports/stage4/ar1_calendar_check.json"
+    },
+    {
+      "status": "new",
+      "path": "reports/stage4/baseline_main.json"
+    },
+    {
+      "status": "new",
+      "path": "reports/stage4/baseline_manifest_audit.json"
+    },
+    {
+      "status": "new",
+      "path": "reports/stage4/candidate_source_snapshot.json"
+    },
+    {
+      "status": "new",
+      "path": "reports/stage4/evidence/audit_commands/ar1-calendar-audit.log"
+    },
+    {
+      "status": "new",
+      "path": "reports/stage4/evidence/audit_commands/baseline-aggregation-oracle.log"
+    },
+    {
+      "status": "new",
+      "path": "reports/stage4/evidence/audit_commands/baseline-extension-oracle.log"
+    },
+    {
+      "status": "new",
+      "path": "reports/stage4/evidence/audit_commands/baseline-install-lock.log"
+    },
+    {
+      "status": "new",
+      "path": "reports/stage4/evidence/audit_commands/baseline-install-project.log"
+    },
+    {
+      "status": "new",
+      "path": "reports/stage4/evidence/audit_commands/baseline-model-oracle.log"
+    },
+    {
+      "status": "new",
+      "path": "reports/stage4/evidence/audit_commands/baseline-pip-check.log"
+    },
+    {
+      "status": "new",
+      "path": "reports/stage4/evidence/audit_commands/baseline-postrun-verify.log"
+    },
+    {
+      "status": "new",
+      "path": "reports/stage4/evidence/audit_commands/baseline-prerun-verify.log"
+    },
+    {
+      "status": "new",
+      "path": "reports/stage4/evidence/audit_commands/baseline-pytest.log"
+    },
+    {
+      "status": "new",
+      "path": "reports/stage4/evidence/audit_commands/baseline-stage1.log"
+    },
+    {
+      "status": "new",
+      "path": "reports/stage4/evidence/audit_commands/baseline-stage2.log"
+    },
+    {
+      "status": "new",
+      "path": "reports/stage4/evidence/audit_commands/baseline-stage3.log"
+    },
+    {
+      "status": "new",
+      "path": "reports/stage4/evidence/audit_commands/baseline-uci-download.log"
+    },
+    {
+      "status": "new",
+      "path": "reports/stage4/evidence/audit_commands/baseline-venv.log"
+    },
+    {
+      "status": "new",
+      "path": "reports/stage4/evidence/audit_commands/candidate-fresh-clone.log"
+    },
+    {
+      "status": "new",
+      "path": "reports/stage4/evidence/audit_commands/candidate-full-reproduction.log"
+    },
+    {
+      "status": "new",
+      "path": "reports/stage4/evidence/audit_commands/candidate-install-lock.log"
+    },
+    {
+      "status": "new",
+      "path": "reports/stage4/evidence/audit_commands/candidate-install-project.log"
+    },
+    {
+      "status": "new",
+      "path": "reports/stage4/evidence/audit_commands/candidate-uci-download.log"
+    },
+    {
+      "status": "new",
+      "path": "reports/stage4/evidence/audit_commands/candidate-venv.log"
+    },
+    {
+      "status": "new",
+      "path": "reports/stage4/evidence/audit_commands/commands.jsonl"
+    },
+    {
+      "status": "new",
+      "path": "reports/stage4/evidence/audit_commands/document-build-corrected.log"
+    },
+    {
+      "status": "new",
+      "path": "reports/stage4/evidence/audit_commands/document-build-layout.log"
+    },
+    {
+      "status": "new",
+      "path": "reports/stage4/evidence/audit_commands/document-check-first.log"
+    },
+    {
+      "status": "new",
+      "path": "reports/stage4/evidence/audit_commands/final-workspace-document-check.log"
+    },
+    {
+      "status": "new",
+      "path": "reports/stage4/evidence/audit_commands/final-workspace-verify.log"
+    },
+    {
+      "status": "new",
+      "path": "reports/stage4/evidence/audit_commands/submission-install.log"
+    },
+    {
+      "status": "new",
+      "path": "reports/stage4/evidence/working_initial/aggregation-oracle.log"
+    },
+    {
+      "status": "new",
+      "path": "reports/stage4/evidence/working_initial/ar1-calendar.log"
+    },
+    {
+      "status": "new",
+      "path": "reports/stage4/evidence/working_initial/build-submission.log"
+    },
+    {
+      "status": "new",
+      "path": "reports/stage4/evidence/working_initial/commands.json"
+    },
+    {
+      "status": "new",
+      "path": "reports/stage4/evidence/working_initial/download.log"
+    },
+    {
+      "status": "new",
+      "path": "reports/stage4/evidence/working_initial/extension-oracle.log"
+    },
+    {
+      "status": "new",
+      "path": "reports/stage4/evidence/working_initial/frozen-stage2.log"
+    },
+    {
+      "status": "new",
+      "path": "reports/stage4/evidence/working_initial/model-oracle.log"
+    },
+    {
+      "status": "new",
+      "path": "reports/stage4/evidence/working_initial/pytest.log"
+    },
+    {
+      "status": "new",
+      "path": "reports/stage4/evidence/working_initial/stage1.log"
+    },
+    {
+      "status": "new",
+      "path": "reports/stage4/evidence/working_initial/stage2.log"
+    },
+    {
+      "status": "new",
+      "path": "reports/stage4/evidence/working_initial/stage3.log"
+    },
+    {
+      "status": "new",
+      "path": "reports/stage4/files_changed.json"
+    },
+    {
+      "status": "new",
+      "path": "reports/stage4/independent_extensions_check.json"
+    },
+    {
+      "status": "new",
+      "path": "reports/stage4/pr_review_summary.md"
+    },
+    {
+      "status": "new",
+      "path": "reports/stage4/reference_check.md"
+    },
+    {
+      "status": "new",
+      "path": "reports/stage4/reproducibility.json"
+    },
+    {
+      "status": "new",
+      "path": "reports/stage4/reproduction/aggregation-oracle.log"
+    },
+    {
+      "status": "new",
+      "path": "reports/stage4/reproduction/ar1-calendar.log"
+    },
+    {
+      "status": "new",
+      "path": "reports/stage4/reproduction/build-submission.log"
+    },
+    {
+      "status": "new",
+      "path": "reports/stage4/reproduction/check-submission.log"
+    },
+    {
+      "status": "new",
+      "path": "reports/stage4/reproduction/commands.json"
+    },
+    {
+      "status": "new",
+      "path": "reports/stage4/reproduction/download.log"
+    },
+    {
+      "status": "new",
+      "path": "reports/stage4/reproduction/extension-oracle.log"
+    },
+    {
+      "status": "new",
+      "path": "reports/stage4/reproduction/frozen-stage2.log"
+    },
+    {
+      "status": "new",
+      "path": "reports/stage4/reproduction/model-oracle.log"
+    },
+    {
+      "status": "new",
+      "path": "reports/stage4/reproduction/pip-check.log"
+    },
+    {
+      "status": "new",
+      "path": "reports/stage4/reproduction/preserved-stage3.log"
+    },
+    {
+      "status": "new",
+      "path": "reports/stage4/reproduction/pytest.log"
+    },
+    {
+      "status": "new",
+      "path": "reports/stage4/reproduction/stage1.log"
+    },
+    {
+      "status": "new",
+      "path": "reports/stage4/reproduction/stage2.log"
+    },
+    {
+      "status": "new",
+      "path": "reports/stage4/reproduction/stage3.log"
+    },
+    {
+      "status": "new",
+      "path": "reports/stage4/reproduction/verify.log"
+    },
+    {
+      "status": "new",
+      "path": "reports/stage4/stage2_preservation.json"
+    },
+    {
+      "status": "new",
+      "path": "reports/stage4/stage3_preservation.json"
+    },
+    {
+      "status": "new",
+      "path": "reports/stage4/statistical_audit.md"
+    },
+    {
+      "status": "new",
+      "path": "reports/stage4/submission_check.json"
+    },
+    {
+      "status": "new",
+      "path": "reports/stage4/visual_review.json"
+    },
+    {
+      "status": "new",
+      "path": "reports/stage4_verification.md"
+    },
+    {
+      "status": "new",
+      "path": "requirements-submission.lock"
+    },
+    {
+      "status": "M",
+      "path": "results/figures/hourly_training_missingness.svg"
+    },
+    {
+      "status": "M",
+      "path": "results/figures/station_training_completeness.svg"
+    },
+    {
+      "status": "M",
+      "path": "results/figures/training_calendar_acf.svg"
+    },
+    {
+      "status": "M",
+      "path": "results/figures/training_daily_series.svg"
+    },
+    {
+      "status": "M",
+      "path": "results/figures/training_response_distribution.svg"
+    },
+    {
+      "status": "M",
+      "path": "results/figures/training_seasonal_distribution.svg"
+    },
+    {
+      "status": "M",
+      "path": "results/stage1_run.json"
+    },
+    {
+      "status": "M",
+      "path": "results/stage2/figures/frozen_test_estimates.svg"
+    },
+    {
+      "status": "M",
+      "path": "results/stage2/figures/m1_residual_diagnostics.svg"
+    },
+    {
+      "status": "M",
+      "path": "results/stage2/figures/m2_residual_diagnostics.svg"
+    },
+    {
+      "status": "M",
+      "path": "results/stage2/figures/m3_residual_diagnostics.svg"
+    },
+    {
+      "status": "M",
+      "path": "results/stage2/figures/m3_seasonal_wind_associations.svg"
+    },
+    {
+      "status": "M",
+      "path": "results/stage2/figures/training_correlations.svg"
+    },
+    {
+      "status": "M",
+      "path": "results/stage2/figures/training_residual_acf.svg"
+    },
+    {
+      "status": "M",
+      "path": "results/stage2/figures/training_residual_time_series.svg"
+    },
+    {
+      "status": "M",
+      "path": "results/stage2/figures/validation_model_comparison.svg"
+    },
+    {
+      "status": "M",
+      "path": "results/stage2/frozen_model.json"
+    },
+    {
+      "status": "M",
+      "path": "results/stage2/run.json"
+    },
+    {
+      "status": "M",
+      "path": "results/stage3/figures/extension_model_mae.png"
+    },
+    {
+      "status": "M",
+      "path": "results/stage3/figures/smog_logistic_probabilities.png"
+    },
+    {
+      "status": "M",
+      "path": "results/stage3/figures/station_dendrogram.png"
+    },
+    {
+      "status": "M",
+      "path": "results/stage3/figures/station_wind_coefficients.png"
+    },
+    {
+      "status": "M",
+      "path": "results/stage3/run.json"
+    },
+    {
+      "status": "M",
+      "path": "results/stage3/tables/added_block_tests.csv"
+    },
+    {
+      "status": "M",
+      "path": "results/stage3/tables/ar1_error_tests.csv"
+    },
+    {
+      "status": "M",
+      "path": "results/stage3/tables/extension_coefficients.csv"
+    },
+    {
+      "status": "M",
+      "path": "results/stage3/tables/model_comparison_fits.csv"
+    },
+    {
+      "status": "M",
+      "path": "results/stage3/tables/model_comparison_predictions.csv"
+    },
+    {
+      "status": "M",
+      "path": "results/stage3/tables/model_comparison_scores.csv"
+    },
+    {
+      "status": "M",
+      "path": "results/stage3/tables/smog_logistic_daily.csv"
+    },
+    {
+      "status": "M",
+      "path": "results/stage3/tables/smog_logistic_odds_ratios.csv"
+    },
+    {
+      "status": "M",
+      "path": "results/stage3/tables/station_replication.csv"
+    },
+    {
+      "status": "new",
+      "path": "results/stage4/tables/ar1_calendar_sensitivity.csv"
+    },
+    {
+      "status": "new",
+      "path": "scripts/audit_ar1_calendar.py"
+    },
+    {
+      "status": "new",
+      "path": "scripts/audit_baseline_manifests.py"
+    },
+    {
+      "status": "new",
+      "path": "scripts/build_submission.py"
+    },
+    {
+      "status": "new",
+      "path": "scripts/check_frozen_stage2.py"
+    },
+    {
+      "status": "new",
+      "path": "scripts/check_stage3_preservation.py"
+    },
+    {
+      "status": "new",
+      "path": "scripts/check_submission.py"
+    },
+    {
+      "status": "new",
+      "path": "scripts/reproduce.py"
+    },
+    {
+      "status": "new",
+      "path": "scripts/stage4_reference.py"
+    },
+    {
+      "status": "new",
+      "path": "scripts/verify_extensions.py"
+    },
+    {
+      "status": "new",
+      "path": "src/beijing_pm25/ar1_audit.py"
+    },
+    {
+      "status": "M",
+      "path": "src/beijing_pm25/extension_pipeline.py"
+    },
+    {
+      "status": "M",
+      "path": "src/beijing_pm25/extensions.py"
+    },
+    {
+      "status": "M",
+      "path": "src/beijing_pm25/model_report.py"
+    },
+    {
+      "status": "M",
+      "path": "src/beijing_pm25/pipeline.py"
+    },
+    {
+      "status": "new",
+      "path": "submission/build_manifest.json"
+    },
+    {
+      "status": "new",
+      "path": "submission/figures/extension_mae.png"
+    },
+    {
+      "status": "new",
+      "path": "submission/figures/frozen_test.png"
+    },
+    {
+      "status": "new",
+      "path": "submission/figures/residual_dependence.png"
+    },
+    {
+      "status": "new",
+      "path": "submission/figures/residual_shape.png"
+    },
+    {
+      "status": "new",
+      "path": "submission/figures/seasonal_wind.png"
+    },
+    {
+      "status": "new",
+      "path": "submission/figures/station_profiles.png"
+    },
+    {
+      "status": "new",
+      "path": "submission/figures/station_wind.png"
+    },
+    {
+      "status": "new",
+      "path": "submission/report.md"
+    },
+    {
+      "status": "new",
+      "path": "submission/report.pdf"
+    },
+    {
+      "status": "new",
+      "path": "submission/slide_content.json"
+    },
+    {
+      "status": "new",
+      "path": "submission/slides.pdf"
+    },
+    {
+      "status": "new",
+      "path": "submission/slides.pptx"
+    },
+    {
+      "status": "new",
+      "path": "submission/speaker_notes.md"
+    },
+    {
+      "status": "new",
+      "path": "tests/test_ar1_audit.py"
+    },
+    {
+      "status": "M",
+      "path": "tests/test_extensions.py"
+    }
+  ]
+}

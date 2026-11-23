@@ -1,0 +1,1058 @@
+{
+  "title": "Beyond R²: Seasonal Effects, Residual Dependence, and Model Adequacy in Beijing PM2.5 Regression",
+  "neutral_title_pages": true,
+  "references": [
+    [
+      "Chen, S. (2017). Beijing Multi-Site Air Quality [Dataset]. UCI Machine Learning Repository. CC BY 4.0.",
+      "https://doi.org/10.24432/C5RK5G"
+    ],
+    [
+      "Duan, N. (1983). Smearing Estimate: A Nonparametric Retransformation Method. Journal of the American Statistical Association, 78(383), 605–610.",
+      "https://doi.org/10.1080/01621459.1983.10478017"
+    ],
+    [
+      "Statsmodels. Regression F-test documentation.",
+      "https://www.statsmodels.org/stable/generated/statsmodels.regression.linear_model.RegressionResults.compare_f_test.html"
+    ],
+    [
+      "UCI. Beijing Multi-Site Air Quality: dataset documentation.",
+      "https://archive.ics.uci.edu/dataset/501/beijing+multi+site+air+quality+data"
+    ]
+  ],
+  "stage2_frozen_model": {
+    "source": "results/stage2/frozen_model.json",
+    "sha256": "0701c246ab57a109e2b17b1356f737c82c02679c9ae3916dd0019baf6aa4b39e",
+    "retuned": false,
+    "test_refitted": false,
+    "negative_estimates_clipped": false
+  },
+  "stage3_is_exploratory": true,
+  "input_sha256": {
+    "results/stage2/tables/training_residual_acf.csv": "37245265b44be4ee9d44a3e17ea77dc4520cae4b67bf059ab89e3e7187055b60",
+    "results/stage2/tables/training_influence.csv": "a67a92eb1c573c555f149dd6f1374fe69e72d28010bd7931024e1d68defc1f2f",
+    "results/stage2/tables/predictions.csv": "39d1261fd7b6bd9fae8fa64f07a6528ee7a13934ad68c58017721f6f50d3f085",
+    "results/stage3/tables/model_comparison_scores.csv": "cf77e8870e31a2aa6c04e74659c84752beb4531d50ac90ecd85c7209975a7a23",
+    "results/stage3/tables/station_replication.csv": "9bd262daef7850a7a6ce7ea442c1433bb906a043d4eb46e0728e1448fe213279",
+    "results/stage3/tables/station_clusters.csv": "4a3469c2781f298a189771eb33a50b2a91fb77e455891d008105ab23feebf72a",
+    "results/stage2/tables/m3_seasonal_wind_slopes.csv": "41429cb4a26861d3cbd4f602bfd44330fc5fae19a0ff7d3663b203920a882126",
+    "results/stage2/frozen_model.json": "0701c246ab57a109e2b17b1356f737c82c02679c9ae3916dd0019baf6aa4b39e",
+    "results/stage1_run.json": "d789fc16182836a05b1c3c5ef848335eed734348f8041b12d9e85d8354c1bd31",
+    "results/stage2/run.json": "3ab35f2ea74e1210ff24a9f2f539bab4a03f3cee1d10ac7f96cd21b26720d2c3",
+    "results/stage3/run.json": "fd6b90b281ca2a50304783f20f9b8ee9539f0f456f0ec2832d6fdac6d6cbfa68",
+    "reports/stage4/statistical_audit.md": "a99ce0aeb8b745c8ef8881ee823209dfb1332520e16592261bddaad2b4ec6e87",
+    "reports/reproducibility.md": "3c5070319443f20929357d8f2647499e3af820ef3151b1a68507c9df3e0d3025",
+    "data/raw/provenance.json": "88450b98d0fa2c1c18b99123009c2cac6d181b0ba195cb9c481d903d27e5d231",
+    "results/stage2/tables/performance.csv": "dc60a3aca5feec4b0ca3b18f83f28cc71d0d53dbec09288c57d077db3b5f6f5b",
+    "results/stage2/tables/model_fit.csv": "a176c46fb96ba15cdaf0a78b5829a9e3fc3c685997890a246c3019d15a51983f",
+    "results/stage2/tables/hac_joint_tests.csv": "41da9c3d4996383fedfa467ee2efa9bd6473b09f44b8874d7ed1caa961092441",
+    "results/stage2/tables/nested_anova.csv": "fabd272607999ea61b3d15bee8c0c0ae0129941cb5bbe73a2aa335e374f47b89",
+    "results/stage2/tables/coefficients.csv": "34c021559c728e273ad88d540164f7fafd54a1f1265fece56f58b279f200ff9b",
+    "results/stage2/tables/validation_selection.csv": "8a800ddf6c2b54c8d3053e7831a13c3db2f1e5d8f71ff56746419773a779f3a3",
+    "results/stage4/tables/ar1_calendar_sensitivity.csv": "6a455b0cb061fa51d7f7cf9581c1610dd35579321567283c275ab0e0ae30c6d9",
+    "results/stage3/tables/model_comparison_fits.csv": "f43914ad647ef876eb946ce8528ae620ec148b37d85a037419e90591b7b5b9ba",
+    "results/stage3/tables/smog_logistic_performance.csv": "920227d39ee26a3d31f2c2d77f6d2055b5ddb4e2fc94d59cd445f65acc9b1810",
+    "scripts/build_submission.py": "fa948210e2e31a70a393aa21004697a1d3552e77ee4753606ff46f2d2be06a46",
+    "scripts/check_submission.py": "e35dc0b6f2bf2a15de67abbb24c466328eac66998ff07d5ef5fc6dab6116671c",
+    "requirements.lock": "54f765c694e870dc62f78bbe25ed8bd5996d8fcc274c394983307e9786f8ec29",
+    "requirements-submission.lock": "bddc7abf2372ddb6f5e945737383f7d155b342b58ccda235b7c63e11fb82140f"
+  },
+  "output_sha256": {
+    "submission/report.md": "8c9c957b5a1948e14af952543ac46099abb958318119d102e1efbcd3831eef0d",
+    "submission/report.pdf": "e12770da99ce5aede6d4739412966501e704e15df8e674e7e4ef8ce82ef8af55",
+    "submission/slides.pdf": "8ec619ee75c16b3dbf8b1cc538c116078d13cdc931eb5e4d220764e8567039b7",
+    "submission/slides.pptx": "319253d171a0f4b73d4abb7f44ae31203d9fbcceb274e204f808dbebaec20f01",
+    "submission/speaker_notes.md": "7509c6f10957092b17154a82277e791aa3ea4f4cd7d22362b69bc3a45506ac91",
+    "submission/slide_content.json": "74820d31329fe7dd6c4222f0115ac8b6524bc3f19493a062a71ca0e15d996b09",
+    "submission/figures/extension_mae.png": "643ca85ab98967b6de64363e28ff01c954778574ea01618ada1f3911d87f02a0",
+    "submission/figures/frozen_test.png": "675433879dff3a4f3fd73e079daa8a6ff21131bb97ee2bb3b44977cff96b385f",
+    "submission/figures/residual_dependence.png": "d7817cf9761cf56ada9041a71afaa679f08734bb4a81f7b673a9f61cad3d95fb",
+    "submission/figures/residual_shape.png": "e669d78c124e2db5df9eab44b6b6b91700a30042ba304e379049fefb515444ae",
+    "submission/figures/seasonal_wind.png": "176d6704fc14d6f7e529c36975c2f592f1e1e4b731890516ade1959c99607001",
+    "submission/figures/station_profiles.png": "ccbdd50f3d38c3a863f50ebea2665c05efa9f22696f22d35b00de2e92d522b6d",
+    "submission/figures/station_wind.png": "718271795deb2a2f298eef540168828aa951445d3702adcc1290282fef0222e1"
+  },
+  "numerical_claims": [
+    {
+      "source": "results/stage2/tables/training_residual_acf.csv",
+      "column": "correlation",
+      "where": {
+        "model": "M3",
+        "lag_days": 1
+      },
+      "value": 0.511653688143754,
+      "format": ".3f",
+      "display": "0.512"
+    },
+    {
+      "source": "results/stage2/tables/training_residual_acf.csv",
+      "column": "paired_days",
+      "where": {
+        "model": "M3",
+        "lag_days": 1
+      },
+      "value": 719.0,
+      "format": ".0f",
+      "display": "719"
+    },
+    {
+      "source": "results/stage2/tables/performance.csv",
+      "column": "n",
+      "where": {
+        "split": "test",
+        "model": "M3",
+        "subgroup": "all"
+      },
+      "value": 357.0,
+      "format": ".0f",
+      "display": "357"
+    },
+    {
+      "source": "results/stage2/tables/model_fit.csv",
+      "column": "r_squared",
+      "where": {
+        "model": "M3"
+      },
+      "value": 0.221459511409132,
+      "format": ".3f",
+      "display": "0.221"
+    },
+    {
+      "source": "results/stage2/tables/hac_joint_tests.csv",
+      "column": "p_holm_primary",
+      "where": {
+        "hypothesis": "H1_season",
+        "hac_lag_calendar_days": 7
+      },
+      "value": 0.0618452530916818,
+      "format": ".4f",
+      "display": "0.0618"
+    },
+    {
+      "source": "results/stage2/tables/model_fit.csv",
+      "column": "parameters",
+      "where": {
+        "model": "M1"
+      },
+      "value": 5.0,
+      "format": ".0f",
+      "display": "5"
+    },
+    {
+      "source": "results/stage2/tables/model_fit.csv",
+      "column": "r_squared",
+      "where": {
+        "model": "M1"
+      },
+      "value": 0.198289475345506,
+      "format": ".3f",
+      "display": "0.198"
+    },
+    {
+      "source": "results/stage2/tables/model_fit.csv",
+      "column": "adjusted_r_squared",
+      "where": {
+        "model": "M1"
+      },
+      "value": 0.193835527986315,
+      "format": ".3f",
+      "display": "0.194"
+    },
+    {
+      "source": "results/stage2/tables/model_fit.csv",
+      "column": "sse",
+      "where": {
+        "model": "M1"
+      },
+      "value": 2731346.49253241,
+      "format": ".1f",
+      "display": "2731346.5"
+    },
+    {
+      "source": "results/stage2/tables/model_fit.csv",
+      "column": "parameters",
+      "where": {
+        "model": "M2"
+      },
+      "value": 8.0,
+      "format": ".0f",
+      "display": "8"
+    },
+    {
+      "source": "results/stage2/tables/model_fit.csv",
+      "column": "r_squared",
+      "where": {
+        "model": "M2"
+      },
+      "value": 0.213490032625677,
+      "format": ".3f",
+      "display": "0.213"
+    },
+    {
+      "source": "results/stage2/tables/model_fit.csv",
+      "column": "adjusted_r_squared",
+      "where": {
+        "model": "M2"
+      },
+      "value": 0.205811413697337,
+      "format": ".3f",
+      "display": "0.206"
+    },
+    {
+      "source": "results/stage2/tables/model_fit.csv",
+      "column": "sse",
+      "where": {
+        "model": "M2"
+      },
+      "value": 2679559.73467535,
+      "format": ".1f",
+      "display": "2679559.7"
+    },
+    {
+      "source": "results/stage2/tables/model_fit.csv",
+      "column": "parameters",
+      "where": {
+        "model": "M3"
+      },
+      "value": 11.0,
+      "format": ".0f",
+      "display": "11"
+    },
+    {
+      "source": "results/stage2/tables/model_fit.csv",
+      "column": "adjusted_r_squared",
+      "where": {
+        "model": "M3"
+      },
+      "value": 0.210555582997495,
+      "format": ".3f",
+      "display": "0.211"
+    },
+    {
+      "source": "results/stage2/tables/model_fit.csv",
+      "column": "sse",
+      "where": {
+        "model": "M3"
+      },
+      "value": 2652408.52828215,
+      "format": ".1f",
+      "display": "2652408.5"
+    },
+    {
+      "source": "results/stage2/tables/nested_anova.csv",
+      "column": "f_statistic",
+      "where": {
+        "hypothesis": "H1_season"
+      },
+      "value": 4.61905549918073,
+      "format": ".3f",
+      "display": "4.619"
+    },
+    {
+      "source": "results/stage2/tables/nested_anova.csv",
+      "column": "p_value_iid",
+      "where": {
+        "hypothesis": "H1_season"
+      },
+      "value": 0.0032897320030499,
+      "format": ".4f",
+      "display": "0.0033"
+    },
+    {
+      "source": "results/stage2/tables/hac_joint_tests.csv",
+      "column": "p_value_hac",
+      "where": {
+        "hypothesis": "H1_season",
+        "hac_lag_calendar_days": 7
+      },
+      "value": 0.0359393788430987,
+      "format": ".4f",
+      "display": "0.0359"
+    },
+    {
+      "source": "results/stage2/tables/nested_anova.csv",
+      "column": "f_statistic",
+      "where": {
+        "hypothesis": "H2_wind_by_season"
+      },
+      "value": 2.43627143129723,
+      "format": ".3f",
+      "display": "2.436"
+    },
+    {
+      "source": "results/stage2/tables/nested_anova.csv",
+      "column": "p_value_iid",
+      "where": {
+        "hypothesis": "H2_wind_by_season"
+      },
+      "value": 0.0635810293088641,
+      "format": ".4f",
+      "display": "0.0636"
+    },
+    {
+      "source": "results/stage2/tables/hac_joint_tests.csv",
+      "column": "p_value_hac",
+      "where": {
+        "hypothesis": "H2_wind_by_season",
+        "hac_lag_calendar_days": 7
+      },
+      "value": 0.0309226265458409,
+      "format": ".4f",
+      "display": "0.0309"
+    },
+    {
+      "source": "results/stage2/tables/hac_joint_tests.csv",
+      "column": "p_holm_primary",
+      "where": {
+        "hypothesis": "H2_wind_by_season",
+        "hac_lag_calendar_days": 7
+      },
+      "value": 0.0618452530916818,
+      "format": ".4f",
+      "display": "0.0618"
+    },
+    {
+      "source": "results/stage2/tables/coefficients.csv",
+      "column": "estimate",
+      "where": {
+        "model": "M2",
+        "term": "temperature_c"
+      },
+      "value": -2.48335466282222,
+      "format": ".3f",
+      "display": "-2.483"
+    },
+    {
+      "source": "results/stage2/tables/coefficients.csv",
+      "column": "hac_ci_lower",
+      "where": {
+        "model": "M2",
+        "term": "temperature_c"
+      },
+      "value": -3.98504399799168,
+      "format": ".3f",
+      "display": "-3.985"
+    },
+    {
+      "source": "results/stage2/tables/coefficients.csv",
+      "column": "hac_ci_upper",
+      "where": {
+        "model": "M2",
+        "term": "temperature_c"
+      },
+      "value": -0.981665327652767,
+      "format": ".3f",
+      "display": "-0.982"
+    },
+    {
+      "source": "results/stage2/tables/coefficients.csv",
+      "column": "estimate",
+      "where": {
+        "model": "M2",
+        "term": "wind_speed_c"
+      },
+      "value": -49.0300747127745,
+      "format": ".3f",
+      "display": "-49.030"
+    },
+    {
+      "source": "results/stage2/tables/coefficients.csv",
+      "column": "hac_ci_lower",
+      "where": {
+        "model": "M2",
+        "term": "wind_speed_c"
+      },
+      "value": -57.6075250678453,
+      "format": ".3f",
+      "display": "-57.608"
+    },
+    {
+      "source": "results/stage2/tables/coefficients.csv",
+      "column": "hac_ci_upper",
+      "where": {
+        "model": "M2",
+        "term": "wind_speed_c"
+      },
+      "value": -40.4526243577037,
+      "format": ".3f",
+      "display": "-40.453"
+    },
+    {
+      "source": "results/stage2/tables/coefficients.csv",
+      "column": "estimate",
+      "where": {
+        "model": "M2",
+        "term": "rainfall_c"
+      },
+      "value": -0.202853171948892,
+      "format": ".3f",
+      "display": "-0.203"
+    },
+    {
+      "source": "results/stage2/tables/coefficients.csv",
+      "column": "hac_ci_lower",
+      "where": {
+        "model": "M2",
+        "term": "rainfall_c"
+      },
+      "value": -1.04291379722973,
+      "format": ".3f",
+      "display": "-1.043"
+    },
+    {
+      "source": "results/stage2/tables/coefficients.csv",
+      "column": "hac_ci_upper",
+      "where": {
+        "model": "M2",
+        "term": "rainfall_c"
+      },
+      "value": 0.637207453331951,
+      "format": ".3f",
+      "display": "0.637"
+    },
+    {
+      "source": "results/stage2/tables/coefficients.csv",
+      "column": "estimate",
+      "where": {
+        "model": "M2",
+        "term": "pressure_c"
+      },
+      "value": -2.24648928074007,
+      "format": ".3f",
+      "display": "-2.246"
+    },
+    {
+      "source": "results/stage2/tables/coefficients.csv",
+      "column": "hac_ci_lower",
+      "where": {
+        "model": "M2",
+        "term": "pressure_c"
+      },
+      "value": -3.46728831183923,
+      "format": ".3f",
+      "display": "-3.467"
+    },
+    {
+      "source": "results/stage2/tables/coefficients.csv",
+      "column": "hac_ci_upper",
+      "where": {
+        "model": "M2",
+        "term": "pressure_c"
+      },
+      "value": -1.0256902496409,
+      "format": ".3f",
+      "display": "-1.026"
+    },
+    {
+      "source": "results/stage2/tables/validation_selection.csv",
+      "column": "mae",
+      "where": {
+        "model": "M1"
+      },
+      "value": 52.024996760137,
+      "format": ".3f",
+      "display": "52.025"
+    },
+    {
+      "source": "results/stage2/tables/validation_selection.csv",
+      "column": "rmse",
+      "where": {
+        "model": "M1"
+      },
+      "value": 65.5193271873781,
+      "format": ".3f",
+      "display": "65.519"
+    },
+    {
+      "source": "results/stage2/tables/validation_selection.csv",
+      "column": "mae",
+      "where": {
+        "model": "M2"
+      },
+      "value": 50.6604826067653,
+      "format": ".3f",
+      "display": "50.660"
+    },
+    {
+      "source": "results/stage2/tables/validation_selection.csv",
+      "column": "rmse",
+      "where": {
+        "model": "M2"
+      },
+      "value": 64.5790150824535,
+      "format": ".3f",
+      "display": "64.579"
+    },
+    {
+      "source": "results/stage2/tables/validation_selection.csv",
+      "column": "mae",
+      "where": {
+        "model": "M3"
+      },
+      "value": 50.1041669860535,
+      "format": ".3f",
+      "display": "50.104"
+    },
+    {
+      "source": "results/stage2/tables/validation_selection.csv",
+      "column": "rmse",
+      "where": {
+        "model": "M3"
+      },
+      "value": 64.1708128683484,
+      "format": ".3f",
+      "display": "64.171"
+    },
+    {
+      "source": "results/stage2/tables/performance.csv",
+      "column": "mae",
+      "where": {
+        "split": "test",
+        "model": "M3",
+        "subgroup": "all"
+      },
+      "value": 46.7846558784691,
+      "format": ".3f",
+      "display": "46.785"
+    },
+    {
+      "source": "results/stage2/tables/performance.csv",
+      "column": "rmse",
+      "where": {
+        "split": "test",
+        "model": "M3",
+        "subgroup": "all"
+      },
+      "value": 60.9347709829446,
+      "format": ".3f",
+      "display": "60.935"
+    },
+    {
+      "source": "results/stage2/tables/performance.csv",
+      "column": "mean_signed_error",
+      "where": {
+        "split": "test",
+        "model": "M3",
+        "subgroup": "all"
+      },
+      "value": 15.2834012106017,
+      "format": ".3f",
+      "display": "15.283"
+    },
+    {
+      "source": "results/stage2/tables/performance.csv",
+      "column": "mae",
+      "where": {
+        "split": "test",
+        "model": "training_mean",
+        "subgroup": "all"
+      },
+      "value": 55.2973932098205,
+      "format": ".3f",
+      "display": "55.297"
+    },
+    {
+      "source": "results/stage2/tables/performance.csv",
+      "column": "rmse",
+      "where": {
+        "split": "test",
+        "model": "training_mean",
+        "subgroup": "all"
+      },
+      "value": 73.0058630379072,
+      "format": ".3f",
+      "display": "73.006"
+    },
+    {
+      "source": "results/stage2/tables/performance.csv",
+      "column": "mean_signed_error",
+      "where": {
+        "split": "test",
+        "model": "training_mean",
+        "subgroup": "all"
+      },
+      "value": 12.8972440432435,
+      "format": ".3f",
+      "display": "12.897"
+    },
+    {
+      "source": "results/stage2/tables/performance.csv",
+      "column": "mae",
+      "where": {
+        "split": "test",
+        "model": "M3",
+        "subgroup": "high"
+      },
+      "value": 160.944616550441,
+      "format": ".3f",
+      "display": "160.945"
+    },
+    {
+      "source": "results/stage2/tables/performance.csv",
+      "column": "rmse",
+      "where": {
+        "split": "test",
+        "model": "M3",
+        "subgroup": "high"
+      },
+      "value": 173.583281931102,
+      "format": ".3f",
+      "display": "173.583"
+    },
+    {
+      "source": "results/stage2/tables/performance.csv",
+      "column": "mean_signed_error",
+      "where": {
+        "split": "test",
+        "model": "M3",
+        "subgroup": "high"
+      },
+      "value": -160.944616550441,
+      "format": ".3f",
+      "display": "-160.945"
+    },
+    {
+      "source": "results/stage3/tables/model_comparison_scores.csv",
+      "column": "mae",
+      "where": {
+        "split": "validation",
+        "model": "M3",
+        "subgroup": "all"
+      },
+      "value": 50.4472108180437,
+      "format": ".1f",
+      "display": "50.4"
+    },
+    {
+      "source": "results/stage3/tables/model_comparison_scores.csv",
+      "column": "mae",
+      "where": {
+        "split": "test",
+        "model": "M3",
+        "subgroup": "all"
+      },
+      "value": 46.7053084231103,
+      "format": ".1f",
+      "display": "46.7"
+    },
+    {
+      "source": "results/stage3/tables/model_comparison_scores.csv",
+      "column": "rmse",
+      "where": {
+        "split": "test",
+        "model": "M3",
+        "subgroup": "all"
+      },
+      "value": 60.9300251711275,
+      "format": ".1f",
+      "display": "60.9"
+    },
+    {
+      "source": "results/stage3/tables/model_comparison_scores.csv",
+      "column": "mae",
+      "where": {
+        "split": "validation",
+        "model": "M3_log",
+        "subgroup": "all"
+      },
+      "value": 49.9804625858101,
+      "format": ".1f",
+      "display": "50.0"
+    },
+    {
+      "source": "results/stage3/tables/model_comparison_scores.csv",
+      "column": "mae",
+      "where": {
+        "split": "test",
+        "model": "M3_log",
+        "subgroup": "all"
+      },
+      "value": 45.0925628117855,
+      "format": ".1f",
+      "display": "45.1"
+    },
+    {
+      "source": "results/stage3/tables/model_comparison_scores.csv",
+      "column": "rmse",
+      "where": {
+        "split": "test",
+        "model": "M3_log",
+        "subgroup": "all"
+      },
+      "value": 58.2818542126047,
+      "format": ".1f",
+      "display": "58.3"
+    },
+    {
+      "source": "results/stage3/tables/model_comparison_scores.csv",
+      "column": "mae",
+      "where": {
+        "split": "validation",
+        "model": "M3_lag",
+        "subgroup": "all"
+      },
+      "value": 37.6506406961844,
+      "format": ".1f",
+      "display": "37.7"
+    },
+    {
+      "source": "results/stage3/tables/model_comparison_scores.csv",
+      "column": "mae",
+      "where": {
+        "split": "test",
+        "model": "M3_lag",
+        "subgroup": "all"
+      },
+      "value": 35.5476730108198,
+      "format": ".1f",
+      "display": "35.5"
+    },
+    {
+      "source": "results/stage3/tables/model_comparison_scores.csv",
+      "column": "rmse",
+      "where": {
+        "split": "test",
+        "model": "M3_lag",
+        "subgroup": "all"
+      },
+      "value": 47.7766670299279,
+      "format": ".1f",
+      "display": "47.8"
+    },
+    {
+      "source": "results/stage3/tables/model_comparison_scores.csv",
+      "column": "mae",
+      "where": {
+        "split": "validation",
+        "model": "M3_met",
+        "subgroup": "all"
+      },
+      "value": 46.878734018434,
+      "format": ".1f",
+      "display": "46.9"
+    },
+    {
+      "source": "results/stage3/tables/model_comparison_scores.csv",
+      "column": "mae",
+      "where": {
+        "split": "test",
+        "model": "M3_met",
+        "subgroup": "all"
+      },
+      "value": 40.7417213423627,
+      "format": ".1f",
+      "display": "40.7"
+    },
+    {
+      "source": "results/stage3/tables/model_comparison_scores.csv",
+      "column": "rmse",
+      "where": {
+        "split": "test",
+        "model": "M3_met",
+        "subgroup": "all"
+      },
+      "value": 55.3748591464674,
+      "format": ".1f",
+      "display": "55.4"
+    },
+    {
+      "source": "results/stage3/tables/model_comparison_scores.csv",
+      "column": "mae",
+      "where": {
+        "split": "validation",
+        "model": "M3_log_lag_met",
+        "subgroup": "all"
+      },
+      "value": 32.6735662253722,
+      "format": ".1f",
+      "display": "32.7"
+    },
+    {
+      "source": "results/stage3/tables/model_comparison_scores.csv",
+      "column": "mae",
+      "where": {
+        "split": "test",
+        "model": "M3_log_lag_met",
+        "subgroup": "all"
+      },
+      "value": 28.9639078197925,
+      "format": ".1f",
+      "display": "29.0"
+    },
+    {
+      "source": "results/stage3/tables/model_comparison_scores.csv",
+      "column": "rmse",
+      "where": {
+        "split": "test",
+        "model": "M3_log_lag_met",
+        "subgroup": "all"
+      },
+      "value": 40.7716856780525,
+      "format": ".1f",
+      "display": "40.8"
+    },
+    {
+      "source": "results/stage4/tables/ar1_calendar_sensitivity.csv",
+      "column": "rho",
+      "where": {
+        "method": "original_glsar_rows",
+        "model": "M2"
+      },
+      "value": 0.572133443321473,
+      "format": ".3f",
+      "display": "0.572"
+    },
+    {
+      "source": "results/stage4/tables/ar1_calendar_sensitivity.csv",
+      "column": "p_value_approx",
+      "where": {
+        "method": "original_glsar_rows",
+        "model": "M2"
+      },
+      "value": 0.0033168968758416,
+      "format": ".4f",
+      "display": "0.0033"
+    },
+    {
+      "source": "results/stage4/tables/ar1_calendar_sensitivity.csv",
+      "column": "p_value_approx",
+      "where": {
+        "method": "original_glsar_rows",
+        "model": "M3"
+      },
+      "value": 0.461571241136429,
+      "format": ".4f",
+      "display": "0.4616"
+    },
+    {
+      "source": "results/stage4/tables/ar1_calendar_sensitivity.csv",
+      "column": "rho",
+      "where": {
+        "method": "conditional_ml_rows",
+        "model": "M2"
+      },
+      "value": 0.571499826231097,
+      "format": ".3f",
+      "display": "0.571"
+    },
+    {
+      "source": "results/stage4/tables/ar1_calendar_sensitivity.csv",
+      "column": "p_value_approx",
+      "where": {
+        "method": "conditional_ml_rows",
+        "model": "M2"
+      },
+      "value": 0.0033297316600802,
+      "format": ".4f",
+      "display": "0.0033"
+    },
+    {
+      "source": "results/stage4/tables/ar1_calendar_sensitivity.csv",
+      "column": "p_value_approx",
+      "where": {
+        "method": "conditional_ml_rows",
+        "model": "M3"
+      },
+      "value": 0.460973595450979,
+      "format": ".4f",
+      "display": "0.4610"
+    },
+    {
+      "source": "results/stage4/tables/ar1_calendar_sensitivity.csv",
+      "column": "rho",
+      "where": {
+        "method": "conditional_ml_calendar",
+        "model": "M2"
+      },
+      "value": 0.583014505588679,
+      "format": ".3f",
+      "display": "0.583"
+    },
+    {
+      "source": "results/stage4/tables/ar1_calendar_sensitivity.csv",
+      "column": "p_value_approx",
+      "where": {
+        "method": "conditional_ml_calendar",
+        "model": "M2"
+      },
+      "value": 0.0026126698690522,
+      "format": ".4f",
+      "display": "0.0026"
+    },
+    {
+      "source": "results/stage4/tables/ar1_calendar_sensitivity.csv",
+      "column": "p_value_approx",
+      "where": {
+        "method": "conditional_ml_calendar",
+        "model": "M3"
+      },
+      "value": 0.44754905340993,
+      "format": ".4f",
+      "display": "0.4475"
+    },
+    {
+      "source": "results/stage2/tables/performance.csv",
+      "column": "n",
+      "where": {
+        "split": "test",
+        "model": "M3",
+        "subgroup": "high"
+      },
+      "value": 17.0,
+      "format": ".0f",
+      "display": "17"
+    },
+    {
+      "source": "results/stage2/tables/performance.csv",
+      "column": "negative_predictions",
+      "where": {
+        "split": "test",
+        "model": "M3",
+        "subgroup": "all"
+      },
+      "value": 3.0,
+      "format": ".0f",
+      "display": "3"
+    },
+    {
+      "source": "results/stage3/tables/model_comparison_fits.csv",
+      "column": "smearing_factor",
+      "where": {
+        "model": "M3_log"
+      },
+      "value": 1.23878174629876,
+      "format": ".3f",
+      "display": "1.239"
+    },
+    {
+      "source": "results/stage3/tables/model_comparison_fits.csv",
+      "column": "smearing_factor",
+      "where": {
+        "model": "M3_log_lag_met"
+      },
+      "value": 1.11675781139005,
+      "format": ".3f",
+      "display": "1.117"
+    },
+    {
+      "source": "results/stage3/tables/smog_logistic_performance.csv",
+      "column": "cutoff",
+      "where": {
+        "split": "test",
+        "cutoff_rule": "validation_max_f1"
+      },
+      "value": 0.132299040659696,
+      "format": ".4f",
+      "display": "0.1323"
+    },
+    {
+      "source": "results/stage3/tables/smog_logistic_performance.csv",
+      "column": "smog_days",
+      "where": {
+        "split": "test",
+        "cutoff_rule": "validation_max_f1"
+      },
+      "value": 17.0,
+      "format": ".0f",
+      "display": "17"
+    },
+    {
+      "source": "results/stage3/tables/smog_logistic_performance.csv",
+      "column": "true_positive",
+      "where": {
+        "split": "test",
+        "cutoff_rule": "validation_max_f1"
+      },
+      "value": 15.0,
+      "format": ".0f",
+      "display": "15"
+    },
+    {
+      "source": "results/stage3/tables/smog_logistic_performance.csv",
+      "column": "false_positive",
+      "where": {
+        "split": "test",
+        "cutoff_rule": "validation_max_f1"
+      },
+      "value": 44.0,
+      "format": ".0f",
+      "display": "44"
+    },
+    {
+      "source": "results/stage3/tables/smog_logistic_performance.csv",
+      "column": "false_negative",
+      "where": {
+        "split": "test",
+        "cutoff_rule": "validation_max_f1"
+      },
+      "value": 2.0,
+      "format": ".0f",
+      "display": "2"
+    },
+    {
+      "source": "results/stage3/tables/smog_logistic_performance.csv",
+      "column": "true_negative",
+      "where": {
+        "split": "test",
+        "cutoff_rule": "validation_max_f1"
+      },
+      "value": 296.0,
+      "format": ".0f",
+      "display": "296"
+    },
+    {
+      "source": "results/stage3/tables/smog_logistic_performance.csv",
+      "column": "auc",
+      "where": {
+        "split": "test",
+        "cutoff_rule": "validation_max_f1"
+      },
+      "value": 0.927335640138408,
+      "format": ".3f",
+      "display": "0.927"
+    },
+    {
+      "source": "results/stage3/tables/smog_logistic_performance.csv",
+      "column": "recall",
+      "where": {
+        "split": "test",
+        "cutoff_rule": "validation_max_f1"
+      },
+      "value": 0.882352941176471,
+      "format": ".3f",
+      "display": "0.882"
+    },
+    {
+      "source": "results/stage3/tables/smog_logistic_performance.csv",
+      "column": "precision",
+      "where": {
+        "split": "test",
+        "cutoff_rule": "validation_max_f1"
+      },
+      "value": 0.254237288135593,
+      "format": ".3f",
+      "display": "0.254"
+    },
+    {
+      "source": "results/stage2/tables/coefficients.csv",
+      "column": "estimate",
+      "where": {
+        "model": "M2",
+        "term": "wind_speed_c"
+      },
+      "value": -49.0300747127745,
+      "format": ".1f",
+      "display": "-49.0"
+    }
+  ],
+  "slide_count": 16,
+  "environment": {
+    "numpy": "2.5.5",
+    "pandas": "2.3.3",
+    "matplotlib": "3.11.2",
+    "scipy": "1.18.1",
+    "reportlab": "4.5.1",
+    "python-pptx": "1.0.2",
+    "PyMuPDF": "1.28.2"
+  },
+  "rendering_note": "PDF slides are directly rendered from the same content and geometry as PPTX. Native PowerPoint rendering requires an Office-compatible viewer and is not asserted by this build."
+}

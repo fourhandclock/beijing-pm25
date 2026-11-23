@@ -1,0 +1,58 @@
+{
+  "status": "passed",
+  "verified_on": "2026-11-23",
+  "deadline": "2026-11-24",
+  "base_commit": "87152460db5eb73c58c11df66d0964e0fd9e8467",
+  "branch": "stage4-verification-submission",
+  "fresh_main_clone": {
+    "status": "passed",
+    "pytest_tests_passed": 72,
+    "uci_download_checksum_matched": true
+  },
+  "fresh_candidate_clone": {
+    "status": "passed",
+    "mode": "Fresh clone of local main plus byte-exact replay of the uncommitted candidate files; no commit or remote write performed.",
+    "source_files_compared_exactly": 49,
+    "no_environment_archive_or_processed_data_copied": true,
+    "pytest_tests_passed": 82,
+    "reproduction_steps_passed": 15,
+    "elapsed_seconds": 149.876,
+    "source_snapshot": "reports/stage4/candidate_source_snapshot.json",
+    "commands": "reports/stage4/reproduction/commands.json"
+  },
+  "archive_sha256": "b04da438b2f331ac0ffd45aebdfec0d20d2367feb5f6948c4b1f7ce1191e33c4",
+  "archive_bytes": 8192212,
+  "committed_raw_provenance_unchanged": true,
+  "scientific_dependency_lock_unchanged": true,
+  "final_tests_failed": 0,
+  "unresolved_critical_failures": [],
+  "report_pages": 10,
+  "slide_pages": 16,
+  "source_linked_numeric_claims_checked": 88,
+  "native_powerpoint_rendering_checked": false,
+  "publication": {
+    "committed": false,
+    "pushed": false,
+    "pull_request_opened": false,
+    "merged": false
+  },
+  "numerical_findings": {
+    "stage2_frozen_results_preserved": true,
+    "stage3_max_absolute_original_table_difference": 9.897860309138196e-12,
+    "ar1_calendar_gap_sensitivity_changes_nominal_qualitative_decisions": false
+  },
+  "expected_or_resolved_nonzero_checks": [
+    {
+      "command": "baseline-prerun-verify",
+      "reason": "Fresh clone lacks ignored generated processed CSVs; rerun the stages first."
+    },
+    {
+      "command": "initial working document build",
+      "reason": "Strict layout guard caught long slide text; corrected widths/titles and rebuilt successfully."
+    },
+    {
+      "command": "document-build-layout",
+      "reason": "A remaining long slide title exceeded its box; shortened and all 26 rendered pages checked."
+    }
+  ]
+}

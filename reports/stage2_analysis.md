@@ -1,6 +1,6 @@
 # Stage 2 — regression, seasonal tests and model adequacy
 
-**Wanliu; original-scale daily PM2.5; completed on the original UCI dataset.** Model decisions follow the [protocol](stage2_protocol.md), written before the first empirical fit. The submission deadline is 25 November 2026.
+**Wanliu; original-scale daily PM2.5; completed on the original UCI dataset.** Model decisions follow the [protocol](stage2_protocol.md), written before the first empirical fit.
 
 ## Main findings
 
@@ -152,4 +152,6 @@ Reproduce from the project directory with `.venv/bin/python -m beijing_pm25 stag
 
 This study uses one station and a historical time range. Completeness filtering may be selective, weather is spatially matched, pollution history/emissions and nonlinear relationships are omitted, and coefficient relations can change over years. Neither rank/conditioning, a significant p-value, nor a high R² establishes adequate errors or generalization. The test interval is now used for evaluation; future adaptations need to be labeled exploratory rather than reusing it as fresh confirmation. No published paper's model scores are reported as ours.
 
-Stage 2's core analysis is complete. The next practical deliverable is a concise submission report and presentation explaining this evidence and its limits. Optional EWMA/ridge/second-station work has not been started.
+The supplementary log-scale, lagged-pollution, classification and cross-station analyses are reported
+separately as exploratory. The final submission report and presentation explain the core evidence
+and its limits. EWMA and ridge regression are outside this submission.

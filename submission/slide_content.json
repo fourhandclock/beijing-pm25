@@ -1,0 +1,3376 @@
+{
+  "title": "Beyond R²: Seasonal Effects, Residual Dependence, and Model Adequacy in Beijing PM2.5 Regression",
+  "slides": [
+    {
+      "title": "Beyond R²",
+      "section": "BEIJING PM2.5 REGRESSION",
+      "layout": "title",
+      "subtitle": "Seasonal Effects, Residual Dependence, and Model Adequacy in Beijing PM2.5 Regression",
+      "lines": [
+        "Multiple regression · ANOVA · residual adequacy",
+        "Daily observations · March 2013–February 2017"
+      ],
+      "statement": "What structure remains after adjusting for weather and season?",
+      "notes": "Introduce a statistical adequacy investigation using UCI observations. Weather is measured on the same day as the response: this is contemporaneous estimation, not an advance-forecast benchmark. The original confirmatory regressions are distinguished from exploratory work developed after the test year was viewed."
+    },
+    {
+      "title": "Does season add information beyond weather?",
+      "section": "RESEARCH QUESTION",
+      "layout": "questions",
+      "cards": [
+        [
+          "H1 · Seasonal offsets",
+          "Do three seasonal terms add information after weather adjustment?"
+        ],
+        [
+          "H2 · Wind interactions",
+          "Does the conditional wind association differ by season?"
+        ],
+        [
+          "Model adequacy",
+          "Do residual patterns support the assumptions behind inference?"
+        ]
+      ],
+      "notes": "H1 compares M1 with M2; H2 compares M2 with M3. The third question concerns the errors, not another search for favorable p-values. Season can represent omitted processes, so seasonal coefficients describe conditional association rather than a causal mechanism."
+    },
+    {
+      "title": "Daily data, chronological evaluation",
+      "section": "DATA & DESIGN",
+      "layout": "timeline",
+      "partitions": [
+        [
+          "Training",
+          "Mar 2013–Feb 2015",
+          "725",
+          "730"
+        ],
+        [
+          "Validation",
+          "Mar 2015–Feb 2016",
+          "359",
+          "366"
+        ],
+        [
+          "Test",
+          "Mar 2016–Feb 2017",
+          "357",
+          "365"
+        ]
+      ],
+      "lines": [
+        "Wanliu selected by training completeness from 12 UCI stations.",
+        "Daily means: ≥18 valid hours; rainfall totals: 24 hours.",
+        "Also require 18 jointly observed core hours; preserve calendar gaps."
+      ],
+      "notes": "The source contains 420,768 hourly station records. Wanliu retains 1,441 of 1,461 calendar dates. Each mean uses its own valid hours; there is no target imputation or outcome-based trimming. Centers and quantile thresholds use training data only. Local time and rainfall-amount assumptions are documented in the report."
+    },
+    {
+      "title": "Three nested multiple regressions",
+      "section": "CONFIRMATORY REGRESSION",
+      "layout": "models",
+      "table": [
+        [
+          "Model",
+          "Predictors added",
+          "Parameters",
+          "Training R²"
+        ],
+        [
+          [
+            "M1",
+            "Temperature, wind, rain, pressure",
+            "5",
+            "0.198"
+          ],
+          [
+            "M2",
+            "M1 + 3 seasonal indicators",
+            "8",
+            "0.213"
+          ],
+          [
+            "M3",
+            "M2 + 3 season × wind terms",
+            "11",
+            "0.221"
+          ]
+        ]
+      ],
+      "lines": [
+        "Training-only centering · winter reference · original concentration scale",
+        "M2 wind: -49.0 µg/m³ per m/s, conditional on other weather and season."
+      ],
+      "notes": "Each added block has three parameters. In M3, seasonal offsets apply at the training mean wind speed and the base wind coefficient is the winter slope. Every design is full rank; conditioning is separate from statistical uncertainty. The wind coefficient is an observational association, not an intervention effect."
+    },
+    {
+      "title": "Classical ANOVA and robust inference",
+      "section": "PLANNED JOINT TESTS",
+      "layout": "inference",
+      "table": [
+        [
+          "Question",
+          "F",
+          "Classical p",
+          "HAC p",
+          "Holm p"
+        ],
+        [
+          [
+            "H1: add season",
+            "4.619",
+            "0.0033",
+            "0.0359",
+            "0.0618"
+          ],
+          [
+            "H2: wind × season",
+            "2.436",
+            "0.0636",
+            "0.0309",
+            "0.0618"
+          ]
+        ]
+      ],
+      "statement": "Both adjusted p-values = 0.0618",
+      "lines": [
+        "Neither primary joint hypothesis rejects at 5%.",
+        "Seven-calendar-day Bartlett HAC · joint χ²(3) Wald · two-test Holm family"
+      ],
+      "equation": "F = (SSE reduction / added df) / full-model residual mean square",
+      "notes": "Classical F uses an iid, constant-variance Gaussian reference for exact calibration. HAC retains actual calendar separations and uses n/(n−p). Its Wald reference is asymptotic. The 14/30-day bandwidth checks are descriptive sensitivities. Failure to reject is not proof that seasonal structure is absent."
+    },
+    {
+      "title": "Residual dependence remains",
+      "section": "MODEL ADEQUACY",
+      "layout": "figure",
+      "figure": "residual_dependence",
+      "caption": "M3 training R² 0.221 · lag-one residual r 0.512 · 719 adjacent-date pairs",
+      "notes": "The first-lag correlation is substantial after weather and season adjustment. Missing calendar positions are retained and pair counts vary by lag. Daily aggregation has not made the errors independent. Read the magnitude and pattern rather than treating an auxiliary p-value as an independence certificate."
+    },
+    {
+      "title": "Residual spread and distributional shape",
+      "section": "MODEL ADEQUACY",
+      "layout": "figure",
+      "figure": "residual_shape",
+      "caption": "Training M3 · unequal spread and upper-tail departure · no flagged day deleted",
+      "notes": "The scatter and Q–Q plot address different aspects of adequacy. The Q–Q plot does not test independence. Serial, Koenker/Breusch–Pagan and influence diagnostics have calibration assumptions under dependence. Forty M3 observations exceed the Cook's-distance screening guide, which does not establish that they are errors."
+    },
+    {
+      "title": "Average gain, high-day failure",
+      "section": "FROZEN TEST EVALUATION",
+      "layout": "evaluation",
+      "figure": "frozen_test",
+      "metrics": [
+        [
+          "M3 MAE",
+          "46.785"
+        ],
+        [
+          "Baseline MAE",
+          "55.297"
+        ],
+        [
+          "High-day signed error",
+          "-160.945"
+        ]
+      ],
+      "caption": "µg/m³ · 357 test days · 17 high days · 3 negative estimates retained",
+      "notes": "The fixed validation rule chooses M3, with M2 only 1.11% above the minimum. Overall signed error is positive, but high-day error is strongly negative. The high-day cutoff is 234.655 µg/m³, learned from training. There is no clipping or test-year refit; dependent errors preclude a naive independent-day interval for performance differences."
+    },
+    {
+      "title": "Exploratory temporal and weather extensions",
+      "section": "SUPPORTING ANALYSES · EXPLORATORY",
+      "layout": "figure",
+      "figure": "extension_mae",
+      "caption": "721 train / 354 validation / 355 test · M3 refit on the common sample",
+      "notes": "The five candidates share dates. Extra weather is dew point and two wind-vector components; the lag is the previous calendar day's observed PM2.5. Log estimates use a training-only smearing factor times exp(linear predictor), minus one. This does not guarantee nonnegativity. The viewed test year supplies descriptive comparisons, not independent confirmation."
+    },
+    {
+      "title": "AR(1) sensitivity to five short gaps",
+      "section": "SUPPORTING ANALYSES · EXPLORATORY",
+      "layout": "ar1",
+      "table": [
+        [
+          "Method",
+          "M2 ρ",
+          "H1 nominal p",
+          "H2 nominal p"
+        ],
+        [
+          [
+            "Original GLSAR rows",
+            "0.572",
+            "0.0033",
+            "0.4616"
+          ],
+          [
+            "Likelihood rows",
+            "0.571",
+            "0.0033",
+            "0.4610"
+          ],
+          [
+            "Likelihood calendar",
+            "0.583",
+            "0.0026",
+            "0.4475"
+          ]
+        ]
+      ],
+      "lines": [
+        "Paired likelihood fits change only row versus calendar spacing.",
+        "Transitions use ρᵈ with gap-adjusted innovation variance.",
+        "Nominal decisions agree; estimated-ρ uncertainty remains approximate."
+      ],
+      "notes": "Original GLSAR compresses rows across five two-day training gaps. The paired check holds estimation and first-observation treatment fixed. A separate dense covariance verifies wind coefficients and profile objectives. Nominal H1/H2 conclusions remain unchanged, including within-method Holm adjustment. This does not validate stationary Gaussian AR(1) or override the primary HAC/Holm result."
+    },
+    {
+      "title": "Cross-station consistency",
+      "section": "SUPPORTING ANALYSES · EXPLORATORY",
+      "layout": "figure",
+      "figure": "station_wind",
+      "caption": "Within-station Holm: H1 6/12, H2 2/12 · not a full 24-test correction",
+      "notes": "Each station has its own eligible dates, centers and cutoff. All M2 wind intervals lie below zero. Seasonal findings vary; M3 beats the training-mean baseline at 11/12 sites, except Gucheng. Shared pollution and weather make these dependent sites, not independent replications."
+    },
+    {
+      "title": "High recall brings many false alarms",
+      "section": "SUPPORTING ANALYSES · EXPLORATORY",
+      "layout": "classification",
+      "confusion": [
+        "15",
+        "44",
+        "2",
+        "296"
+      ],
+      "metrics": [
+        [
+          "Validation-F1 cutoff",
+          "0.1323"
+        ],
+        [
+          "Test AUC",
+          "0.927"
+        ],
+        [
+          "Recall / precision",
+          "0.882 / 0.254"
+        ]
+      ],
+      "caption": "High day: PM2.5 ≥234.655 µg/m³ (training 95th percentile) · 17 test high days · not a health standard",
+      "notes": "The concentration threshold is the training daily 95th percentile. Validation F1 selects the probability cutoff, breaking ties toward a higher value; test labels do not select it. A 0.5 cutoff detects none. AUC describes ranking, while this table shows the selected cutoff's burden. Rare, dependent events limit precision; odds-ratio intervals assume independence."
+    },
+    {
+      "title": "Two groups of training pollutant profiles",
+      "section": "SUPPORTING ANALYSES · EXPLORATORY",
+      "layout": "clusters",
+      "figure": "station_profiles",
+      "lines": [
+        "Ward grouping",
+        "Six pollutant means",
+        "Across-station z-scores",
+        "Two groups; no geographic classification"
+      ],
+      "caption": "Pollutant-specific eligible dates · new-period cluster stability untested",
+      "notes": "The existing verified heatmap displays the standardized training profiles and cluster labels. The largest merge-height gap for k=2…5 chooses two groups. The lower mean-PM2.5 group contains Changping, Dingling, Huairou, Shunyi. Group labels describe this period; they do not identify validated geographic or risk classes."
+    },
+    {
+      "title": "Limits of the evidence",
+      "section": "INTERPRETATION",
+      "layout": "limits",
+      "cards": [
+        [
+          "Study design",
+          "One city, four historical years; missingness and omitted drivers can affect associations."
+        ],
+        [
+          "Statistical inference",
+          "Residual dependence remains; individual intervals and station-wise tests are not simultaneous protection."
+        ],
+        [
+          "Evaluation",
+          "Observed same-day weather and a reused exploratory test year limit claims about future prediction."
+        ]
+      ],
+      "notes": "Mention spatially matched weather, emissions/transport and boundary-layer information. HAC cannot repair an inadequate conditional mean. A common smearing factor can miss varying conditional error distributions. Cross-station consistency and separate implementation checks do not establish causal effects or independent scientific replication."
+    },
+    {
+      "title": "Model adequacy requires more than explained variance",
+      "section": "CONCLUSIONS",
+      "layout": "conclusion",
+      "lines": [
+        "Seasonal terms reduce SSE; adjusted joint evidence is insufficient at 5%.",
+        "M3 lowers average error while retaining serial structure and high-day failure.",
+        "Next: an unseen period, prespecified rules and explicit covariate availability."
+      ],
+      "notes": "Return to the question: fit reduction, inference and error behavior must be considered together. Smaller errors for exploratory temporal/weather models motivate further study without confirming them. A new evaluation should define the information available when an estimate is issued and avoid retuning on the current test year."
+    },
+    {
+      "title": "References and assistance",
+      "section": "SOURCES",
+      "layout": "references",
+      "references": [
+        [
+          "Chen, S. (2017). Beijing Multi-Site Air Quality [Dataset]. UCI Machine Learning Repository. CC BY 4.0.",
+          "https://doi.org/10.24432/C5RK5G"
+        ],
+        [
+          "Duan, N. (1983). Smearing Estimate: A Nonparametric Retransformation Method. Journal of the American Statistical Association, 78(383), 605–610.",
+          "https://doi.org/10.1080/01621459.1983.10478017"
+        ],
+        [
+          "Statsmodels. Regression F-test documentation.",
+          "https://www.statsmodels.org/stable/generated/statsmodels.regression.linear_model.RegressionResults.compare_f_test.html"
+        ],
+        [
+          "UCI. Beijing Multi-Site Air Quality: dataset documentation.",
+          "https://archive.ics.uci.edu/dataset/501/beijing+multi+site+air+quality+data"
+        ]
+      ],
+      "disclosure": "OpenAI Codex and Anthropic Claude assisted code and drafting. Codex assisted verification and editorial refinement. Numerical claims are tied to generated artifacts. The submitter remains responsible for interpretation and course-policy compliance.",
+      "notes": "Full references and attribution appear in the report, including UCI's CC BY 4.0 license and Duan's retransformation method. Empirical numbers are this project's generated results. AI assistance is disclosed; the submitter remains responsible for interpretation and course-policy compliance. Numerical verification is not independent scientific replication."
+    }
+  ],
+  "elements": [
+    [
+      {
+        "kind": "rect",
+        "x": 0,
+        "y": 0,
+        "w": 960,
+        "h": 540,
+        "color": "FFFFFF"
+      },
+      {
+        "kind": "rect",
+        "x": 40,
+        "y": 23,
+        "w": 35,
+        "h": 3,
+        "color": "087F8C"
+      },
+      {
+        "kind": "text",
+        "text": "BEIJING PM2.5 REGRESSION",
+        "x": 86,
+        "y": 17,
+        "w": 820,
+        "h": 22,
+        "size": 11,
+        "color": "087F8C",
+        "bold": true
+      },
+      {
+        "kind": "text",
+        "text": "Beijing PM2.5",
+        "x": 40,
+        "y": 524,
+        "w": 700,
+        "h": 14,
+        "size": 9,
+        "color": "536779",
+        "bold": false
+      },
+      {
+        "kind": "text",
+        "text": "01 / 16",
+        "x": 863,
+        "y": 524,
+        "w": 65,
+        "h": 14,
+        "size": 9,
+        "color": "536779",
+        "bold": false
+      },
+      {
+        "kind": "text",
+        "text": "Beyond R²",
+        "x": 40,
+        "y": 96,
+        "w": 880,
+        "h": 80,
+        "size": 52,
+        "color": "15324D",
+        "bold": true
+      },
+      {
+        "kind": "text",
+        "text": "Seasonal Effects, Residual Dependence, and Model Adequacy in Beijing PM2.5 Regression",
+        "x": 43,
+        "y": 192,
+        "w": 860,
+        "h": 117,
+        "size": 29,
+        "color": "15324D",
+        "bold": true
+      },
+      {
+        "kind": "text",
+        "text": "Multiple regression · ANOVA · residual adequacy",
+        "x": 44,
+        "y": 354,
+        "w": 870,
+        "h": 34,
+        "size": 20,
+        "color": "536779",
+        "bold": false
+      },
+      {
+        "kind": "text",
+        "text": "Daily observations · March 2013–February 2017",
+        "x": 44,
+        "y": 392,
+        "w": 870,
+        "h": 34,
+        "size": 20,
+        "color": "536779",
+        "bold": false
+      },
+      {
+        "kind": "text",
+        "text": "What structure remains after adjusting for weather and season?",
+        "x": 44,
+        "y": 452,
+        "w": 870,
+        "h": 51,
+        "size": 23,
+        "color": "087F8C",
+        "bold": false
+      }
+    ],
+    [
+      {
+        "kind": "rect",
+        "x": 0,
+        "y": 0,
+        "w": 960,
+        "h": 540,
+        "color": "FFFFFF"
+      },
+      {
+        "kind": "rect",
+        "x": 40,
+        "y": 23,
+        "w": 35,
+        "h": 3,
+        "color": "087F8C"
+      },
+      {
+        "kind": "text",
+        "text": "RESEARCH QUESTION",
+        "x": 86,
+        "y": 17,
+        "w": 820,
+        "h": 22,
+        "size": 11,
+        "color": "087F8C",
+        "bold": true
+      },
+      {
+        "kind": "text",
+        "text": "Beijing PM2.5",
+        "x": 40,
+        "y": 524,
+        "w": 700,
+        "h": 14,
+        "size": 9,
+        "color": "536779",
+        "bold": false
+      },
+      {
+        "kind": "text",
+        "text": "02 / 16",
+        "x": 863,
+        "y": 524,
+        "w": 65,
+        "h": 14,
+        "size": 9,
+        "color": "536779",
+        "bold": false
+      },
+      {
+        "kind": "text",
+        "text": "Does season add information beyond weather?",
+        "x": 40,
+        "y": 58,
+        "w": 880,
+        "h": 70,
+        "size": 30,
+        "color": "15324D",
+        "bold": true
+      },
+      {
+        "kind": "rect",
+        "x": 40,
+        "y": 157,
+        "w": 280,
+        "h": 282,
+        "color": "EDF3F6"
+      },
+      {
+        "kind": "rect",
+        "x": 40,
+        "y": 157,
+        "w": 280,
+        "h": 3,
+        "color": "087F8C"
+      },
+      {
+        "kind": "text",
+        "text": "H1 · Seasonal offsets",
+        "x": 58,
+        "y": 181,
+        "w": 244,
+        "h": 64,
+        "size": 21,
+        "color": "15324D",
+        "bold": true
+      },
+      {
+        "kind": "text",
+        "text": "Do three seasonal terms add information after weather adjustment?",
+        "x": 58,
+        "y": 264,
+        "w": 244,
+        "h": 149,
+        "size": 22,
+        "color": "233747",
+        "bold": false
+      },
+      {
+        "kind": "rect",
+        "x": 340,
+        "y": 157,
+        "w": 280,
+        "h": 282,
+        "color": "EDF3F6"
+      },
+      {
+        "kind": "rect",
+        "x": 340,
+        "y": 157,
+        "w": 280,
+        "h": 3,
+        "color": "087F8C"
+      },
+      {
+        "kind": "text",
+        "text": "H2 · Wind interactions",
+        "x": 358,
+        "y": 181,
+        "w": 244,
+        "h": 64,
+        "size": 21,
+        "color": "15324D",
+        "bold": true
+      },
+      {
+        "kind": "text",
+        "text": "Does the conditional wind association differ by season?",
+        "x": 358,
+        "y": 264,
+        "w": 244,
+        "h": 149,
+        "size": 22,
+        "color": "233747",
+        "bold": false
+      },
+      {
+        "kind": "rect",
+        "x": 640,
+        "y": 157,
+        "w": 280,
+        "h": 282,
+        "color": "EDF3F6"
+      },
+      {
+        "kind": "rect",
+        "x": 640,
+        "y": 157,
+        "w": 280,
+        "h": 3,
+        "color": "087F8C"
+      },
+      {
+        "kind": "text",
+        "text": "Model adequacy",
+        "x": 658,
+        "y": 181,
+        "w": 244,
+        "h": 64,
+        "size": 21,
+        "color": "15324D",
+        "bold": true
+      },
+      {
+        "kind": "text",
+        "text": "Do residual patterns support the assumptions behind inference?",
+        "x": 658,
+        "y": 264,
+        "w": 244,
+        "h": 149,
+        "size": 22,
+        "color": "233747",
+        "bold": false
+      }
+    ],
+    [
+      {
+        "kind": "rect",
+        "x": 0,
+        "y": 0,
+        "w": 960,
+        "h": 540,
+        "color": "FFFFFF"
+      },
+      {
+        "kind": "rect",
+        "x": 40,
+        "y": 23,
+        "w": 35,
+        "h": 3,
+        "color": "087F8C"
+      },
+      {
+        "kind": "text",
+        "text": "DATA & DESIGN",
+        "x": 86,
+        "y": 17,
+        "w": 820,
+        "h": 22,
+        "size": 11,
+        "color": "087F8C",
+        "bold": true
+      },
+      {
+        "kind": "text",
+        "text": "Beijing PM2.5",
+        "x": 40,
+        "y": 524,
+        "w": 700,
+        "h": 14,
+        "size": 9,
+        "color": "536779",
+        "bold": false
+      },
+      {
+        "kind": "text",
+        "text": "03 / 16",
+        "x": 863,
+        "y": 524,
+        "w": 65,
+        "h": 14,
+        "size": 9,
+        "color": "536779",
+        "bold": false
+      },
+      {
+        "kind": "text",
+        "text": "Daily data, chronological evaluation",
+        "x": 40,
+        "y": 58,
+        "w": 880,
+        "h": 70,
+        "size": 30,
+        "color": "15324D",
+        "bold": true
+      },
+      {
+        "kind": "rect",
+        "x": 40,
+        "y": 142,
+        "w": 280,
+        "h": 196,
+        "color": "EDF3F6"
+      },
+      {
+        "kind": "text",
+        "text": "Training",
+        "x": 56,
+        "y": 155,
+        "w": 248,
+        "h": 29,
+        "size": 20,
+        "color": "15324D",
+        "bold": true
+      },
+      {
+        "kind": "text",
+        "text": "725",
+        "x": 56,
+        "y": 194,
+        "w": 248,
+        "h": 60,
+        "size": 44,
+        "color": "087F8C",
+        "bold": true
+      },
+      {
+        "kind": "text",
+        "text": "eligible days / 730 calendar",
+        "x": 56,
+        "y": 258,
+        "w": 248,
+        "h": 25,
+        "size": 15,
+        "color": "536779",
+        "bold": false
+      },
+      {
+        "kind": "text",
+        "text": "Mar 2013–Feb 2015",
+        "x": 56,
+        "y": 297,
+        "w": 248,
+        "h": 29,
+        "size": 17,
+        "color": "233747",
+        "bold": false
+      },
+      {
+        "kind": "rect",
+        "x": 340,
+        "y": 142,
+        "w": 280,
+        "h": 196,
+        "color": "EDF3F6"
+      },
+      {
+        "kind": "text",
+        "text": "Validation",
+        "x": 356,
+        "y": 155,
+        "w": 248,
+        "h": 29,
+        "size": 20,
+        "color": "15324D",
+        "bold": true
+      },
+      {
+        "kind": "text",
+        "text": "359",
+        "x": 356,
+        "y": 194,
+        "w": 248,
+        "h": 60,
+        "size": 44,
+        "color": "087F8C",
+        "bold": true
+      },
+      {
+        "kind": "text",
+        "text": "eligible days / 366 calendar",
+        "x": 356,
+        "y": 258,
+        "w": 248,
+        "h": 25,
+        "size": 15,
+        "color": "536779",
+        "bold": false
+      },
+      {
+        "kind": "text",
+        "text": "Mar 2015–Feb 2016",
+        "x": 356,
+        "y": 297,
+        "w": 248,
+        "h": 29,
+        "size": 17,
+        "color": "233747",
+        "bold": false
+      },
+      {
+        "kind": "rect",
+        "x": 640,
+        "y": 142,
+        "w": 280,
+        "h": 196,
+        "color": "EDF3F6"
+      },
+      {
+        "kind": "text",
+        "text": "Test",
+        "x": 656,
+        "y": 155,
+        "w": 248,
+        "h": 29,
+        "size": 20,
+        "color": "15324D",
+        "bold": true
+      },
+      {
+        "kind": "text",
+        "text": "357",
+        "x": 656,
+        "y": 194,
+        "w": 248,
+        "h": 60,
+        "size": 44,
+        "color": "087F8C",
+        "bold": true
+      },
+      {
+        "kind": "text",
+        "text": "eligible days / 365 calendar",
+        "x": 656,
+        "y": 258,
+        "w": 248,
+        "h": 25,
+        "size": 15,
+        "color": "536779",
+        "bold": false
+      },
+      {
+        "kind": "text",
+        "text": "Mar 2016–Feb 2017",
+        "x": 656,
+        "y": 297,
+        "w": 248,
+        "h": 29,
+        "size": 17,
+        "color": "233747",
+        "bold": false
+      },
+      {
+        "kind": "text",
+        "text": "Wanliu selected by training completeness from 12 UCI stations.",
+        "x": 40,
+        "y": 367,
+        "w": 880,
+        "h": 39,
+        "size": 20,
+        "color": "233747",
+        "bold": false
+      },
+      {
+        "kind": "text",
+        "text": "Daily means: ≥18 valid hours; rainfall totals: 24 hours.",
+        "x": 40,
+        "y": 409,
+        "w": 880,
+        "h": 39,
+        "size": 20,
+        "color": "233747",
+        "bold": false
+      },
+      {
+        "kind": "text",
+        "text": "Also require 18 jointly observed core hours; preserve calendar gaps.",
+        "x": 40,
+        "y": 451,
+        "w": 880,
+        "h": 39,
+        "size": 20,
+        "color": "233747",
+        "bold": false
+      }
+    ],
+    [
+      {
+        "kind": "rect",
+        "x": 0,
+        "y": 0,
+        "w": 960,
+        "h": 540,
+        "color": "FFFFFF"
+      },
+      {
+        "kind": "rect",
+        "x": 40,
+        "y": 23,
+        "w": 35,
+        "h": 3,
+        "color": "087F8C"
+      },
+      {
+        "kind": "text",
+        "text": "CONFIRMATORY REGRESSION",
+        "x": 86,
+        "y": 17,
+        "w": 820,
+        "h": 22,
+        "size": 11,
+        "color": "087F8C",
+        "bold": true
+      },
+      {
+        "kind": "text",
+        "text": "Beijing PM2.5",
+        "x": 40,
+        "y": 524,
+        "w": 700,
+        "h": 14,
+        "size": 9,
+        "color": "536779",
+        "bold": false
+      },
+      {
+        "kind": "text",
+        "text": "04 / 16",
+        "x": 863,
+        "y": 524,
+        "w": 65,
+        "h": 14,
+        "size": 9,
+        "color": "536779",
+        "bold": false
+      },
+      {
+        "kind": "text",
+        "text": "Three nested multiple regressions",
+        "x": 40,
+        "y": 58,
+        "w": 880,
+        "h": 70,
+        "size": 30,
+        "color": "15324D",
+        "bold": true
+      },
+      {
+        "kind": "rect",
+        "x": 40,
+        "y": 142,
+        "w": 80,
+        "h": 54,
+        "color": "15324D"
+      },
+      {
+        "kind": "text",
+        "text": "Model",
+        "x": 50,
+        "y": 155,
+        "w": 60,
+        "h": 39,
+        "size": 16.5,
+        "color": "FFFFFF",
+        "bold": true
+      },
+      {
+        "kind": "rect",
+        "x": 120,
+        "y": 142,
+        "w": 470,
+        "h": 54,
+        "color": "15324D"
+      },
+      {
+        "kind": "text",
+        "text": "Predictors added",
+        "x": 130,
+        "y": 155,
+        "w": 450,
+        "h": 39,
+        "size": 16.5,
+        "color": "FFFFFF",
+        "bold": true
+      },
+      {
+        "kind": "rect",
+        "x": 590,
+        "y": 142,
+        "w": 160,
+        "h": 54,
+        "color": "15324D"
+      },
+      {
+        "kind": "text",
+        "text": "Parameters",
+        "x": 600,
+        "y": 155,
+        "w": 140,
+        "h": 39,
+        "size": 16.5,
+        "color": "FFFFFF",
+        "bold": true
+      },
+      {
+        "kind": "rect",
+        "x": 750,
+        "y": 142,
+        "w": 170,
+        "h": 54,
+        "color": "15324D"
+      },
+      {
+        "kind": "text",
+        "text": "Training R²",
+        "x": 760,
+        "y": 155,
+        "w": 150,
+        "h": 39,
+        "size": 16.5,
+        "color": "FFFFFF",
+        "bold": true
+      },
+      {
+        "kind": "rect",
+        "x": 40,
+        "y": 196,
+        "w": 80,
+        "h": 54,
+        "color": "EDF3F6"
+      },
+      {
+        "kind": "text",
+        "text": "M1",
+        "x": 50,
+        "y": 209,
+        "w": 60,
+        "h": 39,
+        "size": 20,
+        "color": "233747",
+        "bold": false
+      },
+      {
+        "kind": "rect",
+        "x": 120,
+        "y": 196,
+        "w": 470,
+        "h": 54,
+        "color": "EDF3F6"
+      },
+      {
+        "kind": "text",
+        "text": "Temperature, wind, rain, pressure",
+        "x": 130,
+        "y": 209,
+        "w": 450,
+        "h": 39,
+        "size": 20,
+        "color": "233747",
+        "bold": false
+      },
+      {
+        "kind": "rect",
+        "x": 590,
+        "y": 196,
+        "w": 160,
+        "h": 54,
+        "color": "EDF3F6"
+      },
+      {
+        "kind": "text",
+        "text": "5",
+        "x": 600,
+        "y": 209,
+        "w": 140,
+        "h": 39,
+        "size": 20,
+        "color": "233747",
+        "bold": false
+      },
+      {
+        "kind": "rect",
+        "x": 750,
+        "y": 196,
+        "w": 170,
+        "h": 54,
+        "color": "EDF3F6"
+      },
+      {
+        "kind": "text",
+        "text": "0.198",
+        "x": 760,
+        "y": 209,
+        "w": 150,
+        "h": 39,
+        "size": 20,
+        "color": "233747",
+        "bold": false
+      },
+      {
+        "kind": "rect",
+        "x": 40,
+        "y": 250,
+        "w": 80,
+        "h": 54,
+        "color": "FFFFFF"
+      },
+      {
+        "kind": "text",
+        "text": "M2",
+        "x": 50,
+        "y": 263,
+        "w": 60,
+        "h": 39,
+        "size": 20,
+        "color": "233747",
+        "bold": false
+      },
+      {
+        "kind": "rect",
+        "x": 120,
+        "y": 250,
+        "w": 470,
+        "h": 54,
+        "color": "FFFFFF"
+      },
+      {
+        "kind": "text",
+        "text": "M1 + 3 seasonal indicators",
+        "x": 130,
+        "y": 263,
+        "w": 450,
+        "h": 39,
+        "size": 20,
+        "color": "233747",
+        "bold": false
+      },
+      {
+        "kind": "rect",
+        "x": 590,
+        "y": 250,
+        "w": 160,
+        "h": 54,
+        "color": "FFFFFF"
+      },
+      {
+        "kind": "text",
+        "text": "8",
+        "x": 600,
+        "y": 263,
+        "w": 140,
+        "h": 39,
+        "size": 20,
+        "color": "233747",
+        "bold": false
+      },
+      {
+        "kind": "rect",
+        "x": 750,
+        "y": 250,
+        "w": 170,
+        "h": 54,
+        "color": "FFFFFF"
+      },
+      {
+        "kind": "text",
+        "text": "0.213",
+        "x": 760,
+        "y": 263,
+        "w": 150,
+        "h": 39,
+        "size": 20,
+        "color": "233747",
+        "bold": false
+      },
+      {
+        "kind": "rect",
+        "x": 40,
+        "y": 304,
+        "w": 80,
+        "h": 54,
+        "color": "EDF3F6"
+      },
+      {
+        "kind": "text",
+        "text": "M3",
+        "x": 50,
+        "y": 317,
+        "w": 60,
+        "h": 39,
+        "size": 20,
+        "color": "233747",
+        "bold": false
+      },
+      {
+        "kind": "rect",
+        "x": 120,
+        "y": 304,
+        "w": 470,
+        "h": 54,
+        "color": "EDF3F6"
+      },
+      {
+        "kind": "text",
+        "text": "M2 + 3 season × wind terms",
+        "x": 130,
+        "y": 317,
+        "w": 450,
+        "h": 39,
+        "size": 20,
+        "color": "233747",
+        "bold": false
+      },
+      {
+        "kind": "rect",
+        "x": 590,
+        "y": 304,
+        "w": 160,
+        "h": 54,
+        "color": "EDF3F6"
+      },
+      {
+        "kind": "text",
+        "text": "11",
+        "x": 600,
+        "y": 317,
+        "w": 140,
+        "h": 39,
+        "size": 20,
+        "color": "233747",
+        "bold": false
+      },
+      {
+        "kind": "rect",
+        "x": 750,
+        "y": 304,
+        "w": 170,
+        "h": 54,
+        "color": "EDF3F6"
+      },
+      {
+        "kind": "text",
+        "text": "0.221",
+        "x": 760,
+        "y": 317,
+        "w": 150,
+        "h": 39,
+        "size": 20,
+        "color": "233747",
+        "bold": false
+      },
+      {
+        "kind": "text",
+        "text": "Training-only centering · winter reference · original concentration scale",
+        "x": 40,
+        "y": 392,
+        "w": 880,
+        "h": 35,
+        "size": 18,
+        "color": "536779",
+        "bold": false
+      },
+      {
+        "kind": "text",
+        "text": "M2 wind: -49.0 µg/m³ per m/s, conditional on other weather and season.",
+        "x": 40,
+        "y": 440,
+        "w": 880,
+        "h": 54,
+        "size": 20,
+        "color": "087F8C",
+        "bold": false
+      }
+    ],
+    [
+      {
+        "kind": "rect",
+        "x": 0,
+        "y": 0,
+        "w": 960,
+        "h": 540,
+        "color": "FFFFFF"
+      },
+      {
+        "kind": "rect",
+        "x": 40,
+        "y": 23,
+        "w": 35,
+        "h": 3,
+        "color": "087F8C"
+      },
+      {
+        "kind": "text",
+        "text": "PLANNED JOINT TESTS",
+        "x": 86,
+        "y": 17,
+        "w": 820,
+        "h": 22,
+        "size": 11,
+        "color": "087F8C",
+        "bold": true
+      },
+      {
+        "kind": "text",
+        "text": "Beijing PM2.5",
+        "x": 40,
+        "y": 524,
+        "w": 700,
+        "h": 14,
+        "size": 9,
+        "color": "536779",
+        "bold": false
+      },
+      {
+        "kind": "text",
+        "text": "05 / 16",
+        "x": 863,
+        "y": 524,
+        "w": 65,
+        "h": 14,
+        "size": 9,
+        "color": "536779",
+        "bold": false
+      },
+      {
+        "kind": "text",
+        "text": "Classical ANOVA and robust inference",
+        "x": 40,
+        "y": 58,
+        "w": 880,
+        "h": 70,
+        "size": 30,
+        "color": "15324D",
+        "bold": true
+      },
+      {
+        "kind": "rect",
+        "x": 40,
+        "y": 140,
+        "w": 280,
+        "h": 58,
+        "color": "15324D"
+      },
+      {
+        "kind": "text",
+        "text": "Question",
+        "x": 50,
+        "y": 153,
+        "w": 260,
+        "h": 43,
+        "size": 16.5,
+        "color": "FFFFFF",
+        "bold": true
+      },
+      {
+        "kind": "rect",
+        "x": 320,
+        "y": 140,
+        "w": 120,
+        "h": 58,
+        "color": "15324D"
+      },
+      {
+        "kind": "text",
+        "text": "F",
+        "x": 330,
+        "y": 153,
+        "w": 100,
+        "h": 43,
+        "size": 16.5,
+        "color": "FFFFFF",
+        "bold": true
+      },
+      {
+        "kind": "rect",
+        "x": 440,
+        "y": 140,
+        "w": 160,
+        "h": 58,
+        "color": "15324D"
+      },
+      {
+        "kind": "text",
+        "text": "Classical p",
+        "x": 450,
+        "y": 153,
+        "w": 140,
+        "h": 43,
+        "size": 16.5,
+        "color": "FFFFFF",
+        "bold": true
+      },
+      {
+        "kind": "rect",
+        "x": 600,
+        "y": 140,
+        "w": 160,
+        "h": 58,
+        "color": "15324D"
+      },
+      {
+        "kind": "text",
+        "text": "HAC p",
+        "x": 610,
+        "y": 153,
+        "w": 140,
+        "h": 43,
+        "size": 16.5,
+        "color": "FFFFFF",
+        "bold": true
+      },
+      {
+        "kind": "rect",
+        "x": 760,
+        "y": 140,
+        "w": 160,
+        "h": 58,
+        "color": "15324D"
+      },
+      {
+        "kind": "text",
+        "text": "Holm p",
+        "x": 770,
+        "y": 153,
+        "w": 140,
+        "h": 43,
+        "size": 16.5,
+        "color": "FFFFFF",
+        "bold": true
+      },
+      {
+        "kind": "rect",
+        "x": 40,
+        "y": 198,
+        "w": 280,
+        "h": 58,
+        "color": "EDF3F6"
+      },
+      {
+        "kind": "text",
+        "text": "H1: add season",
+        "x": 50,
+        "y": 211,
+        "w": 260,
+        "h": 43,
+        "size": 20,
+        "color": "233747",
+        "bold": false
+      },
+      {
+        "kind": "rect",
+        "x": 320,
+        "y": 198,
+        "w": 120,
+        "h": 58,
+        "color": "EDF3F6"
+      },
+      {
+        "kind": "text",
+        "text": "4.619",
+        "x": 330,
+        "y": 211,
+        "w": 100,
+        "h": 43,
+        "size": 20,
+        "color": "233747",
+        "bold": false
+      },
+      {
+        "kind": "rect",
+        "x": 440,
+        "y": 198,
+        "w": 160,
+        "h": 58,
+        "color": "EDF3F6"
+      },
+      {
+        "kind": "text",
+        "text": "0.0033",
+        "x": 450,
+        "y": 211,
+        "w": 140,
+        "h": 43,
+        "size": 20,
+        "color": "233747",
+        "bold": false
+      },
+      {
+        "kind": "rect",
+        "x": 600,
+        "y": 198,
+        "w": 160,
+        "h": 58,
+        "color": "EDF3F6"
+      },
+      {
+        "kind": "text",
+        "text": "0.0359",
+        "x": 610,
+        "y": 211,
+        "w": 140,
+        "h": 43,
+        "size": 20,
+        "color": "233747",
+        "bold": false
+      },
+      {
+        "kind": "rect",
+        "x": 760,
+        "y": 198,
+        "w": 160,
+        "h": 58,
+        "color": "EDF3F6"
+      },
+      {
+        "kind": "text",
+        "text": "0.0618",
+        "x": 770,
+        "y": 211,
+        "w": 140,
+        "h": 43,
+        "size": 20,
+        "color": "233747",
+        "bold": false
+      },
+      {
+        "kind": "rect",
+        "x": 40,
+        "y": 256,
+        "w": 280,
+        "h": 58,
+        "color": "FFFFFF"
+      },
+      {
+        "kind": "text",
+        "text": "H2: wind × season",
+        "x": 50,
+        "y": 269,
+        "w": 260,
+        "h": 43,
+        "size": 20,
+        "color": "233747",
+        "bold": false
+      },
+      {
+        "kind": "rect",
+        "x": 320,
+        "y": 256,
+        "w": 120,
+        "h": 58,
+        "color": "FFFFFF"
+      },
+      {
+        "kind": "text",
+        "text": "2.436",
+        "x": 330,
+        "y": 269,
+        "w": 100,
+        "h": 43,
+        "size": 20,
+        "color": "233747",
+        "bold": false
+      },
+      {
+        "kind": "rect",
+        "x": 440,
+        "y": 256,
+        "w": 160,
+        "h": 58,
+        "color": "FFFFFF"
+      },
+      {
+        "kind": "text",
+        "text": "0.0636",
+        "x": 450,
+        "y": 269,
+        "w": 140,
+        "h": 43,
+        "size": 20,
+        "color": "233747",
+        "bold": false
+      },
+      {
+        "kind": "rect",
+        "x": 600,
+        "y": 256,
+        "w": 160,
+        "h": 58,
+        "color": "FFFFFF"
+      },
+      {
+        "kind": "text",
+        "text": "0.0309",
+        "x": 610,
+        "y": 269,
+        "w": 140,
+        "h": 43,
+        "size": 20,
+        "color": "233747",
+        "bold": false
+      },
+      {
+        "kind": "rect",
+        "x": 760,
+        "y": 256,
+        "w": 160,
+        "h": 58,
+        "color": "FFFFFF"
+      },
+      {
+        "kind": "text",
+        "text": "0.0618",
+        "x": 770,
+        "y": 269,
+        "w": 140,
+        "h": 43,
+        "size": 20,
+        "color": "233747",
+        "bold": false
+      },
+      {
+        "kind": "text",
+        "text": "F = (SSE reduction / added df) / full-model residual mean square",
+        "x": 40,
+        "y": 340,
+        "w": 880,
+        "h": 45,
+        "size": 18,
+        "color": "536779",
+        "bold": false
+      },
+      {
+        "kind": "text",
+        "text": "Both adjusted p-values = 0.0618",
+        "x": 40,
+        "y": 407,
+        "w": 880,
+        "h": 45,
+        "size": 28,
+        "color": "087F8C",
+        "bold": true
+      },
+      {
+        "kind": "text",
+        "text": "Neither primary joint hypothesis rejects at 5%.",
+        "x": 40,
+        "y": 462,
+        "w": 880,
+        "h": 31,
+        "size": 21,
+        "color": "233747",
+        "bold": false
+      },
+      {
+        "kind": "text",
+        "text": "Seven-calendar-day Bartlett HAC · joint χ²(3) Wald · two-test Holm family",
+        "x": 40,
+        "y": 499,
+        "w": 880,
+        "h": 22,
+        "size": 13.5,
+        "color": "536779",
+        "bold": false
+      }
+    ],
+    [
+      {
+        "kind": "rect",
+        "x": 0,
+        "y": 0,
+        "w": 960,
+        "h": 540,
+        "color": "FFFFFF"
+      },
+      {
+        "kind": "rect",
+        "x": 40,
+        "y": 23,
+        "w": 35,
+        "h": 3,
+        "color": "087F8C"
+      },
+      {
+        "kind": "text",
+        "text": "MODEL ADEQUACY",
+        "x": 86,
+        "y": 17,
+        "w": 820,
+        "h": 22,
+        "size": 11,
+        "color": "087F8C",
+        "bold": true
+      },
+      {
+        "kind": "text",
+        "text": "Beijing PM2.5",
+        "x": 40,
+        "y": 524,
+        "w": 700,
+        "h": 14,
+        "size": 9,
+        "color": "536779",
+        "bold": false
+      },
+      {
+        "kind": "text",
+        "text": "06 / 16",
+        "x": 863,
+        "y": 524,
+        "w": 65,
+        "h": 14,
+        "size": 9,
+        "color": "536779",
+        "bold": false
+      },
+      {
+        "kind": "text",
+        "text": "Residual dependence remains",
+        "x": 40,
+        "y": 58,
+        "w": 880,
+        "h": 70,
+        "size": 30,
+        "color": "15324D",
+        "bold": true
+      },
+      {
+        "kind": "image",
+        "path": "submission/figures/residual_dependence.png",
+        "x": 59.815303430079155,
+        "y": 130.0,
+        "w": 840.3693931398417,
+        "h": 350.0
+      },
+      {
+        "kind": "text",
+        "text": "M3 training R² 0.221 · lag-one residual r 0.512 · 719 adjacent-date pairs",
+        "x": 40,
+        "y": 493,
+        "w": 880,
+        "h": 30,
+        "size": 14.5,
+        "color": "536779",
+        "bold": false
+      }
+    ],
+    [
+      {
+        "kind": "rect",
+        "x": 0,
+        "y": 0,
+        "w": 960,
+        "h": 540,
+        "color": "FFFFFF"
+      },
+      {
+        "kind": "rect",
+        "x": 40,
+        "y": 23,
+        "w": 35,
+        "h": 3,
+        "color": "087F8C"
+      },
+      {
+        "kind": "text",
+        "text": "MODEL ADEQUACY",
+        "x": 86,
+        "y": 17,
+        "w": 820,
+        "h": 22,
+        "size": 11,
+        "color": "087F8C",
+        "bold": true
+      },
+      {
+        "kind": "text",
+        "text": "Beijing PM2.5",
+        "x": 40,
+        "y": 524,
+        "w": 700,
+        "h": 14,
+        "size": 9,
+        "color": "536779",
+        "bold": false
+      },
+      {
+        "kind": "text",
+        "text": "07 / 16",
+        "x": 863,
+        "y": 524,
+        "w": 65,
+        "h": 14,
+        "size": 9,
+        "color": "536779",
+        "bold": false
+      },
+      {
+        "kind": "text",
+        "text": "Residual spread and distributional shape",
+        "x": 40,
+        "y": 58,
+        "w": 880,
+        "h": 70,
+        "size": 30,
+        "color": "15324D",
+        "bold": true
+      },
+      {
+        "kind": "image",
+        "path": "submission/figures/residual_shape.png",
+        "x": 40.0,
+        "y": 134.6641791044776,
+        "w": 880.0,
+        "h": 340.6716417910448
+      },
+      {
+        "kind": "text",
+        "text": "Training M3 · unequal spread and upper-tail departure · no flagged day deleted",
+        "x": 40,
+        "y": 493,
+        "w": 880,
+        "h": 30,
+        "size": 14.5,
+        "color": "536779",
+        "bold": false
+      }
+    ],
+    [
+      {
+        "kind": "rect",
+        "x": 0,
+        "y": 0,
+        "w": 960,
+        "h": 540,
+        "color": "FFFFFF"
+      },
+      {
+        "kind": "rect",
+        "x": 40,
+        "y": 23,
+        "w": 35,
+        "h": 3,
+        "color": "087F8C"
+      },
+      {
+        "kind": "text",
+        "text": "FROZEN TEST EVALUATION",
+        "x": 86,
+        "y": 17,
+        "w": 820,
+        "h": 22,
+        "size": 11,
+        "color": "087F8C",
+        "bold": true
+      },
+      {
+        "kind": "text",
+        "text": "Beijing PM2.5",
+        "x": 40,
+        "y": 524,
+        "w": 700,
+        "h": 14,
+        "size": 9,
+        "color": "536779",
+        "bold": false
+      },
+      {
+        "kind": "text",
+        "text": "08 / 16",
+        "x": 863,
+        "y": 524,
+        "w": 65,
+        "h": 14,
+        "size": 9,
+        "color": "536779",
+        "bold": false
+      },
+      {
+        "kind": "text",
+        "text": "Average gain, high-day failure",
+        "x": 40,
+        "y": 58,
+        "w": 880,
+        "h": 70,
+        "size": 30,
+        "color": "15324D",
+        "bold": true
+      },
+      {
+        "kind": "image",
+        "path": "submission/figures/frozen_test.png",
+        "x": 108.33113456464383,
+        "y": 130.0,
+        "w": 743.3377308707123,
+        "h": 295.0
+      },
+      {
+        "kind": "text",
+        "text": "M3 MAE",
+        "x": 40,
+        "y": 432,
+        "w": 280,
+        "h": 24,
+        "size": 15.5,
+        "color": "536779",
+        "bold": false
+      },
+      {
+        "kind": "text",
+        "text": "46.785",
+        "x": 40,
+        "y": 457,
+        "w": 280,
+        "h": 40,
+        "size": 29,
+        "color": "087F8C",
+        "bold": true
+      },
+      {
+        "kind": "text",
+        "text": "Baseline MAE",
+        "x": 340,
+        "y": 432,
+        "w": 280,
+        "h": 24,
+        "size": 15.5,
+        "color": "536779",
+        "bold": false
+      },
+      {
+        "kind": "text",
+        "text": "55.297",
+        "x": 340,
+        "y": 457,
+        "w": 280,
+        "h": 40,
+        "size": 29,
+        "color": "087F8C",
+        "bold": true
+      },
+      {
+        "kind": "text",
+        "text": "High-day signed error",
+        "x": 640,
+        "y": 432,
+        "w": 280,
+        "h": 24,
+        "size": 15.5,
+        "color": "536779",
+        "bold": false
+      },
+      {
+        "kind": "text",
+        "text": "-160.945",
+        "x": 640,
+        "y": 457,
+        "w": 280,
+        "h": 40,
+        "size": 29,
+        "color": "B76B15",
+        "bold": true
+      },
+      {
+        "kind": "text",
+        "text": "µg/m³ · 357 test days · 17 high days · 3 negative estimates retained",
+        "x": 40,
+        "y": 499,
+        "w": 880,
+        "h": 24,
+        "size": 14,
+        "color": "536779",
+        "bold": false
+      }
+    ],
+    [
+      {
+        "kind": "rect",
+        "x": 0,
+        "y": 0,
+        "w": 960,
+        "h": 540,
+        "color": "FFFFFF"
+      },
+      {
+        "kind": "rect",
+        "x": 40,
+        "y": 23,
+        "w": 35,
+        "h": 3,
+        "color": "087F8C"
+      },
+      {
+        "kind": "text",
+        "text": "SUPPORTING ANALYSES · EXPLORATORY",
+        "x": 86,
+        "y": 17,
+        "w": 820,
+        "h": 22,
+        "size": 11,
+        "color": "087F8C",
+        "bold": true
+      },
+      {
+        "kind": "text",
+        "text": "Beijing PM2.5",
+        "x": 40,
+        "y": 524,
+        "w": 700,
+        "h": 14,
+        "size": 9,
+        "color": "536779",
+        "bold": false
+      },
+      {
+        "kind": "text",
+        "text": "09 / 16",
+        "x": 863,
+        "y": 524,
+        "w": 65,
+        "h": 14,
+        "size": 9,
+        "color": "536779",
+        "bold": false
+      },
+      {
+        "kind": "text",
+        "text": "Exploratory temporal and weather extensions",
+        "x": 40,
+        "y": 58,
+        "w": 880,
+        "h": 70,
+        "size": 30,
+        "color": "15324D",
+        "bold": true
+      },
+      {
+        "kind": "image",
+        "path": "submission/figures/extension_mae.png",
+        "x": 119.50791855203624,
+        "y": 130.0,
+        "w": 720.9841628959275,
+        "h": 350.0
+      },
+      {
+        "kind": "text",
+        "text": "721 train / 354 validation / 355 test · M3 refit on the common sample",
+        "x": 40,
+        "y": 493,
+        "w": 880,
+        "h": 30,
+        "size": 14.5,
+        "color": "536779",
+        "bold": false
+      }
+    ],
+    [
+      {
+        "kind": "rect",
+        "x": 0,
+        "y": 0,
+        "w": 960,
+        "h": 540,
+        "color": "FFFFFF"
+      },
+      {
+        "kind": "rect",
+        "x": 40,
+        "y": 23,
+        "w": 35,
+        "h": 3,
+        "color": "087F8C"
+      },
+      {
+        "kind": "text",
+        "text": "SUPPORTING ANALYSES · EXPLORATORY",
+        "x": 86,
+        "y": 17,
+        "w": 820,
+        "h": 22,
+        "size": 11,
+        "color": "087F8C",
+        "bold": true
+      },
+      {
+        "kind": "text",
+        "text": "Beijing PM2.5",
+        "x": 40,
+        "y": 524,
+        "w": 700,
+        "h": 14,
+        "size": 9,
+        "color": "536779",
+        "bold": false
+      },
+      {
+        "kind": "text",
+        "text": "10 / 16",
+        "x": 863,
+        "y": 524,
+        "w": 65,
+        "h": 14,
+        "size": 9,
+        "color": "536779",
+        "bold": false
+      },
+      {
+        "kind": "text",
+        "text": "AR(1) sensitivity to five short gaps",
+        "x": 40,
+        "y": 58,
+        "w": 880,
+        "h": 70,
+        "size": 30,
+        "color": "15324D",
+        "bold": true
+      },
+      {
+        "kind": "rect",
+        "x": 40,
+        "y": 142,
+        "w": 330,
+        "h": 54,
+        "color": "15324D"
+      },
+      {
+        "kind": "text",
+        "text": "Method",
+        "x": 50,
+        "y": 155,
+        "w": 310,
+        "h": 39,
+        "size": 16.5,
+        "color": "FFFFFF",
+        "bold": true
+      },
+      {
+        "kind": "rect",
+        "x": 370,
+        "y": 142,
+        "w": 130,
+        "h": 54,
+        "color": "15324D"
+      },
+      {
+        "kind": "text",
+        "text": "M2 ρ",
+        "x": 380,
+        "y": 155,
+        "w": 110,
+        "h": 39,
+        "size": 16.5,
+        "color": "FFFFFF",
+        "bold": true
+      },
+      {
+        "kind": "rect",
+        "x": 500,
+        "y": 142,
+        "w": 210,
+        "h": 54,
+        "color": "15324D"
+      },
+      {
+        "kind": "text",
+        "text": "H1 nominal p",
+        "x": 510,
+        "y": 155,
+        "w": 190,
+        "h": 39,
+        "size": 16.5,
+        "color": "FFFFFF",
+        "bold": true
+      },
+      {
+        "kind": "rect",
+        "x": 710,
+        "y": 142,
+        "w": 210,
+        "h": 54,
+        "color": "15324D"
+      },
+      {
+        "kind": "text",
+        "text": "H2 nominal p",
+        "x": 720,
+        "y": 155,
+        "w": 190,
+        "h": 39,
+        "size": 16.5,
+        "color": "FFFFFF",
+        "bold": true
+      },
+      {
+        "kind": "rect",
+        "x": 40,
+        "y": 196,
+        "w": 330,
+        "h": 54,
+        "color": "EDF3F6"
+      },
+      {
+        "kind": "text",
+        "text": "Original GLSAR rows",
+        "x": 50,
+        "y": 209,
+        "w": 310,
+        "h": 39,
+        "size": 20,
+        "color": "233747",
+        "bold": false
+      },
+      {
+        "kind": "rect",
+        "x": 370,
+        "y": 196,
+        "w": 130,
+        "h": 54,
+        "color": "EDF3F6"
+      },
+      {
+        "kind": "text",
+        "text": "0.572",
+        "x": 380,
+        "y": 209,
+        "w": 110,
+        "h": 39,
+        "size": 20,
+        "color": "233747",
+        "bold": false
+      },
+      {
+        "kind": "rect",
+        "x": 500,
+        "y": 196,
+        "w": 210,
+        "h": 54,
+        "color": "EDF3F6"
+      },
+      {
+        "kind": "text",
+        "text": "0.0033",
+        "x": 510,
+        "y": 209,
+        "w": 190,
+        "h": 39,
+        "size": 20,
+        "color": "233747",
+        "bold": false
+      },
+      {
+        "kind": "rect",
+        "x": 710,
+        "y": 196,
+        "w": 210,
+        "h": 54,
+        "color": "EDF3F6"
+      },
+      {
+        "kind": "text",
+        "text": "0.4616",
+        "x": 720,
+        "y": 209,
+        "w": 190,
+        "h": 39,
+        "size": 20,
+        "color": "233747",
+        "bold": false
+      },
+      {
+        "kind": "rect",
+        "x": 40,
+        "y": 250,
+        "w": 330,
+        "h": 54,
+        "color": "FFFFFF"
+      },
+      {
+        "kind": "text",
+        "text": "Likelihood rows",
+        "x": 50,
+        "y": 263,
+        "w": 310,
+        "h": 39,
+        "size": 20,
+        "color": "233747",
+        "bold": false
+      },
+      {
+        "kind": "rect",
+        "x": 370,
+        "y": 250,
+        "w": 130,
+        "h": 54,
+        "color": "FFFFFF"
+      },
+      {
+        "kind": "text",
+        "text": "0.571",
+        "x": 380,
+        "y": 263,
+        "w": 110,
+        "h": 39,
+        "size": 20,
+        "color": "233747",
+        "bold": false
+      },
+      {
+        "kind": "rect",
+        "x": 500,
+        "y": 250,
+        "w": 210,
+        "h": 54,
+        "color": "FFFFFF"
+      },
+      {
+        "kind": "text",
+        "text": "0.0033",
+        "x": 510,
+        "y": 263,
+        "w": 190,
+        "h": 39,
+        "size": 20,
+        "color": "233747",
+        "bold": false
+      },
+      {
+        "kind": "rect",
+        "x": 710,
+        "y": 250,
+        "w": 210,
+        "h": 54,
+        "color": "FFFFFF"
+      },
+      {
+        "kind": "text",
+        "text": "0.4610",
+        "x": 720,
+        "y": 263,
+        "w": 190,
+        "h": 39,
+        "size": 20,
+        "color": "233747",
+        "bold": false
+      },
+      {
+        "kind": "rect",
+        "x": 40,
+        "y": 304,
+        "w": 330,
+        "h": 54,
+        "color": "EDF3F6"
+      },
+      {
+        "kind": "text",
+        "text": "Likelihood calendar",
+        "x": 50,
+        "y": 317,
+        "w": 310,
+        "h": 39,
+        "size": 20,
+        "color": "233747",
+        "bold": false
+      },
+      {
+        "kind": "rect",
+        "x": 370,
+        "y": 304,
+        "w": 130,
+        "h": 54,
+        "color": "EDF3F6"
+      },
+      {
+        "kind": "text",
+        "text": "0.583",
+        "x": 380,
+        "y": 317,
+        "w": 110,
+        "h": 39,
+        "size": 20,
+        "color": "233747",
+        "bold": false
+      },
+      {
+        "kind": "rect",
+        "x": 500,
+        "y": 304,
+        "w": 210,
+        "h": 54,
+        "color": "EDF3F6"
+      },
+      {
+        "kind": "text",
+        "text": "0.0026",
+        "x": 510,
+        "y": 317,
+        "w": 190,
+        "h": 39,
+        "size": 20,
+        "color": "233747",
+        "bold": false
+      },
+      {
+        "kind": "rect",
+        "x": 710,
+        "y": 304,
+        "w": 210,
+        "h": 54,
+        "color": "EDF3F6"
+      },
+      {
+        "kind": "text",
+        "text": "0.4475",
+        "x": 720,
+        "y": 317,
+        "w": 190,
+        "h": 39,
+        "size": 20,
+        "color": "233747",
+        "bold": false
+      },
+      {
+        "kind": "text",
+        "text": "Paired likelihood fits change only row versus calendar spacing.",
+        "x": 40,
+        "y": 383,
+        "w": 880,
+        "h": 39,
+        "size": 19,
+        "color": "233747",
+        "bold": false
+      },
+      {
+        "kind": "text",
+        "text": "Transitions use ρᵈ with gap-adjusted innovation variance.",
+        "x": 40,
+        "y": 425,
+        "w": 880,
+        "h": 39,
+        "size": 19,
+        "color": "233747",
+        "bold": false
+      },
+      {
+        "kind": "text",
+        "text": "Nominal decisions agree; estimated-ρ uncertainty remains approximate.",
+        "x": 40,
+        "y": 467,
+        "w": 880,
+        "h": 39,
+        "size": 19,
+        "color": "233747",
+        "bold": false
+      }
+    ],
+    [
+      {
+        "kind": "rect",
+        "x": 0,
+        "y": 0,
+        "w": 960,
+        "h": 540,
+        "color": "FFFFFF"
+      },
+      {
+        "kind": "rect",
+        "x": 40,
+        "y": 23,
+        "w": 35,
+        "h": 3,
+        "color": "087F8C"
+      },
+      {
+        "kind": "text",
+        "text": "SUPPORTING ANALYSES · EXPLORATORY",
+        "x": 86,
+        "y": 17,
+        "w": 820,
+        "h": 22,
+        "size": 11,
+        "color": "087F8C",
+        "bold": true
+      },
+      {
+        "kind": "text",
+        "text": "Beijing PM2.5",
+        "x": 40,
+        "y": 524,
+        "w": 700,
+        "h": 14,
+        "size": 9,
+        "color": "536779",
+        "bold": false
+      },
+      {
+        "kind": "text",
+        "text": "11 / 16",
+        "x": 863,
+        "y": 524,
+        "w": 65,
+        "h": 14,
+        "size": 9,
+        "color": "536779",
+        "bold": false
+      },
+      {
+        "kind": "text",
+        "text": "Cross-station consistency",
+        "x": 40,
+        "y": 58,
+        "w": 880,
+        "h": 70,
+        "size": 30,
+        "color": "15324D",
+        "bold": true
+      },
+      {
+        "kind": "image",
+        "path": "submission/figures/station_wind.png",
+        "x": 146.84100418410043,
+        "y": 130.0,
+        "w": 666.3179916317991,
+        "h": 350.0
+      },
+      {
+        "kind": "text",
+        "text": "Within-station Holm: H1 6/12, H2 2/12 · not a full 24-test correction",
+        "x": 40,
+        "y": 493,
+        "w": 880,
+        "h": 30,
+        "size": 14.5,
+        "color": "536779",
+        "bold": false
+      }
+    ],
+    [
+      {
+        "kind": "rect",
+        "x": 0,
+        "y": 0,
+        "w": 960,
+        "h": 540,
+        "color": "FFFFFF"
+      },
+      {
+        "kind": "rect",
+        "x": 40,
+        "y": 23,
+        "w": 35,
+        "h": 3,
+        "color": "087F8C"
+      },
+      {
+        "kind": "text",
+        "text": "SUPPORTING ANALYSES · EXPLORATORY",
+        "x": 86,
+        "y": 17,
+        "w": 820,
+        "h": 22,
+        "size": 11,
+        "color": "087F8C",
+        "bold": true
+      },
+      {
+        "kind": "text",
+        "text": "Beijing PM2.5",
+        "x": 40,
+        "y": 524,
+        "w": 700,
+        "h": 14,
+        "size": 9,
+        "color": "536779",
+        "bold": false
+      },
+      {
+        "kind": "text",
+        "text": "12 / 16",
+        "x": 863,
+        "y": 524,
+        "w": 65,
+        "h": 14,
+        "size": 9,
+        "color": "536779",
+        "bold": false
+      },
+      {
+        "kind": "text",
+        "text": "High recall brings many false alarms",
+        "x": 40,
+        "y": 58,
+        "w": 880,
+        "h": 70,
+        "size": 30,
+        "color": "15324D",
+        "bold": true
+      },
+      {
+        "kind": "text",
+        "text": "Observed high",
+        "x": 192,
+        "y": 137,
+        "w": 170,
+        "h": 35,
+        "size": 17,
+        "color": "15324D",
+        "bold": true
+      },
+      {
+        "kind": "text",
+        "text": "Observed below",
+        "x": 362,
+        "y": 137,
+        "w": 170,
+        "h": 35,
+        "size": 17,
+        "color": "15324D",
+        "bold": true
+      },
+      {
+        "kind": "text",
+        "text": "Predicted high",
+        "x": 40,
+        "y": 214,
+        "w": 139,
+        "h": 49,
+        "size": 17,
+        "color": "15324D",
+        "bold": false
+      },
+      {
+        "kind": "text",
+        "text": "Predicted below",
+        "x": 40,
+        "y": 324,
+        "w": 139,
+        "h": 49,
+        "size": 17,
+        "color": "15324D",
+        "bold": false
+      },
+      {
+        "kind": "rect",
+        "x": 194,
+        "y": 180,
+        "w": 166,
+        "h": 106,
+        "color": "E7F3F1"
+      },
+      {
+        "kind": "text",
+        "text": "TP",
+        "x": 210,
+        "y": 191,
+        "w": 134,
+        "h": 22,
+        "size": 13,
+        "color": "536779",
+        "bold": false
+      },
+      {
+        "kind": "text",
+        "text": "15",
+        "x": 210,
+        "y": 219,
+        "w": 134,
+        "h": 54,
+        "size": 40,
+        "color": "15324D",
+        "bold": true
+      },
+      {
+        "kind": "rect",
+        "x": 364,
+        "y": 180,
+        "w": 166,
+        "h": 106,
+        "color": "FAF0E3"
+      },
+      {
+        "kind": "text",
+        "text": "FP",
+        "x": 380,
+        "y": 191,
+        "w": 134,
+        "h": 22,
+        "size": 13,
+        "color": "536779",
+        "bold": false
+      },
+      {
+        "kind": "text",
+        "text": "44",
+        "x": 380,
+        "y": 219,
+        "w": 134,
+        "h": 54,
+        "size": 40,
+        "color": "15324D",
+        "bold": true
+      },
+      {
+        "kind": "rect",
+        "x": 194,
+        "y": 290,
+        "w": 166,
+        "h": 106,
+        "color": "FAF0E3"
+      },
+      {
+        "kind": "text",
+        "text": "FN",
+        "x": 210,
+        "y": 301,
+        "w": 134,
+        "h": 22,
+        "size": 13,
+        "color": "536779",
+        "bold": false
+      },
+      {
+        "kind": "text",
+        "text": "2",
+        "x": 210,
+        "y": 329,
+        "w": 134,
+        "h": 54,
+        "size": 40,
+        "color": "15324D",
+        "bold": true
+      },
+      {
+        "kind": "rect",
+        "x": 364,
+        "y": 290,
+        "w": 166,
+        "h": 106,
+        "color": "E7F3F1"
+      },
+      {
+        "kind": "text",
+        "text": "TN",
+        "x": 380,
+        "y": 301,
+        "w": 134,
+        "h": 22,
+        "size": 13,
+        "color": "536779",
+        "bold": false
+      },
+      {
+        "kind": "text",
+        "text": "296",
+        "x": 380,
+        "y": 329,
+        "w": 134,
+        "h": 54,
+        "size": 40,
+        "color": "15324D",
+        "bold": true
+      },
+      {
+        "kind": "text",
+        "text": "Validation-F1 cutoff",
+        "x": 650,
+        "y": 151,
+        "w": 270,
+        "h": 28,
+        "size": 17,
+        "color": "536779",
+        "bold": false
+      },
+      {
+        "kind": "text",
+        "text": "0.1323",
+        "x": 650,
+        "y": 186,
+        "w": 270,
+        "h": 48,
+        "size": 35,
+        "color": "087F8C",
+        "bold": true
+      },
+      {
+        "kind": "text",
+        "text": "Test AUC",
+        "x": 650,
+        "y": 246,
+        "w": 270,
+        "h": 28,
+        "size": 17,
+        "color": "536779",
+        "bold": false
+      },
+      {
+        "kind": "text",
+        "text": "0.927",
+        "x": 650,
+        "y": 281,
+        "w": 270,
+        "h": 48,
+        "size": 35,
+        "color": "087F8C",
+        "bold": true
+      },
+      {
+        "kind": "text",
+        "text": "Recall / precision",
+        "x": 650,
+        "y": 341,
+        "w": 270,
+        "h": 28,
+        "size": 17,
+        "color": "536779",
+        "bold": false
+      },
+      {
+        "kind": "text",
+        "text": "0.882 / 0.254",
+        "x": 650,
+        "y": 376,
+        "w": 270,
+        "h": 48,
+        "size": 28,
+        "color": "087F8C",
+        "bold": true
+      },
+      {
+        "kind": "text",
+        "text": "High day: PM2.5 ≥234.655 µg/m³ (training 95th percentile) · 17 test high days · not a health standard",
+        "x": 40,
+        "y": 461,
+        "w": 880,
+        "h": 49,
+        "size": 15.5,
+        "color": "536779",
+        "bold": false
+      }
+    ],
+    [
+      {
+        "kind": "rect",
+        "x": 0,
+        "y": 0,
+        "w": 960,
+        "h": 540,
+        "color": "FFFFFF"
+      },
+      {
+        "kind": "rect",
+        "x": 40,
+        "y": 23,
+        "w": 35,
+        "h": 3,
+        "color": "087F8C"
+      },
+      {
+        "kind": "text",
+        "text": "SUPPORTING ANALYSES · EXPLORATORY",
+        "x": 86,
+        "y": 17,
+        "w": 820,
+        "h": 22,
+        "size": 11,
+        "color": "087F8C",
+        "bold": true
+      },
+      {
+        "kind": "text",
+        "text": "Beijing PM2.5",
+        "x": 40,
+        "y": 524,
+        "w": 700,
+        "h": 14,
+        "size": 9,
+        "color": "536779",
+        "bold": false
+      },
+      {
+        "kind": "text",
+        "text": "13 / 16",
+        "x": 863,
+        "y": 524,
+        "w": 65,
+        "h": 14,
+        "size": 9,
+        "color": "536779",
+        "bold": false
+      },
+      {
+        "kind": "text",
+        "text": "Two groups of training pollutant profiles",
+        "x": 40,
+        "y": 58,
+        "w": 880,
+        "h": 70,
+        "size": 30,
+        "color": "15324D",
+        "bold": true
+      },
+      {
+        "kind": "image",
+        "path": "submission/figures/station_profiles.png",
+        "x": 54.613813229571974,
+        "y": 130.0,
+        "w": 584.772373540856,
+        "h": 367.0
+      },
+      {
+        "kind": "text",
+        "text": "Ward grouping",
+        "x": 704,
+        "y": 167,
+        "w": 216,
+        "h": 59,
+        "size": 23,
+        "color": "087F8C",
+        "bold": true
+      },
+      {
+        "kind": "text",
+        "text": "Six pollutant means",
+        "x": 704,
+        "y": 240,
+        "w": 216,
+        "h": 65,
+        "size": 19,
+        "color": "233747",
+        "bold": false
+      },
+      {
+        "kind": "text",
+        "text": "Across-station z-scores",
+        "x": 704,
+        "y": 314,
+        "w": 216,
+        "h": 65,
+        "size": 19,
+        "color": "233747",
+        "bold": false
+      },
+      {
+        "kind": "text",
+        "text": "Two groups; no geographic classification",
+        "x": 704,
+        "y": 388,
+        "w": 216,
+        "h": 65,
+        "size": 19,
+        "color": "233747",
+        "bold": false
+      },
+      {
+        "kind": "text",
+        "text": "Pollutant-specific eligible dates · new-period cluster stability untested",
+        "x": 40,
+        "y": 500,
+        "w": 880,
+        "h": 22,
+        "size": 13.5,
+        "color": "536779",
+        "bold": false
+      }
+    ],
+    [
+      {
+        "kind": "rect",
+        "x": 0,
+        "y": 0,
+        "w": 960,
+        "h": 540,
+        "color": "FFFFFF"
+      },
+      {
+        "kind": "rect",
+        "x": 40,
+        "y": 23,
+        "w": 35,
+        "h": 3,
+        "color": "087F8C"
+      },
+      {
+        "kind": "text",
+        "text": "INTERPRETATION",
+        "x": 86,
+        "y": 17,
+        "w": 820,
+        "h": 22,
+        "size": 11,
+        "color": "087F8C",
+        "bold": true
+      },
+      {
+        "kind": "text",
+        "text": "Beijing PM2.5",
+        "x": 40,
+        "y": 524,
+        "w": 700,
+        "h": 14,
+        "size": 9,
+        "color": "536779",
+        "bold": false
+      },
+      {
+        "kind": "text",
+        "text": "14 / 16",
+        "x": 863,
+        "y": 524,
+        "w": 65,
+        "h": 14,
+        "size": 9,
+        "color": "536779",
+        "bold": false
+      },
+      {
+        "kind": "text",
+        "text": "Limits of the evidence",
+        "x": 40,
+        "y": 58,
+        "w": 880,
+        "h": 70,
+        "size": 30,
+        "color": "15324D",
+        "bold": true
+      },
+      {
+        "kind": "text",
+        "text": "01",
+        "x": 40,
+        "y": 151,
+        "w": 55,
+        "h": 38,
+        "size": 26,
+        "color": "087F8C",
+        "bold": true
+      },
+      {
+        "kind": "text",
+        "text": "Study design",
+        "x": 110,
+        "y": 153,
+        "w": 163,
+        "h": 64,
+        "size": 22,
+        "color": "15324D",
+        "bold": true
+      },
+      {
+        "kind": "text",
+        "text": "One city, four historical years; missingness and omitted drivers can affect associations.",
+        "x": 300,
+        "y": 153,
+        "w": 620,
+        "h": 82,
+        "size": 22,
+        "color": "233747",
+        "bold": false
+      },
+      {
+        "kind": "text",
+        "text": "02",
+        "x": 40,
+        "y": 262,
+        "w": 55,
+        "h": 38,
+        "size": 26,
+        "color": "087F8C",
+        "bold": true
+      },
+      {
+        "kind": "text",
+        "text": "Statistical inference",
+        "x": 110,
+        "y": 264,
+        "w": 163,
+        "h": 64,
+        "size": 22,
+        "color": "15324D",
+        "bold": true
+      },
+      {
+        "kind": "text",
+        "text": "Residual dependence remains; individual intervals and station-wise tests are not simultaneous protection.",
+        "x": 300,
+        "y": 264,
+        "w": 620,
+        "h": 82,
+        "size": 22,
+        "color": "233747",
+        "bold": false
+      },
+      {
+        "kind": "text",
+        "text": "03",
+        "x": 40,
+        "y": 373,
+        "w": 55,
+        "h": 38,
+        "size": 26,
+        "color": "087F8C",
+        "bold": true
+      },
+      {
+        "kind": "text",
+        "text": "Evaluation",
+        "x": 110,
+        "y": 375,
+        "w": 163,
+        "h": 64,
+        "size": 22,
+        "color": "15324D",
+        "bold": true
+      },
+      {
+        "kind": "text",
+        "text": "Observed same-day weather and a reused exploratory test year limit claims about future prediction.",
+        "x": 300,
+        "y": 375,
+        "w": 620,
+        "h": 82,
+        "size": 22,
+        "color": "233747",
+        "bold": false
+      }
+    ],
+    [
+      {
+        "kind": "rect",
+        "x": 0,
+        "y": 0,
+        "w": 960,
+        "h": 540,
+        "color": "FFFFFF"
+      },
+      {
+        "kind": "rect",
+        "x": 40,
+        "y": 23,
+        "w": 35,
+        "h": 3,
+        "color": "087F8C"
+      },
+      {
+        "kind": "text",
+        "text": "CONCLUSIONS",
+        "x": 86,
+        "y": 17,
+        "w": 820,
+        "h": 22,
+        "size": 11,
+        "color": "087F8C",
+        "bold": true
+      },
+      {
+        "kind": "text",
+        "text": "Beijing PM2.5",
+        "x": 40,
+        "y": 524,
+        "w": 700,
+        "h": 14,
+        "size": 9,
+        "color": "536779",
+        "bold": false
+      },
+      {
+        "kind": "text",
+        "text": "15 / 16",
+        "x": 863,
+        "y": 524,
+        "w": 65,
+        "h": 14,
+        "size": 9,
+        "color": "536779",
+        "bold": false
+      },
+      {
+        "kind": "text",
+        "text": "Model adequacy requires more than explained variance",
+        "x": 40,
+        "y": 58,
+        "w": 880,
+        "h": 70,
+        "size": 30,
+        "color": "15324D",
+        "bold": true
+      },
+      {
+        "kind": "rect",
+        "x": 41,
+        "y": 162,
+        "w": 4,
+        "h": 76,
+        "color": "087F8C"
+      },
+      {
+        "kind": "text",
+        "text": "Seasonal terms reduce SSE; adjusted joint evidence is insufficient at 5%.",
+        "x": 69,
+        "y": 160,
+        "w": 838,
+        "h": 94,
+        "size": 26,
+        "color": "15324D",
+        "bold": true
+      },
+      {
+        "kind": "rect",
+        "x": 41,
+        "y": 276,
+        "w": 4,
+        "h": 76,
+        "color": "087F8C"
+      },
+      {
+        "kind": "text",
+        "text": "M3 lowers average error while retaining serial structure and high-day failure.",
+        "x": 69,
+        "y": 274,
+        "w": 838,
+        "h": 94,
+        "size": 26,
+        "color": "15324D",
+        "bold": false
+      },
+      {
+        "kind": "rect",
+        "x": 41,
+        "y": 390,
+        "w": 4,
+        "h": 76,
+        "color": "087F8C"
+      },
+      {
+        "kind": "text",
+        "text": "Next: an unseen period, prespecified rules and explicit covariate availability.",
+        "x": 69,
+        "y": 388,
+        "w": 838,
+        "h": 94,
+        "size": 26,
+        "color": "15324D",
+        "bold": false
+      }
+    ],
+    [
+      {
+        "kind": "rect",
+        "x": 0,
+        "y": 0,
+        "w": 960,
+        "h": 540,
+        "color": "FFFFFF"
+      },
+      {
+        "kind": "rect",
+        "x": 40,
+        "y": 23,
+        "w": 35,
+        "h": 3,
+        "color": "087F8C"
+      },
+      {
+        "kind": "text",
+        "text": "SOURCES",
+        "x": 86,
+        "y": 17,
+        "w": 820,
+        "h": 22,
+        "size": 11,
+        "color": "087F8C",
+        "bold": true
+      },
+      {
+        "kind": "text",
+        "text": "Beijing PM2.5",
+        "x": 40,
+        "y": 524,
+        "w": 700,
+        "h": 14,
+        "size": 9,
+        "color": "536779",
+        "bold": false
+      },
+      {
+        "kind": "text",
+        "text": "16 / 16",
+        "x": 863,
+        "y": 524,
+        "w": 65,
+        "h": 14,
+        "size": 9,
+        "color": "536779",
+        "bold": false
+      },
+      {
+        "kind": "text",
+        "text": "References and assistance",
+        "x": 40,
+        "y": 58,
+        "w": 880,
+        "h": 70,
+        "size": 30,
+        "color": "15324D",
+        "bold": true
+      },
+      {
+        "kind": "text",
+        "text": "[1] Chen, S. (2017). Beijing Multi-Site Air Quality [Dataset]. UCI Machine Learning Repository. CC BY 4.0.\nDOI: 10.24432/C5RK5G",
+        "x": 40,
+        "y": 139,
+        "w": 552,
+        "h": 61.925,
+        "size": 16.5,
+        "color": "233747",
+        "bold": false,
+        "url": "https://doi.org/10.24432/C5RK5G"
+      },
+      {
+        "kind": "text",
+        "text": "[2] Duan, N. (1983). Smearing Estimate: A Nonparametric Retransformation Method. Journal of the American Statistical Association, 78(383), 605–610.\nDOI: 10.1080/01621459.1983.10478017",
+        "x": 40,
+        "y": 215.925,
+        "w": 552,
+        "h": 80.89999999999999,
+        "size": 16.5,
+        "color": "233747",
+        "bold": false,
+        "url": "https://doi.org/10.1080/01621459.1983.10478017"
+      },
+      {
+        "kind": "text",
+        "text": "[3] Statsmodels. Regression F-test documentation.\nOfficial documentation",
+        "x": 40,
+        "y": 311.825,
+        "w": 552,
+        "h": 42.949999999999996,
+        "size": 16.5,
+        "color": "233747",
+        "bold": false,
+        "url": "https://www.statsmodels.org/stable/generated/statsmodels.regression.linear_model.RegressionResults.compare_f_test.html"
+      },
+      {
+        "kind": "text",
+        "text": "[4] UCI. Beijing Multi-Site Air Quality: dataset documentation.\nDataset documentation",
+        "x": 40,
+        "y": 369.775,
+        "w": 552,
+        "h": 42.949999999999996,
+        "size": 16.5,
+        "color": "233747",
+        "bold": false,
+        "url": "https://archive.ics.uci.edu/dataset/501/beijing+multi+site+air+quality+data"
+      },
+      {
+        "kind": "rect",
+        "x": 626,
+        "y": 142,
+        "w": 1,
+        "h": 321,
+        "color": "D4DFE6"
+      },
+      {
+        "kind": "text",
+        "text": "AI assistance",
+        "x": 657,
+        "y": 143,
+        "w": 263,
+        "h": 35,
+        "size": 22,
+        "color": "087F8C",
+        "bold": true
+      },
+      {
+        "kind": "text",
+        "text": "OpenAI Codex and Anthropic Claude assisted code and drafting. Codex assisted verification and editorial refinement. Numerical claims are tied to generated artifacts. The submitter remains responsible for interpretation and course-policy compliance.",
+        "x": 657,
+        "y": 196,
+        "w": 263,
+        "h": 284,
+        "size": 19,
+        "color": "233747",
+        "bold": false
+      },
+      {
+        "kind": "text",
+        "text": "Full references, source tables and reproduction instructions accompany the report.",
+        "x": 40,
+        "y": 494,
+        "w": 880,
+        "h": 23,
+        "size": 13.5,
+        "color": "536779",
+        "bold": false
+      }
+    ]
+  ]
+}

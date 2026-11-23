@@ -1,0 +1,46 @@
+Audited Aotizhongxin: 706 eligible training days
+Audited Changping: 694 eligible training days
+Audited Dingling: 689 eligible training days
+Audited Dongsi: 717 eligible training days
+Audited Guanyuan: 715 eligible training days
+Audited Gucheng: 696 eligible training days
+Audited Huairou: 679 eligible training days
+Audited Nongzhanguan: 718 eligible training days
+Audited Shunyi: 689 eligible training days
+Audited Tiantan: 700 eligible training days
+Audited Wanliu: 725 eligible training days
+Audited Wanshouxigong: 714 eligible training days
+{
+  "selected_station": "Wanliu",
+  "stations_audited": 12,
+  "retention": {
+    "all": {
+      "calendar_days": 1461,
+      "pm25_qualified_days": 1449,
+      "analysis_eligible_days": 1441,
+      "excluded_days": 20
+    },
+    "train": {
+      "calendar_days": 730,
+      "pm25_qualified_days": 727,
+      "analysis_eligible_days": 725,
+      "excluded_days": 5
+    },
+    "validation": {
+      "calendar_days": 366,
+      "pm25_qualified_days": 359,
+      "analysis_eligible_days": 359,
+      "excluded_days": 7
+    },
+    "test": {
+      "calendar_days": 365,
+      "pm25_qualified_days": 363,
+      "analysis_eligible_days": 357,
+      "excluded_days": 8
+    }
+  },
+  "report": "/tmp/beijing-pm25-stage4-final-20261123/reports/stage1_summary.md",
+  "generated_artifacts": 21,
+  "models_fitted": false
+}
+Stage 1 complete. Model fitting requires review of this stage first.

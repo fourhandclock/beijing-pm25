@@ -17,6 +17,7 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = ["pytest>=8,<10"]
+submission = ["reportlab>=4.4,<5", "python-pptx>=1,<2", "PyMuPDF>=1.26,<2"]
 
 [project.scripts]
 beijing-pm25 = "beijing_pm25.cli:main"

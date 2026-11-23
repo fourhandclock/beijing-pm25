@@ -1,0 +1,361 @@
+{
+  "baseline": "Completed uncommitted Stage 4 tree, preserved in the baseline archive",
+  "branch": "stage5-research-presentation",
+  "modified": 45,
+  "new": 43,
+  "removed": 0,
+  "files": [
+    {
+      "path": "PROJECT_BRIEF.md",
+      "status": "modified"
+    },
+    {
+      "path": "README.md",
+      "status": "modified"
+    },
+    {
+      "path": "reports/archive/stage4_before_editorial_refinement.zip",
+      "status": "new"
+    },
+    {
+      "path": "reports/independent_model_check.json",
+      "status": "modified"
+    },
+    {
+      "path": "reports/reproducibility.md",
+      "status": "new"
+    },
+    {
+      "path": "reports/stage1_summary.md",
+      "status": "modified"
+    },
+    {
+      "path": "reports/stage2_analysis.md",
+      "status": "modified"
+    },
+    {
+      "path": "reports/stage2_checks.md",
+      "status": "modified"
+    },
+    {
+      "path": "reports/stage2_protocol.md",
+      "status": "modified"
+    },
+    {
+      "path": "reports/stage4/README.md",
+      "status": "new"
+    },
+    {
+      "path": "reports/stage4/pr_review_summary.md",
+      "status": "modified"
+    },
+    {
+      "path": "reports/stage4/statistical_audit.md",
+      "status": "modified"
+    },
+    {
+      "path": "reports/stage4_verification.md",
+      "status": "modified"
+    },
+    {
+      "path": "reports/stage5/baseline.json",
+      "status": "new"
+    },
+    {
+      "path": "reports/stage5/build_review/commands.jsonl",
+      "status": "new"
+    },
+    {
+      "path": "reports/stage5/build_review/stage5-complete-reproduction.log",
+      "status": "new"
+    },
+    {
+      "path": "reports/stage5/build_review/stage5-draft-documents.log",
+      "status": "new"
+    },
+    {
+      "path": "reports/stage5/build_review/stage5-refined-documents.log",
+      "status": "new"
+    },
+    {
+      "path": "reports/stage5/files_changed.json",
+      "status": "new"
+    },
+    {
+      "path": "reports/stage5/final_checks/build-submission.log",
+      "status": "new"
+    },
+    {
+      "path": "reports/stage5/final_checks/check-submission.log",
+      "status": "new"
+    },
+    {
+      "path": "reports/stage5/final_checks/commands.json",
+      "status": "new"
+    },
+    {
+      "path": "reports/stage5/final_checks/editorial-preservation.log",
+      "status": "new"
+    },
+    {
+      "path": "reports/stage5/final_checks/pip-check.log",
+      "status": "new"
+    },
+    {
+      "path": "reports/stage5/final_checks/verify.log",
+      "status": "new"
+    },
+    {
+      "path": "reports/stage5/links_check.json",
+      "status": "new"
+    },
+    {
+      "path": "reports/stage5/preservation_check.json",
+      "status": "new"
+    },
+    {
+      "path": "reports/stage5/reproduction/aggregation-oracle.log",
+      "status": "new"
+    },
+    {
+      "path": "reports/stage5/reproduction/ar1-calendar.log",
+      "status": "new"
+    },
+    {
+      "path": "reports/stage5/reproduction/build-submission.log",
+      "status": "new"
+    },
+    {
+      "path": "reports/stage5/reproduction/check-submission.log",
+      "status": "new"
+    },
+    {
+      "path": "reports/stage5/reproduction/commands.json",
+      "status": "new"
+    },
+    {
+      "path": "reports/stage5/reproduction/download.log",
+      "status": "new"
+    },
+    {
+      "path": "reports/stage5/reproduction/extension-oracle.log",
+      "status": "new"
+    },
+    {
+      "path": "reports/stage5/reproduction/frozen-stage2.log",
+      "status": "new"
+    },
+    {
+      "path": "reports/stage5/reproduction/model-oracle.log",
+      "status": "new"
+    },
+    {
+      "path": "reports/stage5/reproduction/preserved-stage3.log",
+      "status": "new"
+    },
+    {
+      "path": "reports/stage5/reproduction/pytest.log",
+      "status": "new"
+    },
+    {
+      "path": "reports/stage5/reproduction/stage1.log",
+      "status": "new"
+    },
+    {
+      "path": "reports/stage5/reproduction/stage2.log",
+      "status": "new"
+    },
+    {
+      "path": "reports/stage5/reproduction/stage3.log",
+      "status": "new"
+    },
+    {
+      "path": "reports/stage5/visual_review.json",
+      "status": "new"
+    },
+    {
+      "path": "reports/stage5/wording_checks/build-submission.log",
+      "status": "new"
+    },
+    {
+      "path": "reports/stage5/wording_checks/check-submission.log",
+      "status": "new"
+    },
+    {
+      "path": "reports/stage5/wording_checks/commands.json",
+      "status": "new"
+    },
+    {
+      "path": "reports/stage5/wording_checks/editorial-preservation.log",
+      "status": "new"
+    },
+    {
+      "path": "reports/stage5_refinement.md",
+      "status": "new"
+    },
+    {
+      "path": "reports/verification/ar1_calendar_check.json",
+      "status": "new"
+    },
+    {
+      "path": "reports/verification/independent_extensions_check.json",
+      "status": "new"
+    },
+    {
+      "path": "reports/verification/stage2_preservation.json",
+      "status": "new"
+    },
+    {
+      "path": "reports/verification/stage3_preservation.json",
+      "status": "new"
+    },
+    {
+      "path": "reports/verification/submission_check.json",
+      "status": "new"
+    },
+    {
+      "path": "results/figures/hourly_training_missingness.svg",
+      "status": "modified"
+    },
+    {
+      "path": "results/figures/station_training_completeness.svg",
+      "status": "modified"
+    },
+    {
+      "path": "results/figures/training_calendar_acf.svg",
+      "status": "modified"
+    },
+    {
+      "path": "results/figures/training_daily_series.svg",
+      "status": "modified"
+    },
+    {
+      "path": "results/figures/training_response_distribution.svg",
+      "status": "modified"
+    },
+    {
+      "path": "results/figures/training_seasonal_distribution.svg",
+      "status": "modified"
+    },
+    {
+      "path": "results/stage1_run.json",
+      "status": "modified"
+    },
+    {
+      "path": "results/stage2/figures/frozen_test_estimates.svg",
+      "status": "modified"
+    },
+    {
+      "path": "results/stage2/figures/m1_residual_diagnostics.svg",
+      "status": "modified"
+    },
+    {
+      "path": "results/stage2/figures/m2_residual_diagnostics.svg",
+      "status": "modified"
+    },
+    {
+      "path": "results/stage2/figures/m3_residual_diagnostics.svg",
+      "status": "modified"
+    },
+    {
+      "path": "results/stage2/figures/m3_seasonal_wind_associations.svg",
+      "status": "modified"
+    },
+    {
+      "path": "results/stage2/figures/training_correlations.svg",
+      "status": "modified"
+    },
+    {
+      "path": "results/stage2/figures/training_residual_acf.svg",
+      "status": "modified"
+    },
+    {
+      "path": "results/stage2/figures/training_residual_time_series.svg",
+      "status": "modified"
+    },
+    {
+      "path": "results/stage2/figures/validation_model_comparison.svg",
+      "status": "modified"
+    },
+    {
+      "path": "results/stage2/frozen_model.json",
+      "status": "modified"
+    },
+    {
+      "path": "results/stage2/run.json",
+      "status": "modified"
+    },
+    {
+      "path": "results/stage3/run.json",
+      "status": "modified"
+    },
+    {
+      "path": "scripts/audit_ar1_calendar.py",
+      "status": "modified"
+    },
+    {
+      "path": "scripts/build_submission.py",
+      "status": "modified"
+    },
+    {
+      "path": "scripts/check_editorial_preservation.py",
+      "status": "new"
+    },
+    {
+      "path": "scripts/check_frozen_stage2.py",
+      "status": "modified"
+    },
+    {
+      "path": "scripts/check_stage3_preservation.py",
+      "status": "modified"
+    },
+    {
+      "path": "scripts/check_submission.py",
+      "status": "modified"
+    },
+    {
+      "path": "scripts/reproduce.py",
+      "status": "modified"
+    },
+    {
+      "path": "scripts/verify_extensions.py",
+      "status": "modified"
+    },
+    {
+      "path": "src/beijing_pm25/model_report.py",
+      "status": "modified"
+    },
+    {
+      "path": "src/beijing_pm25/pipeline.py",
+      "status": "modified"
+    },
+    {
+      "path": "submission/build_manifest.json",
+      "status": "modified"
+    },
+    {
+      "path": "submission/report.md",
+      "status": "modified"
+    },
+    {
+      "path": "submission/report.pdf",
+      "status": "modified"
+    },
+    {
+      "path": "submission/slide_content.json",
+      "status": "modified"
+    },
+    {
+      "path": "submission/slides.pdf",
+      "status": "modified"
+    },
+    {
+      "path": "submission/slides.pptx",
+      "status": "modified"
+    },
+    {
+      "path": "submission/speaker_notes.md",
+      "status": "modified"
+    }
+  ]
+}

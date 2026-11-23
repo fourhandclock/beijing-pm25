@@ -1,0 +1,20 @@
+{
+  "status": "passed",
+  "checked_at_utc": "2026-11-23T16:30:25+00:00",
+  "method": "Separate CSV/calendar aggregation, QR fits, direct date-pair HAC, trust-region logistic likelihood, and direct Ward SSE merging; no statsmodels/production imports",
+  "primary_station": "Wanliu",
+  "stations_checked": 12,
+  "common_sample_counts": {
+    "train": 721,
+    "validation": 354,
+    "test": 355
+  },
+  "extension_models_checked": 5,
+  "extension_predictions_checked": 8580,
+  "selected_exploratory_model": "M3_log_lag_met",
+  "logistic_validation_cutoff": 0.1322990406599073,
+  "clusters": 2,
+  "ordinary_and_log_models_lags_smearing_logistic_ar1_stations_clusters_match": true,
+  "raw_sha256": "b04da438b2f331ac0ffd45aebdfec0d20d2367feb5f6948c4b1f7ce1191e33c4",
+  "stage3_run_sha256": "fd6b90b281ca2a50304783f20f9b8ee9539f0f456f0ec2832d6fdac6d6cbfa68"
+}

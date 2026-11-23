@@ -1,0 +1,42 @@
+{
+  "reviewer": "Codex, by inspection of rendered images",
+  "report_pages_reviewed": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "slide_pages_reviewed": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16
+  ],
+  "report_render_dpi": 100,
+  "slide_render_dpi": 90,
+  "method": "All pages inspected in contact sheets; representative scientific figures/tables inspected separately. Final renders compared pixel by pixel with reviewed renders; only slide 4 changed and was inspected separately.",
+  "observed_issues_remaining": [],
+  "native_powerpoint_viewer_used": false,
+  "pdf_sha256": {
+    "report.pdf": "a9fba9eb3e5f25a95cc554890ade38260379ea2c30323ecfc087863069bbbac0",
+    "slides.pdf": "7142ec5ae93cd6525c98a60c04f8fd17eb0805090845b62e1c7f99253d061bed"
+  }
+}

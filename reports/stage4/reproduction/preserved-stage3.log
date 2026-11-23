@@ -1,0 +1,2 @@
+PASS: 12 Stage 3 tables preserved numerically; original artifacts archived exactly.
+Largest absolute table difference: 9.897860309138196e-12

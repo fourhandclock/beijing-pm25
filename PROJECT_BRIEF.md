@@ -1,15 +1,19 @@
 # Project brief — Beyond R²: Beijing PM2.5
 
+The statistical investigation and verification are complete. Current work refines its research presentation and documentation without changing the analysis. The first-task instructions below are retained as the original handoff; no new EWMA, ridge or forecasting extension is planned.
+
 ## Purpose and constraints
 This is an undergraduate statistics project worth **30%** of the course grade. The project should resemble a clear, reproducible statistical investigation, **not** a claim of publication-grade novelty. Core syllabus methods: **multiple linear regression, ANOVA / nested-model tests, hypothesis testing, residual diagnostics**. Optional extension: an **adaptive residual-bias correction** using EWMA. Optional mathematical add-on: collinearity, design-matrix conditioning, and ridge regression if justified by evidence.
 
-Assessment criteria (out of 30): dataset quality 5, analytical work 10, presentation 5, interpretation 5, quality of results 5. Prior estimated project time budget was ~3 weeks; ask the user to confirm the current deadline before scheduling a large build.
+Assessment criteria (out of 30): dataset quality 5, analytical work 10, presentation 5, interpretation 5, quality of results 5.
 
 ## Working title
-**Beyond R²: Seasonal Effects, Model Adequacy, and Adaptive Residual Correction in Beijing PM2.5 Regression**
+**Beyond R²: Seasonal Effects, Residual Dependence, and Model Adequacy in Beijing PM2.5 Regression**
 
 ## Main research question
-How adequately do meteorological and seasonal variables explain PM2.5 variation, what systematic structure remains in the residuals, and can a strictly past-only adaptive bias correction improve held-out performance?
+How adequately do meteorological and seasonal variables explain daily PM2.5 variation, and what do nested-model tests and residual diagnostics reveal about model adequacy?
+
+The original handoff also proposed past-only adaptive bias correction as an optional question. It is not part of the final submission implementation; existing Stage 3 extensions are exploratory supporting analyses.
 
 **Do not presuppose any hypotheses are true.** Report null/negative findings and uncertainty explicitly.
 

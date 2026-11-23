@@ -7,8 +7,8 @@ import pytest
 from beijing_pm25.data import read_station
 from beijing_pm25.extension_config import Stage3Config
 from beijing_pm25.extensions import (EXTENSION_MODELS, FittedExtension, build_station_daily, choose_cutoff,
-                                     cluster_stations, common_sample, confusion, extra_daily,
-                                     rank_auc, training_centres, wind_components)
+                                     cluster_stations, common_sample, compare_models, confusion, extra_daily,
+                                     partitions, rank_auc, smog_logistic, training_centres, wind_components)
 from conftest import csv_bytes, hourly_rows
 
 
@@ -119,3 +119,40 @@ def test_stage3_config_rejects_bad_settings():
     with pytest.raises(ValueError):
         Stage3Config(cluster_k_range=(1, 3))
     assert Stage3Config().as_dict()["cluster_k_range"] == [2, 5]
+
+
+def _chronological_extension_fixture():
+    # Drop the synthetic helper's first padded lag; all retained lags then use
+    # an actually preceding synthetic day. These are test observations only.
+    frame = _synthetic_sample(n=760, seed=7).iloc[1:].copy()
+    frame["split"] = ["train"]*400 + ["validation"]*180 + ["test"]*179
+    # Ensure that the cutoff-selection fixture contains a positive validation
+    # event; this is a deterministic synthetic test design, not a data-cleaning rule.
+    frame.loc[frame.index[410], "pm25"] = 10000
+    return frame
+
+
+def test_future_outcomes_do_not_change_extension_selection_or_smearing():
+    frame = _chronological_extension_fixture()
+    original = compare_models(frame, 0.95)
+    changed = frame.copy()
+    changed.loc[changed["split"].eq("test"), "pm25"] += 10000
+    changed.loc[changed["split"].eq("test"), "temperature"] += 500
+    later = compare_models(changed, 0.95)
+    assert original["chosen"] == later["chosen"]
+    assert original["centres"] == later["centres"]
+    assert original["threshold"] == later["threshold"]
+    for name in EXTENSION_MODELS:
+        np.testing.assert_allclose(original["fitted"][name].result.params, later["fitted"][name].result.params)
+        assert original["fitted"][name].smearing == later["fitted"][name].smearing
+
+
+def test_logistic_cutoff_and_parameters_do_not_use_test_outcomes():
+    frame = _chronological_extension_fixture()
+    original = smog_logistic(partitions(frame), 0.95, 0.05)
+    changed = frame.copy()
+    changed.loc[changed["split"].eq("test"), "pm25"] += 10000
+    later = smog_logistic(partitions(changed), 0.95, 0.05)
+    assert original["cutoff"] == later["cutoff"]
+    assert original["threshold"] == later["threshold"]
+    np.testing.assert_allclose(original["odds"]["coefficient"], later["odds"]["coefficient"])

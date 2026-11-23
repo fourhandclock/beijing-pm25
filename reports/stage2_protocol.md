@@ -1,6 +1,6 @@
 # Stage 2 analysis protocol
 
-Recorded before the first empirical model fit, following the user's approval to proceed from Stage 1. The provisional submission deadline is **25 November 2026**. Stage 2 covers the core regression investigation; EWMA, ridge, other response models and a second station remain outside this stage.
+Recorded before the first empirical model fit, following the user's approval to proceed from Stage 1. The original dated protocol is preserved byte for byte in `archive/stage2_protocol_original_20261119.md`; the methodological rules below remain unchanged. Stage 2 covers the core regression investigation; EWMA, ridge, other response models and a second station remain outside this stage.
 
 ## Response, sample and models
 
